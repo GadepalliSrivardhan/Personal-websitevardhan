@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Srivardhan Gadepalli | Aspiring Product Manager</title>
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --bg-alt: #ffffff;
+      --surface: #ffffff;
+      --surface-2: #fbfbfd;
+      --text: #1d1d1f;
+      --muted: #6e6e73;
+      --accent: #0a84ff;
+      --accent-soft: #2f95ff;
+      --border: rgba(0, 0, 0, 0.08);
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      --shadow-soft: 0 4px 14px rgba(0, 0, 0, 0.04);
+      --success: #22c55e;
+      --max: 1200px;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: radial-gradient(circle at top right, rgba(10, 132, 255, 0.08), transparent 34%),
+                  radial-gradient(circle at 20% 20%, rgba(10, 132, 255, 0.05), transparent 30%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), 92%); margin: 0 auto; }
+    .navbar {
+      position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(18px);
+      background: rgba(245, 245, 247, 0.86); border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; min-height: 72px; gap: 1rem; }
+    .brand { font-weight: 700; letter-spacing: 0.3px; }
+    .brand span { color: var(--accent); }
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      border-radius: 10px;
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .nav-links { display: flex; list-style: none; gap: 0.8rem; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-link {
+      color: var(--muted); padding: 0.45rem 0.7rem; border-radius: 9px; transition: all 0.2s ease;
+      font-size: 0.93rem; border: 1px solid transparent;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--text); border-color: rgba(10, 132, 255, 0.28); background: rgba(10, 132, 255, 0.08);
+    }
+    section { padding: 6rem 0; scroll-margin-top: 86px; }
+    .section-title { font-size: clamp(1.75rem, 3.2vw, 2.45rem); margin-bottom: 0.75rem; font-weight: 700; letter-spacing: -0.02em; }
+    .section-sub { color: var(--muted); max-width: 780px; margin-bottom: 2rem; }
+    .hero { min-height: calc(100vh - 72px); display: grid; align-items: center; position: relative; }
+    .particle-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+    .particle {
+      position: absolute; width: 140px; height: 140px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(10, 132, 255, 0.25), rgba(10, 132, 255, 0));
+      animation: float 20s infinite ease-in-out; opacity: 0.3; filter: blur(16px);
+    }
+    .particle:nth-child(1) { top: 8%; left: 5%; animation-delay: 0s; }
+    .particle:nth-child(2) { top: 16%; right: 10%; animation-delay: 3s; width: 180px; height: 180px; }
+    .particle:nth-child(3) { bottom: 12%; left: 20%; animation-delay: 6s; width: 120px; height: 120px; }
+    .particle:nth-child(4) { bottom: 18%; right: 18%; animation-delay: 2s; width: 160px; height: 160px; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
+      50% { transform: translateY(-18px) translateX(12px) scale(1.07); }
+    }
+    .hero-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
+    .hero-photo-card { padding: 0.65rem; }
+    .hero-photo {
+      width: 100%;
+      max-width: 430px;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      display: block;
+      margin: 0 auto;
+      object-fit: cover;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+    }
+    .hero-photo-caption {
+      margin-top: 0.7rem;
+      text-align: center;
+      color: #6e6e73;
+      font-size: 0.87rem;
+    }
+    .open-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(34, 197, 94, 0.1);
+      color: #166534; border: 1px solid rgba(34, 197, 94, 0.26); border-radius: 999px;
+      padding: 0.42rem 0.8rem; font-size: 0.86rem; margin-bottom: 1rem; font-weight: 600;
+    }
+    .hero h1 { font-size: clamp(2.15rem, 5vw, 3.7rem); line-height: 1.08; margin-bottom: 0.7rem; letter-spacing: -0.03em; }
+    .hero h2 { font-size: clamp(1rem, 2.2vw, 1.22rem); color: #3a3a3c; font-weight: 500; margin-bottom: 1.2rem; }
+    .hero p { max-width: 760px; color: var(--muted); font-size: clamp(1rem, 2vw, 1.1rem); margin-bottom: 1.7rem; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; border-radius: 999px;
+      font-weight: 600; padding: 0.72rem 1.22rem; transition: 0.2s ease; border: 1px solid transparent;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), #0077ed); color: #fff; box-shadow: 0 8px 20px rgba(10, 132, 255, 0.28); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 20px rgba(10, 132, 255, 0.24); }
+    .btn-outline { border-color: rgba(10, 132, 255, 0.28); color: #1d1d1f; background: rgba(255, 255, 255, 0.8); }
+    .btn-outline:hover { background: rgba(10, 132, 255, 0.08); transform: translateY(-1px); }
+    .panel {
+      background: linear-gradient(180deg, #ffffff, #fbfbfd);
+      border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-soft);
+    }
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: 1.3rem; margin-top: 1.4rem; }
+    .about-card { padding: 1.2rem; }
+    .about-card h3 { font-size: 1.05rem; margin-bottom: 0.5rem; color: #1d1d1f; }
+    .about-card p { color: var(--muted); font-size: 0.95rem; }
+    .journey { margin-top: 1.7rem; padding: 1.4rem; }
+    .journey h3 { margin-bottom: 1rem; color: #1d1d1f; }
+    .timeline { position: relative; display: grid; gap: 1rem; }
+    .timeline::before {
+      content: ""; position: absolute; left: 14px; top: 8px; bottom: 8px; width: 2px;
+      background: linear-gradient(180deg, var(--accent), rgba(10, 132, 255, 0.2));
+    }
+    .step { display: grid; grid-template-columns: 32px 1fr; gap: 0.8rem; align-items: start; }
+    .dot { width: 14px; height: 14px; margin: 5px 0 0 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.16); }
+    .step h4 { font-size: 1rem; margin-bottom: 0.2rem; }
+    .step p { color: var(--muted); font-size: 0.93rem; }
+    .skills-wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 1rem; margin-top: 1.4rem; }
+    .skill-group { padding: 1rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); }
+    .skill-group h3 { font-size: 1rem; margin-bottom: 0.8rem; color: #1d1d1f; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .tag {
+      font-size: 0.78rem; color: #1d1d1f; border: 1px solid rgba(10, 132, 255, 0.2);
+      background: rgba(10, 132, 255, 0.08); padding: 0.36rem 0.56rem; border-radius: 999px;
+      transform: translateY(0); transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .tag:hover { transform: translateY(-2px); background: rgba(10, 132, 255, 0.14); }
+    .projects-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.4rem; }
+    .project-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.2rem; transition: 0.25s ease; cursor: pointer; position: relative; overflow: hidden;
+    }
+    .project-card::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(120deg, transparent 0%, rgba(10, 132, 255, 0.1) 100%);
+      opacity: 0; transition: opacity 0.25s ease; pointer-events: none;
+    }
+    .project-card:hover { transform: translateY(-2px); border-color: rgba(10, 132, 255, 0.24); box-shadow: var(--shadow); }
+    .project-card:hover::after { opacity: 1; }
+    .project-meta { color: #6e6e73; font-size: 0.85rem; margin-bottom: 0.55rem; }
+    .project-title { font-size: 1.1rem; margin-bottom: 0.5rem; color: #1d1d1f; }
+    .project-desc { color: var(--muted); font-size: 0.93rem; margin-bottom: 0.8rem; }
+    .kpis { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.8rem; }
+    .kpi {
+      font-size: 0.76rem; border-radius: 999px; padding: 0.3rem 0.55rem;
+      border: 1px solid rgba(10, 132, 255, 0.24); color: #0b4a8a; background: rgba(10, 132, 255, 0.08);
+    }
+    .view-link { color: #0a84ff; font-weight: 600; font-size: 0.88rem; }
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0.9rem; margin-top: 1.4rem; }
+    .cert-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1rem; display: flex; gap: 0.7rem; align-items: flex-start; transition: 0.2s ease;
+    }
+    .cert-card:hover { border-color: rgba(10, 132, 255, 0.24); transform: translateY(-1px); }
+    .badge-icon { font-size: 1.25rem; line-height: 1; }
+    .pm-why {
+      padding: 1.4rem; border-left: 4px solid var(--accent); background: rgba(10, 132, 255, 0.08);
+      border-radius: 0 12px 12px 0; color: #1d1d1f; font-size: 1.01rem; max-width: 980px;
+    }
+    .contact-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.3rem; }
+    .contact-card, .contact-form {
+      padding: 1.2rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    }
+    .contact-item { margin-bottom: 0.7rem; color: var(--muted); font-size: 0.95rem; }
+    .contact-item strong { color: #1d1d1f; margin-right: 0.4rem; }
+    .contact-form form { display: grid; gap: 0.8rem; }
+    .contact-form input, .contact-form textarea {
+      width: 100%; border-radius: 10px; border: 1px solid rgba(0, 0, 0, 0.12);
+      background: #fff; color: #1d1d1f; padding: 0.72rem 0.78rem;
+      font-family: inherit; font-size: 0.94rem;
+    }
+    .contact-form textarea { min-height: 130px; resize: vertical; }
+    .contact-form input:focus, .contact-form textarea:focus {
+      outline: none; border-color: rgba(10, 132, 255, 0.56); box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.14);
+    }
+    .footer {
+      border-top: 1px solid var(--border); margin-top: 2.2rem; padding: 1.4rem 0 1.8rem;
+      color: #6e6e73; font-size: 0.88rem; text-align: center;
+    }
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .modal {
+      position: fixed; inset: 0; background: rgba(20, 20, 24, 0.42); backdrop-filter: blur(6px);
+      display: none; align-items: center; justify-content: center; z-index: 2000; padding: 1rem;
+    }
+    .modal.open { display: flex; }
+    .modal-content {
+      width: min(900px, 100%); max-height: 90vh; overflow-y: auto; background: #ffffff;
+      border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem; position: relative; box-shadow: var(--shadow);
+    }
+    .close-btn {
+      position: absolute; right: 0.7rem; top: 0.7rem; border: none; cursor: pointer;
+      width: 34px; height: 34px; border-radius: 50%; background: rgba(0, 0, 0, 0.06);
+      color: #1d1d1f; font-size: 1.2rem;
+    }
+    .modal-head h3 { margin-bottom: 0.2rem; font-size: 1.24rem; }
+    .modal-meta { color: #6e6e73; font-size: 0.88rem; margin-bottom: 0.9rem; }
+    .modal-content p { color: var(--muted); margin-bottom: 0.8rem; font-size: 0.93rem; }
+    .modal-content h4 { margin: 0.95rem 0 0.55rem; color: #1d1d1f; font-size: 0.99rem; }
+    .modal-content ul { margin-left: 1rem; color: #3a3a3c; font-size: 0.91rem; }
+    .modal-content li { margin-bottom: 0.4rem; }
+    @media (min-width: 760px) {
+      .about-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: 1fr 1.3fr; }
+    }
+    @media (min-width: 980px) {
+      .hero-grid { grid-template-columns: 1.15fr 0.85fr; }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        left: 4%;
+        right: 4%;
+        top: 68px;
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        padding: 0.55rem;
+        gap: 0.35rem;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .nav-links.open { display: flex; }
+      .nav-link {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 0.6rem 0.7rem;
+      }
+    }
+
+    @media (max-width: 690px) {
+      .nav-inner { min-height: 64px; }
+      .hero h1 { font-size: clamp(1.9rem, 8.5vw, 2.5rem); }
+      .hero h2 { font-size: 0.98rem; }
+      .hero p { font-size: 0.95rem; margin-bottom: 1.2rem; }
+      .btn-row { width: 100%; }
+      .btn { width: 100%; }
+      .section-sub { margin-bottom: 1.3rem; }
+      section { padding: 4.8rem 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#home">Srivardhan <span>Gadepalli</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <ul class="nav-links">
+        <li><a class="nav-link" href="#home">Home</a></li>
+        <li><a class="nav-link" href="#about">About</a></li>
+        <li><a class="nav-link" href="#skills">Skills</a></li>
+        <li><a class="nav-link" href="#projects">Projects</a></li>
+        <li><a class="nav-link" href="#side-projects">Side Projects</a></li>
+        <li><a class="nav-link" href="#certifications">Certifications</a></li>
+        <li><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+  <main>
+    <section class="hero" id="home">
+      <div class="particle-bg">
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span>
+      </div>
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="open-badge">Open to PM Roles 🟢</span>
+          <h1>Srivardhan Gadepalli</h1>
+          <h2>Senior Business Analyst -> Aspiring Product Manager | PSPO I Certified | Pega Specialist</h2>
+          <p>Turning complex business problems into products people actually use.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="#projects">View My Work</a>
+            <a class="btn btn-outline" href="file:///C:/Users/sreev/OneDrive/Documents/Srivardhan_Gadepalli_Resume.pdf" download="Srivardhan_Gadepalli_Resume.pdf" aria-label="Download resume">Download Resume</a>
+          </div>
+        </div>
+        <div class="panel hero-photo-card reveal">
+          <img
+            class="hero-photo"
+            src="file:///C:/Users/sreev/.cursor/projects/c-Users-sreev-Personal-websitevardhan/assets/c__Users_sreev_AppData_Roaming_Cursor_User_workspaceStorage_e037808c061b29368ffca0edaeeca60c_images_composer-annotation-6038d9fd-150a-4e3f-9f7b-0fca7814c31d.png"
+            alt="Srivardhan Gadepalli portrait"
+          >
+          <p class="hero-photo-caption">Senior Business Analyst -> Aspiring Product Manager</p>
+        </div>
+      </div>
+    </section>
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title reveal">About Me</h2>
+        <p class="section-sub reveal">Senior Business Analyst at EvonSys with roots in hands-on Pega development, now transitioning into Product Management with strong delivery, discovery, and cross-functional leadership experience.</p>
+        <div class="about-grid">
+          <article class="panel about-card reveal"><h3>Experience & Domain</h3><p>4.5+ years at EvonSys as a Senior Business Analyst and former Pega Developer, delivering two enterprise-scale products simultaneously: a Pega-based HR/HCM platform and a Pega Constellation marketing-tech application.</p></article>
+          <article class="panel about-card reveal"><h3>Core Strengths</h3><p>Agile delivery, stakeholder management, requirement elicitation, backlog ownership, integration requirement design, sprint facilitation, UAT enablement, and end-to-end product lifecycle execution.</p></article>
+          <article class="panel about-card reveal"><h3>Certifications</h3><p>PSPO I (Scrum.org), Pega Certified Business Architect (PCBA), Pega Certified Senior System Architect (PCSSA), and Aha! Product Management Professional.</p></article>
+          <article class="panel about-card reveal"><h3>Education & Location</h3><p>B.Tech in Electrical & Electronics Engineering, JNTU Kakinada (2015-2019). Based in Secunderabad, Hyderabad, India.</p></article>
+        </div>
+        <div class="panel journey reveal">
+          <h3>Career Journey: Developer -> BA -> PM</h3>
+          <div class="timeline">
+            <div class="step"><span class="dot"></span><div><h4>Pega Developer</h4><p>Built platform capability and technical depth in enterprise workflows, integrations, and delivery constraints.</p></div></div>
+            <div class="step"><span class="dot"></span><div><h4>Senior Business Analyst</h4><p>Owned requirements, backlog, sprint rituals, stakeholder alignment, and go-live support across large products.</p></div></div>
+            <div class="step"><span class="dot"></span><div><h4>Now: Product Manager Transition</h4><p>Ready to drive product strategy, prioritization, customer outcomes, and roadmap execution with business and technical fluency.</p></div></div>
+          </div>
+        </div>
+        <div class="panel about-card reveal" style="margin-top:1rem;">
+          <h3>Personal Note</h3>
+          <p>"I've spent 4+ years living inside product delivery - writing user stories, owning the backlog, running sprint ceremonies, negotiating scope, and sitting in war rooms during go-lives. Now I want to own the product vision end to end."</p>
+        </div>
+      </div>
+    </section>
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title reveal">Skills</h2>
+        <p class="section-sub reveal">Cross-functional product and delivery capabilities spanning discovery, analysis, execution, analytics, and stakeholder communication.</p>
+        <div class="skills-wrap">
+          <article class="skill-group reveal"><h3>Product Management</h3><div class="tags"><span class="tag">Product Roadmapping</span><span class="tag">OKRs</span><span class="tag">North Star Metric</span><span class="tag">Prioritization (RICE/MoSCoW/Kano)</span><span class="tag">Business Case Development</span><span class="tag">Go-to-Market Strategy</span><span class="tag">Product Discovery</span><span class="tag">Feature Flags</span><span class="tag">Competitive Analysis</span><span class="tag">Market Research</span><span class="tag">Customer Journey Mapping</span><span class="tag">User Persona Development</span></div></article>
+          <article class="skill-group reveal"><h3>Business Analysis</h3><div class="tags"><span class="tag">Requirements Elicitation</span><span class="tag">BRD/FRD/PRD Writing</span><span class="tag">Use Case & User Story Writing</span><span class="tag">Process Mapping (AS-IS/TO-BE)</span><span class="tag">Gap Analysis</span><span class="tag">Impact Analysis</span><span class="tag">Scope Management</span><span class="tag">Requirements Traceability Matrix</span><span class="tag">Change Control</span></div></article>
+          <article class="skill-group reveal"><h3>Agile & Delivery</h3><div class="tags"><span class="tag">Scrum</span><span class="tag">Kanban</span><span class="tag">Sprint Planning</span><span class="tag">Backlog Refinement</span><span class="tag">Big Room Planning</span><span class="tag">Definition of Done</span><span class="tag">Release Management</span><span class="tag">QA Coordination</span><span class="tag">Business Sign-off</span></div></article>
+          <article class="skill-group reveal"><h3>Data & Analytics</h3><div class="tags"><span class="tag">SQL</span><span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">MS Excel</span><span class="tag">Data Governance</span><span class="tag">Data Quality</span><span class="tag">Data Profiling & Validation</span><span class="tag">Funnel & Retention Analysis</span><span class="tag">KPI Dashboards</span><span class="tag">ERD Design</span><span class="tag">Logical & Physical Data Modelling</span></div></article>
+          <article class="skill-group reveal"><h3>Stakeholder & Communication</h3><div class="tags"><span class="tag">Stakeholder Management</span><span class="tag">Vendor Management</span><span class="tag">Cross-functional Alignment</span><span class="tag">Executive Communication</span><span class="tag">Technical Writing</span><span class="tag">Offshore Team Coordination</span><span class="tag">Workshop Facilitation</span></div></article>
+          <article class="skill-group reveal"><h3>Tools & Platforms</h3><div class="tags"><span class="tag">Jira</span><span class="tag">Confluence</span><span class="tag">Aha!</span><span class="tag">Azure DevOps</span><span class="tag">Figma</span><span class="tag">Balsamiq</span><span class="tag">Miro</span><span class="tag">Lucidchart</span><span class="tag">MS Visio</span><span class="tag">Draw.io</span><span class="tag">Pega PRPC 8.x</span><span class="tag">Pega Constellation</span><span class="tag">REST APIs</span><span class="tag">JSON</span><span class="tag">Microsoft Office Suite</span></div></article>
+        </div>
+      </div>
+    </section>
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title reveal">Featured Projects</h2>
+        <p class="section-sub reveal">Two enterprise products where I operated as a PM-style owner across requirements, backlog prioritization, delivery alignment, and measurable business outcomes.</p>
+        <div class="projects-grid">
+          <article class="project-card reveal" data-modal-target="modal-peoplehcm">
+            <p class="project-meta">EvonSys | Senior Business Analyst & Functional Lead | 3+ years</p>
+            <h3 class="project-title">PeopleHCM - Enterprise HR/HCM Platform</h3>
+            <p class="project-desc">Enterprise HCM product on Pega PRPC 8.x spanning payroll, leave, claims, timesheets, ATS, onboarding, and self-service workflows.</p>
+            <div class="kpis"><span class="kpi">Payroll Accuracy 88% -> 98%</span><span class="kpi">HR Effort -60%</span><span class="kpi">Expense TAT -70%</span><span class="kpi">82% Adoption</span></div>
+            <span class="view-link">View Full Case Details -></span>
+          </article>
+          <article class="project-card reveal" data-modal-target="modal-casestudyhub">
+            <p class="project-meta">EvonSys | Business Analyst | Internal Marketing Tech</p>
+            <h3 class="project-title">Case Study Hub - Marketing Content Platform</h3>
+            <p class="project-desc">Pega Constellation solution to digitize case-study creation, collaboration, approvals, analytics, and CRM-linked usage for marketing and sales teams.</p>
+            <div class="kpis"><span class="kpi">8 Feature Areas</span><span class="kpi">Workflow + SLA Design</span><span class="kpi">Pega + Salesforce Integration</span></div>
+            <span class="view-link">View Full Case Details -></span>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section id="side-projects">
+      <div class="container">
+        <h2 class="section-title reveal">Side Projects</h2>
+        <p class="section-sub reveal">Product-focused AI and digital platform prototypes demonstrating end-to-end thinking across discovery, solution design, and business impact.</p>
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <p class="project-meta">Feb 2026 - Feb 2026</p>
+            <h3 class="project-title">RAG-Based Mutual Fund FAQ Chatbot</h3>
+            <p class="project-desc">Built an AI-powered chatbot using Retrieval-Augmented Generation to provide accurate, context-aware mutual fund answers through semantic search, prompt orchestration, and conversational UX.</p>
+            <div class="kpis">
+              <span class="kpi">Support Deflection</span>
+              <span class="kpi">Faster Investor Answers</span>
+              <span class="kpi">Scalable Knowledge Access</span>
+            </div>
+            <p class="project-desc">Solved fragmented documentation and delayed support by enabling instant, trustworthy self-service information for investors.</p>
+          </article>
+          <article class="project-card reveal">
+            <p class="project-meta">Feb 2026 - Feb 2026</p>
+            <h3 class="project-title">AI-Powered Restaurant Recommendation Platform</h3>
+            <p class="project-desc">Designed and prototyped a personalized recommendation product based on preferences, location, cuisine affinity, budget, and behavioral signals.</p>
+            <div class="kpis">
+              <span class="kpi">Personalized Ranking Logic</span>
+              <span class="kpi">Discovery to Delivery Thinking</span>
+              <span class="kpi">Data-Driven Iteration</span>
+            </div>
+            <p class="project-desc">Defined product vision, metrics, and user flows while using AI-assisted development to accelerate iteration and improve relevance.</p>
+          </article>
+          <article class="project-card reveal">
+            <p class="project-meta">Jan 2026 - Jan 2026</p>
+            <h3 class="project-title">Restaurant Decision Intelligence Platform</h3>
+            <p class="project-desc">Owned a product prototype for real-time restaurant operations intelligence with proactive alerts, risk monitoring, menu analytics, and peak readiness forecasting.</p>
+            <div class="kpis">
+              <span class="kpi">Proactive Ops Visibility</span>
+              <span class="kpi">Trade-off Decisioning</span>
+              <span class="kpi">Efficiency + Profitability Focus</span>
+            </div>
+            <p class="project-desc">Shifted operations conceptually from reactive firefighting to insight-led management through centralized decision dashboards.</p>
+          </article>
+          <article class="project-card reveal">
+            <p class="project-meta">Dec 2025 - Dec 2025</p>
+            <h3 class="project-title">Food Delivery Mobile App - Ordering & Rewards Prototype</h3>
+            <p class="project-desc">Led product definition and UX prototype for seamless food ordering, checkout, tracking, post-delivery feedback, and loyalty-driven repeat engagement.</p>
+            <div class="kpis">
+              <span class="kpi">Reduced Checkout Friction</span>
+              <span class="kpi">Retention Through Rewards</span>
+              <span class="kpi">MVP-Ready Foundation</span>
+            </div>
+            <p class="project-desc">Mapped end-to-end user journeys and prioritized high-impact workflows to improve conversion, clarity, and repeat usage.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section id="certifications">
+      <div class="container">
+        <h2 class="section-title reveal">Certifications</h2>
+        <p class="section-sub reveal">Credentials that reinforce product ownership capability, delivery discipline, and domain expertise.</p>
+        <div class="cert-grid">
+          <article class="cert-card reveal"><span class="badge-icon">🏅</span><p>Professional Scrum Product Owner I (PSPO I) - Scrum.org</p></article>
+          <article class="cert-card reveal"><span class="badge-icon">🏅</span><p>Aha! Product Management Professional Certification</p></article>
+          <article class="cert-card reveal"><span class="badge-icon">🏅</span><p>Pega Certified Business Architect (PCBA)</p></article>
+          <article class="cert-card reveal"><span class="badge-icon">🏅</span><p>Pega Certified Senior System Architect (PCSSA)</p></article>
+        </div>
+      </div>
+    </section>
+    <section id="why-pm">
+      <div class="container">
+        <h2 class="section-title reveal">Why Product Management?</h2>
+        <div class="pm-why reveal">
+          "For 4.5 years, I've been the person closest to the product without the PM title - writing the stories, owning the backlog, facilitating ceremonies, negotiating with stakeholders, and obsessing over adoption metrics. Across PeopleHCM and Case Study Hub, I've shipped features that moved real numbers - payroll accuracy from 88% to 98%, HR effort down by 60%, and a marketing team that went from manual chaos to a structured, automated content platform. I didn't just document requirements - I shaped products. Now I want to own that responsibility end to end."
+        </div>
+      </div>
+    </section>
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title reveal">Contact</h2>
+        <p class="section-sub reveal">Open to Product Manager opportunities and conversations around product strategy, platform modernization, and Agile product delivery.</p>
+        <div class="contact-grid">
+          <div class="contact-card reveal">
+            <p class="contact-item"><strong>Email:</strong> <a href="mailto:gadepallivardhan@gmail.com">gadepallivardhan@gmail.com</a></p>
+            <p class="contact-item"><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/srivardhangadepalli/" target="_blank" rel="noopener noreferrer">linkedin.com/in/srivardhangadepalli</a></p>
+            <p class="contact-item"><strong>Location:</strong> Secunderabad, Hyderabad, India</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container"><p>© <span id="year"></span> Srivardhan Gadepalli - Product-minded Business Analyst transitioning to PM</p></div>
+  </footer>
+  <div class="modal" id="modal-peoplehcm" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Close modal">&times;</button>
+      <div class="modal-head"><h3>PeopleHCM - Enterprise HR/HCM Platform</h3><p class="modal-meta">EvonSys | Senior Business Analyst & Functional Lead | Pega PRPC 8.x | 3+ years</p></div>
+      <p>PeopleHCM is an enterprise Human Capital Management product built on Pega, serving mid-to-large enterprises for end-to-end HR operations.</p>
+      <h4>Modules Owned</h4>
+      <p>Payroll Processing, Leave Management, Expense Claims, Timesheet Management, ATS/Recruitment, Employee Onboarding, and Employee Self-Service Portal.</p>
+      <h4>Key Contributions</h4>
+      <ul>
+        <li>Led end-to-end requirement elicitation across all seven modules through workshops, interviews, and JAD sessions with HR, payroll, finance, and IT stakeholders.</li>
+        <li>Authored BRDs, FRDs, user stories, acceptance criteria, and process flow diagrams covering complete module flows.</li>
+        <li>Owned and managed the product backlog; facilitated sprint planning, refinement, sprint reviews, and retrospectives.</li>
+        <li>Defined integration requirements for REST/SOAP APIs with payroll providers, banking systems, and attendance hardware.</li>
+        <li>Designed ESS portal wireframes using Figma and Balsamiq.</li>
+        <li>Improved payroll processing accuracy from 88% to 98% through defect pattern analysis and requirement redesign.</li>
+        <li>Reduced HR admin effort by 60% using workflow automation in leave and expense modules.</li>
+        <li>Cut expense claim processing time by 70% through full digitization of approvals and validations.</li>
+        <li>Achieved 82% post-go-live user adoption via UAT rigor, stakeholder training, and change management.</li>
+        <li>Controlled scope creep by enforcing structured change control and impact analysis across 25+ change requests.</li>
+      </ul>
+      <h4>PM Skills Demonstrated</h4>
+      <p>Backlog ownership, stakeholder prioritization, sprint facilitation, roadmap input, story clarity, go-live planning, and change management.</p>
+    </div>
+  </div>
+  <div class="modal" id="modal-casestudyhub" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close-btn" aria-label="Close modal">&times;</button>
+      <div class="modal-head"><h3>Case Study Hub (Case Study Central) - Marketing Content Platform</h3><p class="modal-meta">EvonSys | Business Analyst | Pega Constellation | Internal Product</p></div>
+      <p>Case Study Hub is a specialized marketing-tech application built on Pega Constellation to streamline creation, approval, management, and analytics of case studies across marketing and sales.</p>
+      <h4>Key Features Delivered</h4>
+      <ul>
+        <li>Case Study Creation Wizard with standardized capture of objectives, problem statements, solution details, quantified results, and testimonials.</li>
+        <li>Content repository with search, filtering, and categorization by industry, customer segment, and solution type.</li>
+        <li>Template library for reusable branded formats across documents and decks.</li>
+        <li>Collaboration tooling including comments, version control, and assignment workflows.</li>
+        <li>Configurable multi-stage approval workflow with SLA reminders and email notifications.</li>
+        <li>Analytics dashboard for lead generation, conversion, retention, and case-study pipeline visibility.</li>
+        <li>CRM integration with Pega and Salesforce linking content to leads, opportunities, and accounts.</li>
+        <li>Role-based access and permission controls for confidentiality and governance.</li>
+      </ul>
+      <h4>Key Contributions</h4>
+      <ul>
+        <li>Conducted discovery and requirements workshops with marketing stakeholders to define scope and pain points.</li>
+        <li>Authored BRDs, user stories, and acceptance criteria spanning all eight feature areas.</li>
+        <li>Defined approval workflow logic including SLA thresholds, escalation rules, and notification triggers.</li>
+        <li>Collaborated with Constellation developers to ensure UX requirements aligned with platform design standards.</li>
+        <li>Defined CRM integration data mapping, sync behavior, and error-handling requirements.</li>
+        <li>Designed wireframes for the creation wizard and analytics dashboard.</li>
+        <li>Coordinated UAT cycles with marketing teams through final business sign-off.</li>
+        <li>Defined and validated access-control matrix for admins, marketers, sales users, and approvers.</li>
+      </ul>
+      <h4>PM Skills Demonstrated</h4>
+      <p>Feature definition, workflow design, analytics requirement framing, integration strategy, stakeholder-driven prioritization, and UX-aware requirement writing.</p>
+    </div>
+  </div>
+  <script>
+    const revealElements = document.querySelectorAll(".reveal");
+    const sectionAnchors = document.querySelectorAll("main section[id]");
+    const navLinks = document.querySelectorAll(".nav-link");
+    const navLinksContainer = document.querySelector(".nav-links");
+    const menuToggle = document.getElementById("menuToggle");
+    const projectCards = document.querySelectorAll(".project-card");
+    const modals = document.querySelectorAll(".modal");
+    const closeButtons = document.querySelectorAll(".close-btn");
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+    revealElements.forEach((el) => revealObserver.observe(el));
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.getAttribute("id");
+        navLinks.forEach((link) => {
+          const isMatch = link.getAttribute("href") === `#${id}`;
+          link.classList.toggle("active", isMatch);
+        });
+      });
+    }, { threshold: 0.42 });
+    sectionAnchors.forEach((section) => navObserver.observe(section));
+
+    if (menuToggle && navLinksContainer) {
+      menuToggle.addEventListener("click", () => {
+        const isOpen = navLinksContainer.classList.toggle("open");
+        menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      });
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinksContainer.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+        });
+      });
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 900) {
+          navLinksContainer.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
+    projectCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const targetId = card.getAttribute("data-modal-target");
+        const modal = document.getElementById(targetId);
+        if (!modal) return;
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      });
+    });
+    function closeModal(modal) {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+    closeButtons.forEach((btn) => btn.addEventListener("click", () => {
+      const modal = btn.closest(".modal");
+      if (modal) closeModal(modal);
+    }));
+    modals.forEach((modal) => modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal(modal);
+    }));
+    window.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      modals.forEach((modal) => { if (modal.classList.contains("open")) closeModal(modal); });
+    });
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
