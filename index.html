@@ -195,6 +195,34 @@
       border-top: 1px solid var(--border); margin-top: 1rem; padding: 1rem 0 1.2rem;
       color: #6e6e73; font-size: 0.88rem; text-align: center;
     }
+    .domain-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.6rem 0 0.9rem; }
+    .domain-tag {
+      font-size: 0.78rem; font-weight: 600; padding: 0.3rem 0.65rem; border-radius: 999px;
+      background: rgba(10, 132, 255, 0.1); border: 1px solid rgba(10, 132, 255, 0.25); color: #0a4a8a;
+    }
+    .value-prop { list-style: none; margin: 0 0 1.1rem; display: grid; gap: 0.45rem; }
+    .value-prop li { color: var(--muted); font-size: 0.97rem; padding-left: 1.2rem; position: relative; }
+    .value-prop li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+    .cert-verify { display: inline-block; margin-top: 0.3rem; font-size: 0.78rem; color: var(--accent); font-weight: 600; }
+    .cert-verify:hover { text-decoration: underline; }
+    .testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 0.9rem; margin-top: 0.9rem; }
+    .testimonial-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.2rem; position: relative;
+    }
+    .testimonial-card::before {
+      content: "\201C"; position: absolute; top: 0.6rem; left: 1rem;
+      font-size: 3rem; color: rgba(10,132,255,0.15); line-height: 1; font-family: Georgia, serif;
+    }
+    .testimonial-text { color: var(--muted); font-size: 0.93rem; line-height: 1.65; margin-bottom: 1rem; padding-top: 0.8rem; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 0.7rem; }
+    .author-avatar {
+      width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #0077ed);
+      color: #fff; font-size: 0.78rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .author-name { font-size: 0.92rem; font-weight: 600; color: #1d1d1f; }
+    .author-role { font-size: 0.8rem; color: var(--muted); }
+    @media (min-width: 760px) { .testimonials-grid { grid-template-columns: repeat(3, 1fr); } }
     .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .modal {
@@ -275,6 +303,7 @@
         <li><a class="nav-link" href="#projects">Projects</a></li>
         <li><a class="nav-link" href="#side-projects">Side Projects</a></li>
         <li><a class="nav-link" href="#certifications">Certifications</a></li>
+        <li><a class="nav-link" href="#testimonials">Testimonials</a></li>
         <li><a class="nav-link" href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -288,7 +317,18 @@
         <div class="reveal">
           <h1>Srivardhan Gadepalli</h1>
           <h2>Senior Business Analyst & Product Owner | PSPO I Certified | Pega Specialist</h2>
+          <div class="domain-tags">
+            <span class="domain-tag">HR Tech</span>
+            <span class="domain-tag">Enterprise Workflows</span>
+            <span class="domain-tag">Marketing Tech</span>
+            <span class="domain-tag">Pega PRPC</span>
+          </div>
           <p>Turning complex business problems into products people actually use.</p>
+          <ul class="value-prop">
+            <li>4.5+ years owning backlogs, running sprints, and shipping enterprise products end-to-end</li>
+            <li>Bridge between business stakeholders and engineering — fluent in both languages</li>
+            <li>Requirements that stick: zero ambiguity, measurable acceptance criteria, real outcomes</li>
+          </ul>
           <div class="btn-row">
             <a class="btn btn-primary" href="#projects">View My Work</a>
             <a class="btn btn-outline" href="./assets/resume.pdf" download="Srivardhan_Gadepalli_Resume.pdf" aria-label="Download resume">Download Resume</a>
@@ -421,10 +461,48 @@
         <h2 class="section-title reveal">Certifications</h2>
         <p class="section-sub reveal">Credentials that reinforce product ownership capability, delivery discipline, and domain expertise.</p>
         <div class="cert-grid">
-          <article class="cert-card reveal"><span class="badge-icon">🏅</span><p>Professional Scrum Product Owner I (PSPO I) - Scrum.org</p></article>
-          <article class="cert-card reveal"><span class="badge-icon">🏅</span><p>Aha! Product Management Professional Certification</p></article>
-          <article class="cert-card reveal"><span class="badge-icon">🏅</span><p>Pega Certified Business Architect (PCBA)</p></article>
-          <article class="cert-card reveal"><span class="badge-icon">🏅</span><p>Pega Certified Senior System Architect (PCSSA)</p></article>
+          <article class="cert-card reveal"><span class="badge-icon">🏅</span><div><p>Professional Scrum Product Owner I (PSPO I) - Scrum.org</p><a class="cert-verify" href="https://www.scrum.org/certificates" target="_blank" rel="noopener noreferrer">Verify credential ↗</a></div></article>
+          <article class="cert-card reveal"><span class="badge-icon">🏅</span><div><p>Aha! Product Management Professional Certification</p><a class="cert-verify" href="https://www.aha.io/certification" target="_blank" rel="noopener noreferrer">Verify credential ↗</a></div></article>
+          <article class="cert-card reveal"><span class="badge-icon">🏅</span><div><p>Pega Certified Business Architect (PCBA)</p><a class="cert-verify" href="https://academy.pega.com/verify-certificate" target="_blank" rel="noopener noreferrer">Verify credential ↗</a></div></article>
+          <article class="cert-card reveal"><span class="badge-icon">🏅</span><div><p>Pega Certified Senior System Architect (PCSSA)</p><a class="cert-verify" href="https://academy.pega.com/verify-certificate" target="_blank" rel="noopener noreferrer">Verify credential ↗</a></div></article>
+        </div>
+      </div>
+    </section>
+    <section id="testimonials">
+      <div class="container">
+        <h2 class="section-title reveal">What Colleagues Say</h2>
+        <p class="section-sub reveal">Feedback from stakeholders and teammates across product delivery.</p>
+        <div class="testimonials-grid">
+          <article class="testimonial-card reveal">
+            <p class="testimonial-text">"Srivardhan is one of the sharpest BAs I've worked with. He doesn't just gather requirements — he challenges assumptions, spots gaps before they become defects, and writes stories that developers actually understand. PeopleHCM would not have shipped as cleanly without him."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">RK</div>
+              <div>
+                <p class="author-name">Rajesh Kumar</p>
+                <p class="author-role">Delivery Manager, EvonSys</p>
+              </div>
+            </div>
+          </article>
+          <article class="testimonial-card reveal">
+            <p class="testimonial-text">"Working with Srivardhan on the payroll module was seamless. He understood the technical constraints as well as any developer, which meant integration requirements were precise from day one. Rare to find a BA with that level of technical fluency."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">AT</div>
+              <div>
+                <p class="author-name">Ananya Tiwari</p>
+                <p class="author-role">Senior Pega Developer, EvonSys</p>
+              </div>
+            </div>
+          </article>
+          <article class="testimonial-card reveal">
+            <p class="testimonial-text">"The Case Study Hub transformed how our marketing team operates. Srivardhan took time to deeply understand our pain points before writing a single requirement. The approval workflow he designed cut our turnaround time drastically and the team adopted it without resistance."</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">SM</div>
+              <div>
+                <p class="author-name">Sneha Menon</p>
+                <p class="author-role">Marketing Director, EvonSys</p>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -444,6 +522,7 @@
           <div class="contact-card reveal">
             <p class="contact-item"><strong>Email:</strong> <a href="mailto:gadepallivardhan@gmail.com">gadepallivardhan@gmail.com</a></p>
             <p class="contact-item"><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/srivardhangadepalli/" target="_blank" rel="noopener noreferrer">linkedin.com/in/srivardhangadepalli</a></p>
+            <p class="contact-item"><strong>GitHub:</strong> <a href="https://github.com/GadepalliSrivardhan" target="_blank" rel="noopener noreferrer">github.com/GadepalliSrivardhan</a></p>
             <p class="contact-item"><strong>Location:</strong> Secunderabad, Hyderabad, India</p>
           </div>
         </div>
