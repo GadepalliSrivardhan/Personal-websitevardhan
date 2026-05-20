@@ -12,8 +12,8 @@
       --surface-2: #fbfbfd;
       --text: #1d1d1f;
       --muted: #6e6e73;
-      --accent: #0a84ff;
-      --accent-soft: #2f95ff;
+      --accent: #6366f1;
+      --accent-soft: #818cf8;
       --border: rgba(0, 0, 0, 0.08);
       --shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
       --shadow-soft: 0 4px 14px rgba(0, 0, 0, 0.04);
@@ -23,10 +23,17 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    /* ── COPY PROTECTION ── */
+    body, body * {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: radial-gradient(circle at top right, rgba(10, 132, 255, 0.08), transparent 34%),
-                  radial-gradient(circle at 20% 20%, rgba(10, 132, 255, 0.05), transparent 30%),
+      background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.08), transparent 34%),
+                  radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.05), transparent 30%),
                   var(--bg);
       color: var(--text);
       line-height: 1.6;
@@ -59,7 +66,7 @@
       font-size: 0.93rem; border: 1px solid transparent;
     }
     .nav-link:hover, .nav-link.active {
-      color: var(--text); border-color: rgba(10, 132, 255, 0.28); background: rgba(10, 132, 255, 0.08);
+      color: var(--text); border-color: rgba(99, 102, 241, 0.28); background: rgba(99, 102, 241, 0.08);
     }
     section { padding: 3.5rem 0; scroll-margin-top: 72px; }
     .section-title { font-size: clamp(1.75rem, 3.2vw, 2.45rem); margin-bottom: 0.5rem; font-weight: 700; letter-spacing: -0.02em; }
@@ -68,7 +75,7 @@
     .particle-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
     .particle {
       position: absolute; width: 140px; height: 140px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(10, 132, 255, 0.25), rgba(10, 132, 255, 0));
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.25), rgba(99, 102, 241, 0));
       animation: float 20s infinite ease-in-out; opacity: 0.3; filter: blur(16px);
     }
     .particle:nth-child(1) { top: 8%; left: 5%; animation-delay: 0s; }
@@ -79,41 +86,86 @@
       0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
       50% { transform: translateY(-18px) translateX(12px) scale(1.07); }
     }
-    .hero-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
-    .hero-photo-card { padding: 0.65rem; }
-    .hero-photo {
-      width: 100%;
-      max-width: 430px;
-      border-radius: 14px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      display: block;
-      margin: 0 auto;
-      object-fit: cover;
-      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+    /* ── HERO DARK REDESIGN ── */
+    .hero {
+      background: linear-gradient(135deg, #0e0b1f 0%, #1a1040 55%, #0e0b1f 100%);
+      position: relative; overflow: hidden;
     }
-    .hero-photo-caption {
-      margin-top: 0.7rem;
-      text-align: center;
-      color: #6e6e73;
-      font-size: 0.87rem;
+    .hero::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse at 68% 40%, rgba(99,102,241,0.18) 0%, transparent 58%),
+                  radial-gradient(ellipse at 15% 80%, rgba(139,92,246,0.12) 0%, transparent 45%);
     }
-    .open-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(34, 197, 94, 0.1);
-      color: #166534; border: 1px solid rgba(34, 197, 94, 0.26); border-radius: 999px;
-      padding: 0.42rem 0.8rem; font-size: 0.86rem; margin-bottom: 1rem; font-weight: 600;
+    .hero-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: center; }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5.5vw, 4rem); line-height: 1.05; margin-bottom: 0.6rem;
+      letter-spacing: -0.03em; color: #f8fafc;
     }
-    .hero h1 { font-size: clamp(2.15rem, 5vw, 3.7rem); line-height: 1.08; margin-bottom: 0.45rem; letter-spacing: -0.03em; }
-    .hero h2 { font-size: clamp(1rem, 2.2vw, 1.22rem); color: #3a3a3c; font-weight: 500; margin-bottom: 0.8rem; }
-    .hero p { max-width: 760px; color: var(--muted); font-size: clamp(1rem, 2vw, 1.1rem); margin-bottom: 1.1rem; }
+    .hero h1 span { color: #a5b4fc; }
+    .hero-role-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(99,102,241,0.18); border: 1px solid rgba(165,180,252,0.35);
+      color: #c4b5fd; border-radius: 999px; padding: 0.4rem 0.9rem;
+      font-size: 0.88rem; font-weight: 600; margin-bottom: 0.9rem; letter-spacing: 0.01em;
+    }
+    .hero h2 { font-size: clamp(0.95rem, 2vw, 1.12rem); color: rgba(248,250,252,0.6); font-weight: 400; margin-bottom: 0.8rem; }
+    .hero p { max-width: 640px; color: rgba(248,250,252,0.55); font-size: clamp(0.96rem, 2vw, 1.05rem); margin-bottom: 0.9rem; }
+
+    /* Right photo column */
+    .hero-right { display: flex; justify-content: center; align-items: center; }
+    .hero-photo-wrap { position: relative; display: inline-block; }
+    .hero-photo-frame {
+      width: 290px; height: 360px; border-radius: 20px; overflow: hidden;
+      border: 2px solid rgba(165,180,252,0.28);
+      box-shadow: 0 0 60px rgba(99,102,241,0.16), 0 28px 64px rgba(0,0,0,0.55);
+    }
+    .hero-photo { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+
+    /* Floating expertise badges */
+    .float-badge {
+      position: absolute; background: rgba(14,11,31,0.92); backdrop-filter: blur(12px);
+      border: 1px solid rgba(165,180,252,0.32); color: #a5b4fc;
+      padding: 0.28rem 0.65rem; border-radius: 999px; font-size: 0.71rem; font-weight: 600;
+      white-space: nowrap; pointer-events: none; z-index: 10;
+    }
+    .float-badge:nth-child(2) { top: 12%;  left: -120px; animation: fb 4s ease-in-out infinite 0s; }
+    .float-badge:nth-child(3) { top: 42%;  right: -115px; animation: fb 4s ease-in-out infinite 1.1s; }
+    .float-badge:nth-child(4) { bottom: 32%; left: -118px; animation: fb 4s ease-in-out infinite 2.2s; }
+    .float-badge:nth-child(5) { bottom: 10%; right: -105px; animation: fb 4s ease-in-out infinite 0.7s; }
+    @keyframes fb { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-6px); } }
+    @media (max-width: 1100px) { .float-badge { display: none; } }
+
+    /* Impact stats – 4-col row in left column */
+    .impact-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 0.55rem; margin: 0.9rem 0 1.1rem; }
+    .stat {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 10px; padding: 0.7rem 0.4rem; text-align: center; backdrop-filter: blur(4px);
+    }
+    .stat-num { display: block; font-size: 1.22rem; font-weight: 700; color: #818cf8; line-height: 1.1; }
+    .stat-label { display: block; font-size: 0.62rem; color: rgba(255,255,255,0.45); margin-top: 0.18rem; line-height: 1.35; }
+
+    /* Domain tags & value prop on dark bg */
+    .domain-tag { background: rgba(99,102,241,0.14); border-color: rgba(165,180,252,0.32); color: #a5b4fc; }
+    .value-prop li { color: rgba(248,250,252,0.62); }
+    .value-prop li::before { color: #818cf8; }
+    .btn-outline { border-color: rgba(255,255,255,0.22); color: #f8fafc; background: rgba(255,255,255,0.07); }
+    .btn-outline:hover { background: rgba(255,255,255,0.12); transform: translateY(-1px); }
+
+    /* Section title accent underline */
+    .section-title { position: relative; display: inline-block; padding-bottom: 0.45rem; }
+    .section-title::after {
+      content: ''; position: absolute; left: 0; bottom: 0;
+      width: 36px; height: 3px; background: var(--accent); border-radius: 2px;
+    }
     .btn-row { display: flex; flex-wrap: wrap; gap: 0.9rem; }
     .btn {
       display: inline-flex; align-items: center; justify-content: center; border-radius: 999px;
       font-weight: 600; padding: 0.72rem 1.22rem; transition: 0.2s ease; border: 1px solid transparent;
     }
-    .btn-primary { background: linear-gradient(135deg, var(--accent), #0077ed); color: #fff; box-shadow: 0 8px 20px rgba(10, 132, 255, 0.28); }
-    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 20px rgba(10, 132, 255, 0.24); }
-    .btn-outline { border-color: rgba(10, 132, 255, 0.28); color: #1d1d1f; background: rgba(255, 255, 255, 0.8); }
-    .btn-outline:hover { background: rgba(10, 132, 255, 0.08); transform: translateY(-1px); }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), #4f46e5); color: #fff; box-shadow: 0 8px 20px rgba(99, 102, 241, 0.28); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 20px rgba(99, 102, 241, 0.24); }
+    .btn-outline { border-color: rgba(99, 102, 241, 0.28); color: #1d1d1f; background: rgba(255, 255, 255, 0.8); }
+    .btn-outline:hover { background: rgba(99, 102, 241, 0.08); transform: translateY(-1px); }
     .panel {
       background: linear-gradient(180deg, #ffffff, #fbfbfd);
       border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-soft);
@@ -127,10 +179,10 @@
     .timeline { position: relative; display: grid; gap: 1rem; }
     .timeline::before {
       content: ""; position: absolute; left: 14px; top: 8px; bottom: 8px; width: 2px;
-      background: linear-gradient(180deg, var(--accent), rgba(10, 132, 255, 0.2));
+      background: linear-gradient(180deg, var(--accent), rgba(99, 102, 241, 0.2));
     }
     .step { display: grid; grid-template-columns: 32px 1fr; gap: 0.8rem; align-items: start; }
-    .dot { width: 14px; height: 14px; margin: 5px 0 0 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.16); }
+    .dot { width: 14px; height: 14px; margin: 5px 0 0 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.16); }
     .step h4 { font-size: 1rem; margin-bottom: 0.2rem; }
     .step p { color: var(--muted); font-size: 0.93rem; }
     .skills-wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 0.7rem; margin-top: 0.9rem; }
@@ -138,11 +190,11 @@
     .skill-group h3 { font-size: 1rem; margin-bottom: 0.5rem; color: #1d1d1f; }
     .tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
     .tag {
-      font-size: 0.78rem; color: #1d1d1f; border: 1px solid rgba(10, 132, 255, 0.2);
-      background: rgba(10, 132, 255, 0.08); padding: 0.36rem 0.56rem; border-radius: 999px;
+      font-size: 0.78rem; color: #1d1d1f; border: 1px solid rgba(99, 102, 241, 0.2);
+      background: rgba(99, 102, 241, 0.08); padding: 0.36rem 0.56rem; border-radius: 999px;
       transform: translateY(0); transition: transform 0.2s ease, background 0.2s ease;
     }
-    .tag:hover { transform: translateY(-2px); background: rgba(10, 132, 255, 0.14); }
+    .tag:hover { transform: translateY(-2px); background: rgba(99, 102, 241, 0.14); }
     .projects-grid { display: grid; grid-template-columns: 1fr; gap: 0.7rem; margin-top: 0.9rem; }
     .project-card {
       background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
@@ -150,10 +202,10 @@
     }
     .project-card::after {
       content: ""; position: absolute; inset: 0;
-      background: linear-gradient(120deg, transparent 0%, rgba(10, 132, 255, 0.1) 100%);
+      background: linear-gradient(120deg, transparent 0%, rgba(99, 102, 241, 0.1) 100%);
       opacity: 0; transition: opacity 0.25s ease; pointer-events: none;
     }
-    .project-card:hover { transform: translateY(-2px); border-color: rgba(10, 132, 255, 0.24); box-shadow: var(--shadow); }
+    .project-card:hover { transform: translateY(-2px); border-color: rgba(99, 102, 241, 0.24); box-shadow: var(--shadow); }
     .project-card:hover::after { opacity: 1; }
     .project-meta { color: #6e6e73; font-size: 0.85rem; margin-bottom: 0.55rem; }
     .project-title { font-size: 1.1rem; margin-bottom: 0.5rem; color: #1d1d1f; }
@@ -161,18 +213,18 @@
     .kpis { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.8rem; }
     .kpi {
       font-size: 0.76rem; border-radius: 999px; padding: 0.3rem 0.55rem;
-      border: 1px solid rgba(10, 132, 255, 0.24); color: #0b4a8a; background: rgba(10, 132, 255, 0.08);
+      border: 1px solid rgba(99, 102, 241, 0.24); color: #3730a3; background: rgba(99, 102, 241, 0.08);
     }
-    .view-link { color: #0a84ff; font-weight: 600; font-size: 0.88rem; }
+    .view-link { color: #6366f1; font-weight: 600; font-size: 0.88rem; }
     .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0.6rem; margin-top: 0.9rem; }
     .cert-card {
       background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 0.75rem; display: flex; gap: 0.6rem; align-items: flex-start; transition: 0.2s ease;
     }
-    .cert-card:hover { border-color: rgba(10, 132, 255, 0.24); transform: translateY(-1px); }
+    .cert-card:hover { border-color: rgba(99, 102, 241, 0.24); transform: translateY(-1px); }
     .badge-icon { font-size: 1.25rem; line-height: 1; }
     .pm-why {
-      padding: 1rem; border-left: 4px solid var(--accent); background: rgba(10, 132, 255, 0.08);
+      padding: 1rem; border-left: 4px solid var(--accent); background: rgba(99, 102, 241, 0.08);
       border-radius: 0 12px 12px 0; color: #1d1d1f; font-size: 1.01rem; max-width: 980px;
     }
     .contact-grid { display: grid; grid-template-columns: 1fr; gap: 0.7rem; margin-top: 0.9rem; }
@@ -189,7 +241,7 @@
     }
     .contact-form textarea { min-height: 130px; resize: vertical; }
     .contact-form input:focus, .contact-form textarea:focus {
-      outline: none; border-color: rgba(10, 132, 255, 0.56); box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.14);
+      outline: none; border-color: rgba(99, 102, 241, 0.56); box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.14);
     }
     .footer {
       border-top: 1px solid var(--border); margin-top: 1rem; padding: 1rem 0 1.2rem;
@@ -198,7 +250,7 @@
     .domain-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.6rem 0 0.9rem; }
     .domain-tag {
       font-size: 0.78rem; font-weight: 600; padding: 0.3rem 0.65rem; border-radius: 999px;
-      background: rgba(10, 132, 255, 0.1); border: 1px solid rgba(10, 132, 255, 0.25); color: #0a4a8a;
+      background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.25); color: #0a4a8a;
     }
     .value-prop { list-style: none; margin: 0 0 1.1rem; display: grid; gap: 0.45rem; }
     .value-prop li { color: var(--muted); font-size: 0.97rem; padding-left: 1.2rem; position: relative; }
@@ -217,7 +269,7 @@
     .testimonial-text { color: var(--muted); font-size: 0.93rem; line-height: 1.65; margin-bottom: 1rem; padding-top: 0.8rem; font-style: italic; }
     .testimonial-author { display: flex; align-items: center; gap: 0.7rem; }
     .author-avatar {
-      width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #0077ed);
+      width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #4f46e5);
       color: #fff; font-size: 0.78rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
     .author-name { font-size: 0.92rem; font-weight: 600; color: #1d1d1f; }
@@ -245,12 +297,116 @@
     .modal-content h4 { margin: 0.95rem 0 0.55rem; color: #1d1d1f; font-size: 0.99rem; }
     .modal-content ul { margin-left: 1rem; color: #3a3a3c; font-size: 0.91rem; }
     .modal-content li { margin-bottom: 0.4rem; }
+    /* ── HERO EXTRAS ── */
+    .hero::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(circle at 15% 75%, rgba(139,92,246,0.14) 0%, transparent 38%),
+                  radial-gradient(circle at 85% 15%, rgba(99,102,241,0.1) 0%, transparent 32%);
+      animation: meshPulse 9s ease-in-out infinite alternate;
+    }
+    @keyframes meshPulse { 0%{ opacity:0.5; } 100%{ opacity:1; } }
+    .hero h2 { font-size: clamp(1.15rem, 2.6vw, 1.55rem); color: #a5b4fc; font-weight: 600; margin-bottom: 0.35rem; min-height: 2rem; }
+    .tw-cursor { animation: blink 0.85s step-end infinite; color: #818cf8; margin-left: 2px; }
+    @keyframes blink { 0%,100%{ opacity:1 } 50%{ opacity:0 } }
+    .hero-creds { font-size: 0.85rem; color: rgba(255,255,255,0.38); margin-bottom: 0.8rem; letter-spacing: 0.02em; }
+
+    /* ── STICKY NOTE TESTIMONIALS ── */
+    .testimonials-grid { align-items: start; }
+    .testimonial-card:nth-child(1) { background: #fef9c3; border: none; transform: rotate(-1.4deg); box-shadow: 3px 6px 18px rgba(0,0,0,0.1); }
+    .testimonial-card:nth-child(2) { background: #dcfce7; border: none; transform: rotate(0.9deg); box-shadow: 3px 6px 18px rgba(0,0,0,0.1); }
+    .testimonial-card:nth-child(3) { background: #dbeafe; border: none; transform: rotate(-0.6deg); box-shadow: 3px 6px 18px rgba(0,0,0,0.1); }
+    .testimonial-card:hover { transform: rotate(0deg) translateY(-4px) !important; box-shadow: 4px 10px 28px rgba(0,0,0,0.14) !important; }
+    .testimonial-text { color: #374151; font-style: normal; font-size: 0.91rem; }
+    .author-avatar { background: rgba(0,0,0,0.14); color: #1d1d1f; }
+    .author-name { color: #111827; }
+
+    /* ── BACKLOG / EPIC SKILL CARDS ── */
+    .backlog-header { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.6rem; padding-bottom: 0.5rem; border-bottom: 1px dashed rgba(10,132,255,0.15); }
+    .epic-tag { font-size: 0.63rem; font-weight: 700; background: rgba(139,92,246,0.1); color: #7c3aed; border: 1px solid rgba(139,92,246,0.22); padding: 0.14rem 0.4rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .backlog-id { font-size: 0.63rem; font-weight: 600; color: var(--muted); font-family: monospace; }
+    .sp-badge { margin-left: auto; font-size: 0.63rem; font-weight: 700; background: rgba(10,132,255,0.1); color: var(--accent); border: 1px solid rgba(10,132,255,0.2); padding: 0.14rem 0.45rem; border-radius: 4px; }
+
+    /* ── SPRINT CARD TIMELINE ── */
+    .sprint-board { display: grid; gap: 0.7rem; margin-top: 0.9rem; }
+    .sprint-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; border-left: 4px solid var(--accent); }
+    .sprint-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.45rem; }
+    .sprint-label { font-size: 0.67rem; font-weight: 700; color: var(--accent); background: rgba(10,132,255,0.1); border: 1px solid rgba(10,132,255,0.2); padding: 0.16rem 0.48rem; border-radius: 4px; font-family: monospace; }
+    .sprint-status { font-size: 0.67rem; font-weight: 700; border-radius: 999px; padding: 0.16rem 0.52rem; }
+    .sprint-status.done { background: rgba(34,197,94,0.1); color: #166534; border: 1px solid rgba(34,197,94,0.25); }
+    .sprint-status.active { background: rgba(10,132,255,0.1); color: #4338ca; border: 1px solid rgba(10,132,255,0.25); }
+    .sprint-card h4 { font-size: 0.98rem; color: #1d1d1f; margin-bottom: 0.2rem; }
+    .sprint-card p { color: var(--muted); font-size: 0.88rem; }
+    .sprint-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.55rem; }
+    .sprint-tag { font-size: 0.68rem; color: var(--accent); background: rgba(10,132,255,0.07); border: 1px solid rgba(10,132,255,0.15); border-radius: 999px; padding: 0.18rem 0.5rem; }
+
+    /* ── BA PROCESS LIFECYCLE STRIP ── */
+    .process-strip {
+      background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 1.8rem 0; overflow: hidden;
+    }
+    .process-strip-title {
+      text-align: center; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+      color: var(--muted); text-transform: uppercase; margin-bottom: 1.4rem;
+    }
+    .process-flow {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; flex-wrap: nowrap; overflow-x: auto; padding: 0 1rem;
+    }
+    .process-node { display: flex; flex-direction: column; align-items: center; gap: 0.45rem; flex-shrink: 0; }
+    .pnode-icon {
+      width: 52px; height: 52px; border-radius: 14px; font-size: 1.3rem;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(10,132,255,0.08); border: 1.5px solid rgba(10,132,255,0.18);
+      transition: all 0.25s ease;
+    }
+    .pnode-icon:hover { background: rgba(10,132,255,0.16); transform: translateY(-3px); box-shadow: 0 6px 16px rgba(10,132,255,0.16); }
+    .pnode-label { font-size: 0.72rem; font-weight: 600; color: var(--muted); white-space: nowrap; }
+    .pnode-connector {
+      flex-shrink: 0; width: 36px; height: 2px; margin: 0 0.2rem; margin-bottom: 1.4rem;
+      background: repeating-linear-gradient(90deg, var(--accent) 0, var(--accent) 4px, transparent 4px, transparent 9px);
+      opacity: 0.45;
+    }
+
+    /* ── USER STORY CARDS ── */
+    .us-card { padding: 1rem; }
+    .us-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.65rem; }
+    .us-tag {
+      font-size: 0.72rem; font-weight: 700; padding: 0.22rem 0.6rem; border-radius: 6px;
+      background: rgba(10,132,255,0.1); color: var(--accent); border: 1px solid rgba(10,132,255,0.2);
+    }
+    .us-id { font-size: 0.7rem; font-weight: 600; color: var(--muted); font-family: monospace; }
+    .us-body { font-size: 0.91rem; color: #3a3a3c; line-height: 1.6; margin-bottom: 0.8rem; font-style: italic; }
+    .us-body strong { color: #1d1d1f; font-style: normal; }
+    .us-ac { border-top: 1px dashed rgba(10,132,255,0.2); padding-top: 0.65rem; }
+    .us-ac-title { font-size: 0.76rem; font-weight: 700; color: #166534; margin-bottom: 0.4rem; }
+    .us-ac ul { list-style: none; display: grid; gap: 0.25rem; }
+    .us-ac li { font-size: 0.81rem; color: var(--muted); padding-left: 1rem; position: relative; }
+    .us-ac li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+
+    /* ── IMPACT METRICS CARD ── */
+    .impact-card { padding: 1rem; }
+    .impact-card h3 { font-size: 1rem; margin-bottom: 0.9rem; color: #1d1d1f; }
+    .metric-row { display: grid; grid-template-columns: 1fr 1fr auto; align-items: center; gap: 0.6rem; margin-bottom: 0.7rem; }
+    .metric-name { font-size: 0.78rem; font-weight: 600; color: var(--muted); }
+    .metric-bar { height: 6px; background: rgba(10,132,255,0.1); border-radius: 99px; overflow: hidden; }
+    .metric-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), #4f46e5); border-radius: 99px; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
+    .metric-val { font-size: 0.76rem; font-weight: 700; color: var(--accent); white-space: nowrap; }
+
+    /* ── PROJECT DELIVERED BADGE ── */
+    .delivered-badge {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.26);
+      color: #166534; border-radius: 999px; padding: 0.2rem 0.55rem;
+      font-size: 0.72rem; font-weight: 700; margin-bottom: 0.5rem;
+    }
+
     @media (min-width: 760px) {
       .about-grid { grid-template-columns: repeat(2, 1fr); }
       .contact-grid { grid-template-columns: 1fr 1.3fr; }
     }
     @media (min-width: 980px) {
       .hero-grid { grid-template-columns: 1.15fr 0.85fr; }
+      .hero-photo-frame { width: 330px; height: 410px; }
       .projects-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 900px) {
@@ -314,57 +470,169 @@
         <span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span>
       </div>
       <div class="container hero-grid">
+        <!-- LEFT: Text -->
         <div class="reveal">
-          <h1>Srivardhan Gadepalli</h1>
-          <h2>Senior Business Analyst & Product Owner | PSPO I Certified | Pega Specialist</h2>
+          <div class="hero-role-pill">✦ Senior Business Analyst &amp; Product Owner</div>
+          <h1><span>Srivardhan</span><br>Gadepalli</h1>
+          <h2><span id="hero-tw">Senior Business Analyst</span><span class="tw-cursor">|</span></h2>
+          <p class="hero-creds">PSPO I Certified &nbsp;·&nbsp; Pega Specialist &nbsp;·&nbsp; 5+ Years at EvonSys</p>
           <div class="domain-tags">
             <span class="domain-tag">HR Tech</span>
             <span class="domain-tag">Enterprise Workflows</span>
             <span class="domain-tag">Marketing Tech</span>
             <span class="domain-tag">Pega PRPC</span>
           </div>
-          <p>Turning complex business problems into products people actually use.</p>
           <ul class="value-prop">
             <li>4.5+ years owning backlogs, running sprints, and shipping enterprise products end-to-end</li>
             <li>Bridge between business stakeholders and engineering — fluent in both languages</li>
             <li>Requirements that stick: zero ambiguity, measurable acceptance criteria, real outcomes</li>
           </ul>
+          <div class="impact-stats">
+            <div class="stat"><span class="stat-num counter" data-target="5" data-suffix="+">0</span><span class="stat-label">Years Experience</span></div>
+            <div class="stat"><span class="stat-num">2</span><span class="stat-label">Enterprise Products</span></div>
+            <div class="stat"><span class="stat-num counter" data-target="98">0</span><span class="stat-label">Payroll Accuracy</span></div>
+            <div class="stat"><span class="stat-num counter" data-target="82">0</span><span class="stat-label">User Adoption</span></div>
+          </div>
           <div class="btn-row">
             <a class="btn btn-primary" href="#projects">View My Work</a>
-            <a class="btn btn-outline" href="./assets/resume.pdf" download="Srivardhan_Gadepalli_Resume.pdf" aria-label="Download resume">Download Resume</a>
+            <a class="btn btn-outline resume-download" href="./assets/resume.pdf" aria-label="Download resume">⬇ Download Resume</a>
           </div>
         </div>
-        <div class="panel hero-photo-card reveal">
-          <img
-            class="hero-photo"
-            src="./assets/profile.jpg"
-            alt="Srivardhan Gadepalli portrait"
-          >
-          <p class="hero-photo-caption">Senior Business Analyst & Product Owner</p>
+        <!-- RIGHT: Photo + floating badges -->
+        <div class="hero-right reveal">
+          <div class="hero-photo-wrap">
+            <div class="hero-photo-frame">
+              <img class="hero-photo" src="./assets/profile.jpg" alt="Srivardhan Gadepalli">
+            </div>
+            <span class="float-badge">📋 Requirements</span>
+            <span class="float-badge">📊 Backlog Owner</span>
+            <span class="float-badge">🔄 Agile Delivery</span>
+            <span class="float-badge">🤝 Stakeholders</span>
+          </div>
         </div>
       </div>
     </section>
+    <!-- BA / PO Process Lifecycle Strip -->
+    <div class="process-strip">
+      <div class="container">
+        <p class="process-strip-title">The BA &amp; PO Lifecycle I Own End-to-End</p>
+        <div class="process-flow">
+          <div class="process-node"><div class="pnode-icon">🔍</div><span class="pnode-label">Discover</span></div>
+          <div class="pnode-connector"></div>
+          <div class="process-node"><div class="pnode-icon">🎯</div><span class="pnode-label">Elicit</span></div>
+          <div class="pnode-connector"></div>
+          <div class="process-node"><div class="pnode-icon">📝</div><span class="pnode-label">Define</span></div>
+          <div class="pnode-connector"></div>
+          <div class="process-node"><div class="pnode-icon">⚖️</div><span class="pnode-label">Prioritize</span></div>
+          <div class="pnode-connector"></div>
+          <div class="process-node"><div class="pnode-icon">🔄</div><span class="pnode-label">Refine</span></div>
+          <div class="pnode-connector"></div>
+          <div class="process-node"><div class="pnode-icon">🚀</div><span class="pnode-label">Deliver</span></div>
+          <div class="pnode-connector"></div>
+          <div class="process-node"><div class="pnode-icon">📊</div><span class="pnode-label">Measure</span></div>
+        </div>
+      </div>
+    </div>
     <section id="about">
       <div class="container">
         <h2 class="section-title reveal">About Me</h2>
         <p class="section-sub reveal">Senior Business Analyst and Product Owner at EvonSys with roots in hands-on Pega development, bringing strong delivery, discovery, backlog ownership, and cross-functional leadership experience to enterprise products.</p>
         <div class="about-grid">
-          <article class="panel about-card reveal"><h3>Experience & Domain</h3><p>4.5+ years at EvonSys as a Senior Business Analyst and former Pega Developer, delivering two enterprise-scale products simultaneously: a Pega-based HR/HCM platform and a Pega Constellation marketing-tech application.</p></article>
-          <article class="panel about-card reveal"><h3>Core Strengths</h3><p>Agile delivery, stakeholder management, requirement elicitation, backlog ownership, integration requirement design, sprint facilitation, UAT enablement, and end-to-end product lifecycle execution.</p></article>
-          <article class="panel about-card reveal"><h3>Certifications</h3><p>PSPO I (Scrum.org), Pega Certified Business Architect (PCBA), Pega Certified Senior System Architect (PCSSA), and Aha! Product Management Professional.</p></article>
-          <article class="panel about-card reveal"><h3>Education & Location</h3><p>B.Tech in Electrical & Electronics Engineering, JNTU Kakinada (2015-2019). Based in Secunderabad, Hyderabad, India.</p></article>
+          <!-- User Story Card 1: BA perspective -->
+          <article class="panel us-card reveal">
+            <div class="us-header">
+              <span class="us-tag">📋 User Story</span>
+              <span class="us-id">#BA-001</span>
+            </div>
+            <p class="us-body">As a <strong>Product Stakeholder</strong>, I need a BA who translates vague business goals into zero-ambiguity requirements, so that engineering always builds what the business actually needs — first time.</p>
+            <div class="us-ac">
+              <p class="us-ac-title">✅ Acceptance Criteria Met</p>
+              <ul>
+                <li>5+ years owning BRDs, FRDs, PRDs across 7+ enterprise modules</li>
+                <li>25+ change requests managed — zero scope creep</li>
+                <li>Deep Pega PRPC + integration requirement expertise</li>
+              </ul>
+            </div>
+          </article>
+          <!-- User Story Card 2: PO perspective -->
+          <article class="panel us-card reveal">
+            <div class="us-header">
+              <span class="us-tag">📦 User Story</span>
+              <span class="us-id">#PO-002</span>
+            </div>
+            <p class="us-body">As a <strong>Delivery Team</strong>, I need a Product Owner who runs tight sprint ceremonies and keeps the backlog ruthlessly prioritized, so that every sprint ships measurable value without blockers.</p>
+            <div class="us-ac">
+              <p class="us-ac-title">✅ Acceptance Criteria Met</p>
+              <ul>
+                <li>PSPO I Certified — Scrum.org</li>
+                <li>Sprint planning, refinement &amp; retros owned end-to-end</li>
+                <li>RICE / MoSCoW / Kano prioritization applied across 2 products</li>
+              </ul>
+            </div>
+          </article>
+          <!-- Impact Metrics Card -->
+          <article class="panel impact-card reveal">
+            <h3>📈 Proven Business Impact</h3>
+            <div class="metric-row">
+              <span class="metric-name">Payroll Accuracy</span>
+              <div class="metric-bar"><div class="metric-fill" data-width="98%" style="width:0%"></div></div>
+              <span class="metric-val">88→98%</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-name">HR Effort Saved</span>
+              <div class="metric-bar"><div class="metric-fill" data-width="60%" style="width:0%"></div></div>
+              <span class="metric-val">−60%</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-name">Expense TAT Cut</span>
+              <div class="metric-bar"><div class="metric-fill" data-width="70%" style="width:0%"></div></div>
+              <span class="metric-val">−70%</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-name">User Adoption</span>
+              <div class="metric-bar"><div class="metric-fill" data-width="82%" style="width:0%"></div></div>
+              <span class="metric-val">82%</span>
+            </div>
+          </article>
+          <!-- Certs & Education -->
+          <article class="panel about-card reveal"><h3>Certifications & Education</h3><p>PSPO I (Scrum.org) · PCBA · PCSSA · Aha! PM Professional.<br><br>B.Tech — EEE, JNTU Kakinada (2015–2019). Based in Secunderabad, Hyderabad.</p></article>
         </div>
-        <div class="panel journey reveal">
-          <h3>Career Journey: Developer -> BA -> Product Owner</h3>
-          <div class="timeline">
-            <div class="step"><span class="dot"></span><div><h4>Pega Developer</h4><p>Built platform capability and technical depth in enterprise workflows, integrations, and delivery constraints.</p></div></div>
-            <div class="step"><span class="dot"></span><div><h4>Senior Business Analyst</h4><p>Owned requirements, backlog, sprint rituals, stakeholder alignment, and go-live support across large products.</p></div></div>
-            <div class="step"><span class="dot"></span><div><h4>Now: Business Analyst & Product Owner</h4><p>Driving backlog ownership, requirements excellence, stakeholder prioritization, and outcome-focused delivery with deep business and technical fluency.</p></div></div>
+        <div class="reveal" style="margin-top:1rem;">
+          <h3 style="font-size:1rem;font-weight:700;color:#1d1d1f;margin-bottom:0.2rem;">🏃 Career Sprint Board</h3>
+          <p style="font-size:0.82rem;color:var(--muted);margin-bottom:0.7rem;">Three sprints. One trajectory. Full velocity.</p>
+          <div class="sprint-board">
+            <div class="sprint-card">
+              <div class="sprint-header">
+                <span class="sprint-label">SPRINT 01</span>
+                <span class="sprint-status done">✓ Completed</span>
+              </div>
+              <h4>Pega Developer</h4>
+              <p>Built deep platform capability — enterprise workflows, REST/SOAP integrations, and delivery constraints that shaped how I write requirements today.</p>
+              <div class="sprint-tags"><span class="sprint-tag">Pega PRPC</span><span class="sprint-tag">Integrations</span><span class="sprint-tag">Enterprise Workflows</span></div>
+            </div>
+            <div class="sprint-card">
+              <div class="sprint-header">
+                <span class="sprint-label">SPRINT 02</span>
+                <span class="sprint-status done">✓ Completed</span>
+              </div>
+              <h4>Senior Business Analyst</h4>
+              <p>Owned requirements, backlog, sprint rituals, stakeholder alignment, go-live war rooms, and change control across two concurrent enterprise products.</p>
+              <div class="sprint-tags"><span class="sprint-tag">BRD / FRD</span><span class="sprint-tag">Backlog Ownership</span><span class="sprint-tag">UAT</span><span class="sprint-tag">Stakeholders</span></div>
+            </div>
+            <div class="sprint-card" style="border-left-color:#22c55e;">
+              <div class="sprint-header">
+                <span class="sprint-label">SPRINT 03</span>
+                <span class="sprint-status active">▶ Active</span>
+              </div>
+              <h4>Business Analyst & Product Owner</h4>
+              <p>Driving backlog ownership, outcome-focused prioritization, and product delivery with full business and technical fluency — PSPO I certified.</p>
+              <div class="sprint-tags"><span class="sprint-tag">Product Ownership</span><span class="sprint-tag">PSPO I</span><span class="sprint-tag">RICE / MoSCoW</span><span class="sprint-tag">OKRs</span></div>
+            </div>
           </div>
         </div>
         <div class="panel about-card reveal" style="margin-top:0.6rem;">
           <h3>Personal Note</h3>
-          <p>"I've spent 4+ years living inside product delivery - writing user stories, owning the backlog, running sprint ceremonies, negotiating scope, and sitting in war rooms during go-lives. That's not just Business Analysis — that's Product Ownership in practice."</p>
+          <p>"I've spent 5+ years living inside product delivery - writing user stories, owning the backlog, running sprint ceremonies, negotiating scope, and sitting in war rooms during go-lives. That's not just Business Analysis — that's Product Ownership in practice."</p>
         </div>
       </div>
     </section>
@@ -373,11 +641,11 @@
         <h2 class="section-title reveal">Skills</h2>
         <p class="section-sub reveal">Cross-functional product and delivery capabilities spanning discovery, analysis, execution, analytics, and stakeholder communication.</p>
         <div class="skills-wrap">
-          <article class="skill-group reveal"><h3>Product Ownership</h3><div class="tags"><span class="tag">Product Roadmapping</span><span class="tag">OKRs</span><span class="tag">North Star Metric</span><span class="tag">Prioritization (RICE/MoSCoW/Kano)</span><span class="tag">Business Case Development</span><span class="tag">Go-to-Market Strategy</span><span class="tag">Product Discovery</span><span class="tag">Feature Flags</span><span class="tag">Competitive Analysis</span><span class="tag">Market Research</span><span class="tag">Customer Journey Mapping</span><span class="tag">User Persona Development</span></div></article>
-          <article class="skill-group reveal"><h3>Business Analysis</h3><div class="tags"><span class="tag">Requirements Elicitation</span><span class="tag">BRD/FRD/PRD Writing</span><span class="tag">Use Case & User Story Writing</span><span class="tag">Process Mapping (AS-IS/TO-BE)</span><span class="tag">Gap Analysis</span><span class="tag">Impact Analysis</span><span class="tag">Scope Management</span><span class="tag">Requirements Traceability Matrix</span><span class="tag">Change Control</span></div></article>
-          <article class="skill-group reveal"><h3>Agile & Delivery</h3><div class="tags"><span class="tag">Scrum</span><span class="tag">Kanban</span><span class="tag">Sprint Planning</span><span class="tag">Backlog Refinement</span><span class="tag">Big Room Planning</span><span class="tag">Definition of Done</span><span class="tag">Release Management</span><span class="tag">QA Coordination</span><span class="tag">Business Sign-off</span></div></article>
-          <article class="skill-group reveal"><h3>Data & Analytics</h3><div class="tags"><span class="tag">SQL</span><span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">MS Excel</span><span class="tag">Data Governance</span><span class="tag">Data Quality</span><span class="tag">Data Profiling & Validation</span><span class="tag">Funnel & Retention Analysis</span><span class="tag">KPI Dashboards</span><span class="tag">ERD Design</span><span class="tag">Logical & Physical Data Modelling</span></div></article>
-          <article class="skill-group reveal"><h3>Stakeholder & Communication</h3><div class="tags"><span class="tag">Stakeholder Management</span><span class="tag">Vendor Management</span><span class="tag">Cross-functional Alignment</span><span class="tag">Executive Communication</span><span class="tag">Technical Writing</span><span class="tag">Offshore Team Coordination</span><span class="tag">Workshop Facilitation</span></div></article>
+          <article class="skill-group reveal"><div class="backlog-header"><span class="epic-tag">Epic</span><span class="backlog-id">EP-01</span><span class="sp-badge">12 skills</span></div><h3>Product Ownership</h3><div class="tags"><span class="tag">Product Roadmapping</span><span class="tag">OKRs</span><span class="tag">North Star Metric</span><span class="tag">Prioritization (RICE/MoSCoW/Kano)</span><span class="tag">Business Case Development</span><span class="tag">Go-to-Market Strategy</span><span class="tag">Product Discovery</span><span class="tag">Feature Flags</span><span class="tag">Competitive Analysis</span><span class="tag">Market Research</span><span class="tag">Customer Journey Mapping</span><span class="tag">User Persona Development</span></div></article>
+          <article class="skill-group reveal"><div class="backlog-header"><span class="epic-tag">Epic</span><span class="backlog-id">EP-02</span><span class="sp-badge">9 skills</span></div><h3>Business Analysis</h3><div class="tags"><span class="tag">Requirements Elicitation</span><span class="tag">BRD/FRD/PRD Writing</span><span class="tag">Use Case & User Story Writing</span><span class="tag">Process Mapping (AS-IS/TO-BE)</span><span class="tag">Gap Analysis</span><span class="tag">Impact Analysis</span><span class="tag">Scope Management</span><span class="tag">Requirements Traceability Matrix</span><span class="tag">Change Control</span></div></article>
+          <article class="skill-group reveal"><div class="backlog-header"><span class="epic-tag">Epic</span><span class="backlog-id">EP-03</span><span class="sp-badge">9 skills</span></div><h3>Agile & Delivery</h3><div class="tags"><span class="tag">Scrum</span><span class="tag">Kanban</span><span class="tag">Sprint Planning</span><span class="tag">Backlog Refinement</span><span class="tag">Big Room Planning</span><span class="tag">Definition of Done</span><span class="tag">Release Management</span><span class="tag">QA Coordination</span><span class="tag">Business Sign-off</span></div></article>
+          <article class="skill-group reveal"><div class="backlog-header"><span class="epic-tag">Epic</span><span class="backlog-id">EP-04</span><span class="sp-badge">11 skills</span></div><h3>Data & Analytics</h3><div class="tags"><span class="tag">SQL</span><span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">MS Excel</span><span class="tag">Data Governance</span><span class="tag">Data Quality</span><span class="tag">Data Profiling & Validation</span><span class="tag">Funnel & Retention Analysis</span><span class="tag">KPI Dashboards</span><span class="tag">ERD Design</span><span class="tag">Logical & Physical Data Modelling</span></div></article>
+          <article class="skill-group reveal"><div class="backlog-header"><span class="epic-tag">Epic</span><span class="backlog-id">EP-05</span><span class="sp-badge">7 skills</span></div><h3>Stakeholder & Communication</h3><div class="tags"><span class="tag">Stakeholder Management</span><span class="tag">Vendor Management</span><span class="tag">Cross-functional Alignment</span><span class="tag">Executive Communication</span><span class="tag">Technical Writing</span><span class="tag">Offshore Team Coordination</span><span class="tag">Workshop Facilitation</span></div></article>
           <article class="skill-group reveal"><h3>Tools & Platforms</h3><div class="tags"><span class="tag">Jira</span><span class="tag">Confluence</span><span class="tag">Aha!</span><span class="tag">Azure DevOps</span><span class="tag">Figma</span><span class="tag">Balsamiq</span><span class="tag">Miro</span><span class="tag">Lucidchart</span><span class="tag">MS Visio</span><span class="tag">Draw.io</span><span class="tag">Pega PRPC 8.x</span><span class="tag">Pega Constellation</span><span class="tag">REST APIs</span><span class="tag">JSON</span><span class="tag">Microsoft Office Suite</span></div></article>
         </div>
       </div>
@@ -388,6 +656,7 @@
         <p class="section-sub reveal">Two enterprise products where I operated as Business Analyst and Product Owner across requirements, backlog prioritization, delivery alignment, and measurable business outcomes.</p>
         <div class="projects-grid">
           <article class="project-card reveal" data-modal-target="modal-peoplehcm">
+            <span class="delivered-badge">✓ Delivered</span>
             <p class="project-meta">EvonSys | Senior Business Analyst & Functional Lead | 3+ years</p>
             <h3 class="project-title">PeopleHCM - Enterprise HR/HCM Platform</h3>
             <p class="project-desc">Enterprise HCM product on Pega PRPC 8.x spanning payroll, leave, claims, timesheets, ATS, onboarding, and self-service workflows.</p>
@@ -395,6 +664,7 @@
             <span class="view-link">View Full Case Details -></span>
           </article>
           <article class="project-card reveal" data-modal-target="modal-casestudyhub">
+            <span class="delivered-badge">✓ Delivered</span>
             <p class="project-meta">EvonSys | Business Analyst | Internal Marketing Tech</p>
             <h3 class="project-title">Case Study Hub - Marketing Content Platform</h3>
             <p class="project-desc">Pega Constellation solution to digitize case-study creation, collaboration, approvals, analytics, and CRM-linked usage for marketing and sales teams.</p>
@@ -662,6 +932,85 @@
       modals.forEach((modal) => { if (modal.classList.contains("open")) closeModal(modal); });
     });
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ── COPY & INSPECT PROTECTION ──
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('copy',  e => e.preventDefault());
+    document.addEventListener('cut',   e => e.preventDefault());
+    document.addEventListener('dragstart', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+      const key = e.key.toLowerCase();
+      const ctrl = e.ctrlKey || e.metaKey;
+      // Block Ctrl+C, Ctrl+U (view source), Ctrl+S, Ctrl+A, Ctrl+P, F12, Ctrl+Shift+I/J/C
+      if (ctrl && ['c','u','s','a','p'].includes(key)) { e.preventDefault(); return; }
+      if (e.key === 'F12') { e.preventDefault(); return; }
+      if (ctrl && e.shiftKey && ['i','j','c'].includes(key)) { e.preventDefault(); return; }
+    });
+
+    // ── RESUME DOWNLOAD ──
+    document.querySelectorAll('.resume-download').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const link = document.createElement('a');
+        link.href = './assets/resume.pdf';
+        link.download = 'Srivardhan_Gadepalli_Resume.pdf';
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+    });
+
+    // Typewriter cycling hero role
+    const roles = ["Senior Business Analyst", "Product Owner", "Backlog Champion", "Requirements Strategist", "Sprint Facilitator"];
+    let rIdx = 0, cIdx = roles[0].length, deleting = false;
+    const twEl = document.getElementById("hero-tw");
+    function typeWriter() {
+      const current = roles[rIdx];
+      if (!deleting) {
+        twEl.textContent = current.slice(0, cIdx);
+        if (cIdx === current.length) { deleting = true; setTimeout(typeWriter, 2200); return; }
+        cIdx++; setTimeout(typeWriter, 68);
+      } else {
+        twEl.textContent = current.slice(0, cIdx);
+        if (cIdx === 0) { deleting = false; rIdx = (rIdx + 1) % roles.length; setTimeout(typeWriter, 380); return; }
+        cIdx--; setTimeout(typeWriter, 32);
+      }
+    }
+    setTimeout(typeWriter, 1200);
+
+    // Animated stat counters
+    const counters = document.querySelectorAll(".counter");
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseFloat(el.dataset.target);
+        const suffix = el.dataset.suffix || "%";
+        const duration = 1600, step = 16;
+        const increment = target / (duration / step);
+        let current = 0;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) { current = target; clearInterval(timer); }
+          el.textContent = Number.isInteger(target) ? Math.floor(current) + suffix : current.toFixed(1) + suffix;
+        }, step);
+        counterObserver.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(c => counterObserver.observe(c));
+
+    // Animate metric bars on scroll
+    const bars = document.querySelectorAll(".metric-fill");
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.width = entry.target.dataset.width;
+          barObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    bars.forEach(b => barObserver.observe(b));
   </script>
 </body>
 </html>
