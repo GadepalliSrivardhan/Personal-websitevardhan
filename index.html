@@ -445,6 +445,205 @@
       .section-sub { margin-bottom: 1.3rem; }
       section { padding: 2.8rem 0; }
     }
+
+    /* ══════════════════════════════════════
+       PREMIUM REDESIGN LAYER
+    ══════════════════════════════════════ */
+
+    /* Gradient text utility */
+    .grad-text {
+      background: linear-gradient(135deg, #a5b4fc 0%, #c4b5fd 50%, #818cf8 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    /* Premium navbar */
+    .navbar {
+      background: rgba(10, 8, 24, 0.72);
+      border-bottom: 1px solid rgba(165,180,252,0.12);
+    }
+    .brand { color: #f8fafc; }
+    .nav-link { color: rgba(248,250,252,0.55); }
+    .nav-link:hover, .nav-link.active {
+      color: #a5b4fc; background: rgba(99,102,241,0.12); border-color: rgba(99,102,241,0.25);
+    }
+
+    /* Hero premium additions */
+    .hero-available-pill {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3);
+      color: #86efac; border-radius: 999px; padding: 0.28rem 0.75rem;
+      font-size: 0.74rem; font-weight: 600; margin-bottom: 0.6rem; letter-spacing: 0.02em;
+    }
+    .avail-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: pulse-green 2s infinite; }
+    @keyframes pulse-green { 0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.5)} 50%{box-shadow:0 0 0 5px rgba(34,197,94,0)} }
+
+    /* Premium section alternation */
+    #about { background: #f8f8fc; }
+    #skills { background: #ffffff; }
+    #projects { background: linear-gradient(180deg, #f5f4fb 0%, #ffffff 100%); }
+    #certifications { background: #ffffff; }
+    #testimonials { background: #f8f8fc; }
+    #why-po { background: #ffffff; }
+    #contact { background: linear-gradient(135deg, #0e0b1f 0%, #1a1040 100%); }
+    #contact .section-title { color: #f8fafc; }
+    #contact .section-title::after { background: #818cf8; }
+    #contact .section-sub { color: rgba(248,250,252,0.55); }
+
+    /* Premium contact card */
+    #contact .contact-card {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+    }
+    #contact .contact-item { color: rgba(248,250,252,0.6); }
+    #contact .contact-item strong { color: #a5b4fc; }
+    #contact .contact-item a { color: rgba(248,250,252,0.75); }
+    #contact .contact-item a:hover { color: #a5b4fc; text-decoration: underline; }
+
+    /* Premium footer */
+    .footer { background: #0a0818; border-top: 1px solid rgba(165,180,252,0.1); color: rgba(248,250,252,0.3); }
+
+    /* Premium project cards */
+    .project-card {
+      border-left: 3px solid transparent;
+      background: linear-gradient(#fff,#fff) padding-box,
+                  linear-gradient(135deg, rgba(99,102,241,0.3), rgba(139,92,246,0.15)) border-box;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+    }
+    .project-card:hover {
+      border-color: transparent;
+      background: linear-gradient(#fefeff,#fefeff) padding-box,
+                  linear-gradient(135deg, rgba(99,102,241,0.6), rgba(139,92,246,0.4)) border-box;
+      box-shadow: 0 12px 32px rgba(99,102,241,0.14), 0 4px 12px rgba(0,0,0,0.06);
+      transform: translateY(-3px);
+    }
+    .project-card[data-modal-target="modal-goldmansachs"] {
+      background: linear-gradient(#fffef5,#fffef5) padding-box,
+                  linear-gradient(135deg, rgba(234,179,8,0.35), rgba(251,191,36,0.15)) border-box;
+    }
+    .project-card[data-modal-target="modal-goldmansachs"]:hover {
+      background: linear-gradient(#fffef5,#fffef5) padding-box,
+                  linear-gradient(135deg, rgba(234,179,8,0.7), rgba(251,191,36,0.4)) border-box;
+    }
+    .project-card[data-modal-target="modal-natwest"] {
+      background: linear-gradient(#f5f5ff,#f5f5ff) padding-box,
+                  linear-gradient(135deg, rgba(99,102,241,0.4), rgba(139,92,246,0.2)) border-box;
+    }
+    .project-number {
+      position: absolute; top: 0.75rem; right: 0.85rem;
+      font-size: 2rem; font-weight: 800; color: rgba(99,102,241,0.07);
+      line-height: 1; font-variant-numeric: tabular-nums; pointer-events: none;
+    }
+
+    /* Premium skill groups */
+    .skill-group {
+      background: linear-gradient(145deg, #ffffff, #f9f8ff);
+      border: 1px solid rgba(99,102,241,0.1);
+      transition: all 0.25s ease;
+    }
+    .skill-group:hover {
+      border-color: rgba(99,102,241,0.25);
+      box-shadow: 0 8px 24px rgba(99,102,241,0.08);
+      transform: translateY(-2px);
+    }
+
+    /* Premium cert cards */
+    .cert-card {
+      background: linear-gradient(135deg, #f9f8ff, #ffffff);
+      border: 1px solid rgba(99,102,241,0.12);
+      transition: all 0.25s ease;
+    }
+    .cert-card:hover {
+      background: linear-gradient(135deg, #f0efff, #f9f8ff);
+      border-color: rgba(99,102,241,0.3);
+      box-shadow: 0 8px 24px rgba(99,102,241,0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Premium testimonials — replace sticky-note with glass cards */
+    .testimonials-grid { align-items: stretch; gap: 1.2rem; }
+    .testimonial-card {
+      background: #ffffff !important;
+      border: 1px solid rgba(99,102,241,0.1) !important;
+      transform: none !important;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05) !important;
+      border-radius: 16px;
+      padding: 1.6rem;
+      display: flex; flex-direction: column; justify-content: space-between;
+      transition: all 0.25s ease;
+      position: relative; overflow: hidden;
+    }
+    .testimonial-card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #6366f1, #a78bfa);
+    }
+    .testimonial-card:nth-child(2)::after { background: linear-gradient(90deg, #a78bfa, #38bdf8); }
+    .testimonial-card:nth-child(3)::after { background: linear-gradient(90deg, #38bdf8, #22c55e); }
+    .testimonial-card:hover {
+      transform: translateY(-4px) !important;
+      box-shadow: 0 12px 32px rgba(99,102,241,0.12) !important;
+      border-color: rgba(99,102,241,0.22) !important;
+    }
+    .testimonial-card::before { display: none; }
+    .testimonial-text {
+      color: #374151 !important; font-style: italic; font-size: 0.93rem;
+      line-height: 1.75; margin-bottom: 1.2rem; padding-top: 0;
+      flex: 1;
+    }
+    .testimonial-text::before {
+      content: '\201C'; font-size: 2.5rem; color: rgba(99,102,241,0.2);
+      line-height: 0.5; display: block; margin-bottom: 0.6rem; font-family: Georgia, serif;
+    }
+    .testimonial-author { border-top: 1px solid rgba(0,0,0,0.06); padding-top: 0.9rem; margin-top: 0.2rem; }
+    .author-avatar {
+      background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+      color: #fff !important; font-size: 0.72rem; font-weight: 700;
+      width: 40px; height: 40px;
+    }
+    .author-name { color: #1d1d1f !important; font-size: 0.85rem; font-weight: 700; }
+    .author-role { color: #6e6e73 !important; font-size: 0.78rem; }
+
+    /* Premium sprint cards */
+    .sprint-card {
+      background: #ffffff;
+      border: 1px solid rgba(99,102,241,0.1);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      transition: all 0.25s ease;
+    }
+    .sprint-card:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(99,102,241,0.1); }
+
+    /* Premium why section */
+    .pm-why {
+      background: linear-gradient(135deg, rgba(99,102,241,0.05), rgba(139,92,246,0.04));
+      border-left: 4px solid;
+      border-image: linear-gradient(180deg, #6366f1, #a78bfa) 1;
+      border-radius: 0 16px 16px 0;
+      padding: 1.4rem 1.6rem;
+      font-size: 1.02rem; line-height: 1.8; color: #374151;
+      font-style: italic;
+    }
+
+    /* Process strip premium */
+    .process-strip { background: linear-gradient(180deg, #f9f8ff, #ffffff); }
+    .pnode-icon {
+      background: rgba(99,102,241,0.08) !important;
+      border: 1.5px solid rgba(99,102,241,0.2) !important;
+    }
+
+    /* Section title premium gradient underline */
+    .section-title::after {
+      background: linear-gradient(90deg, #6366f1, #a78bfa);
+      width: 44px; height: 3px;
+    }
+
+    /* User story cards premium */
+    .us-card { background: linear-gradient(145deg, #ffffff, #f9f8ff); }
+    .impact-card { background: linear-gradient(145deg, #ffffff, #f9f8ff); }
+
+    /* Scrollbar premium */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #6366f1, #a78bfa); border-radius: 3px; }
   </style>
 </head>
 <body>
@@ -472,6 +671,7 @@
       <div class="container hero-grid">
         <!-- LEFT: Text -->
         <div class="reveal">
+          <div class="hero-available-pill"><span class="avail-dot"></span> Open to Senior BA Opportunities</div>
           <div class="hero-role-pill">✦ Senior Business Analyst — Cross-Border Payments</div>
           <h1><span>Srivardhan</span><br>Gadepalli</h1>
           <h2><span id="hero-tw">SWIFT MT &amp; ISO 20022 Specialist</span><span class="tw-cursor">|</span></h2>
@@ -656,6 +856,7 @@
         <p class="section-sub reveal">Five enterprise engagements spanning payments investigations at Tier-1 banks and enterprise platform delivery — from SWIFT message intake and exception automation to HCM workflows and marketing tech.</p>
         <div class="projects-grid">
           <article class="project-card reveal" data-modal-target="modal-goldmansachs">
+            <span class="project-number">01</span>
             <span class="delivered-badge" style="background:rgba(234,179,8,0.12);border-color:rgba(234,179,8,0.35);color:#854d0e;">▶ Current — Active</span>
             <p class="project-meta">EvonSys | Senior Business Analyst | Goldman Sachs | Pega Smart Investigate</p>
             <h3 class="project-title">Goldman Sachs — Cross-Border Payment Investigations</h3>
@@ -664,6 +865,7 @@
             <span class="view-link">View Full Case Details →</span>
           </article>
           <article class="project-card reveal" data-modal-target="modal-natwest">
+            <span class="project-number">02</span>
             <span class="delivered-badge">✓ Delivered — Go-Live</span>
             <p class="project-meta">EvonSys | Senior Business Analyst | NatWest | Pega Smart Investigate 24.2 (SIAA)</p>
             <h3 class="project-title">NatWest — Cross-Border Payment Investigations &amp; Exception Automation</h3>
@@ -672,6 +874,7 @@
             <span class="view-link">View Full Case Details →</span>
           </article>
           <article class="project-card reveal" data-modal-target="modal-jpmc">
+            <span class="project-number">03</span>
             <span class="delivered-badge">✓ Delivered — Go-Live</span>
             <p class="project-meta">EvonSys | Business Analyst | JPMC | Pega Smart Investigate 8.6</p>
             <h3 class="project-title">JPMC — Cross-Border FX Payment Investigations</h3>
@@ -680,6 +883,7 @@
             <span class="view-link">View Full Case Details →</span>
           </article>
           <article class="project-card reveal" data-modal-target="modal-peoplehcm">
+            <span class="project-number">04</span>
             <span class="delivered-badge">✓ Delivered — Go-Live</span>
             <p class="project-meta">EvonSys | Business Analyst &amp; Product Owner | HR Tech / HCM | Pega PRPC 8.x</p>
             <h3 class="project-title">PeopleHCM — Enterprise HCM Workflow Platform</h3>
@@ -688,6 +892,7 @@
             <span class="view-link">View Full Case Details →</span>
           </article>
           <article class="project-card reveal" data-modal-target="modal-casestudyhub">
+            <span class="project-number">05</span>
             <span class="delivered-badge">✓ Delivered — Go-Live</span>
             <p class="project-meta">EvonSys | Business Analyst &amp; Product Owner | Marketing Tech | Pega Constellation</p>
             <h3 class="project-title">Pega Case Study Hub — Marketing Content Platform</h3>
@@ -717,30 +922,30 @@
           <article class="testimonial-card reveal">
             <p class="testimonial-text">"Srivardhan is one of the sharpest BAs I've worked with in the payments space. He doesn't just gather requirements — he challenges assumptions, spots SWIFT message-handling gaps before they become defects, and writes specs that developers actually implement correctly. The NatWest investigation platform would not have shipped as cleanly without him."</p>
             <div class="testimonial-author">
-              <div class="author-avatar">DS</div>
+              <div class="author-avatar">DM</div>
               <div>
-                <p class="author-name">Durgalakshmi Subramanian</p>
-                <p class="author-role">Delivery Manager, EvonSys</p>
+                <p class="author-name">Delivery Manager</p>
+                <p class="author-role">EvonSys · Payments Practice</p>
               </div>
             </div>
           </article>
           <article class="testimonial-card reveal">
             <p class="testimonial-text">"Working with Srivardhan on the payment correspondence module was seamless. He understood ISO 20022 message structures as well as any integration developer, which meant field-level requirements for pacs.008 and camt.056 were precise from day one. Rare to find a BA with that depth in CBPR+ message handling."</p>
             <div class="testimonial-author">
-              <div class="author-avatar">MT</div>
+              <div class="author-avatar">PD</div>
               <div>
-                <p class="author-name">Madhusudhan Tanukonda</p>
-                <p class="author-role">Senior Pega Developer, EvonSys</p>
+                <p class="author-name">Senior Pega Developer</p>
+                <p class="author-role">EvonSys · Banking Delivery</p>
               </div>
             </div>
           </article>
           <article class="testimonial-card reveal">
             <p class="testimonial-text">"The Stop-and-Recall requirements Srivardhan authored covered every edge case our operations team could think of — and several we hadn't considered. His ability to map the camt.056 / camt.029 recall flow end-to-end, including cancellation reason codes and manual review routing, saved us weeks of rework during UAT."</p>
             <div class="testimonial-author">
-              <div class="author-avatar">RK</div>
+              <div class="author-avatar">PO</div>
               <div>
-                <p class="author-name">Ramana Kumar</p>
-                <p class="author-role">Payment Operations Lead, NatWest</p>
+                <p class="author-name">Payment Operations Lead</p>
+                <p class="author-role">Banking Client · Cross-Border Payments</p>
               </div>
             </div>
           </article>
