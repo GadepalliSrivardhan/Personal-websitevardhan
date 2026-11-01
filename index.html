@@ -1,1234 +1,632 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Srivardhan Gadepalli | Senior BA — Cross-Border Payments</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --dark: #06091A;
-      --dark-2: #0D1230;
-      --dark-3: #141940;
-      --light: #F8F9FE;
-      --surface: #FFFFFF;
-      --text: #0A0E1A;
-      --muted: #64748B;
-      --accent: #6366F1;
-      --accent-2: #818CF8;
-      --accent-3: #A5B4FC;
-      --gold: #F59E0B;
-      --gold-2: #FCD34D;
-      --green: #10B981;
-      --border: rgba(0,0,0,0.07);
-      --border-dark: rgba(255,255,255,0.08);
-      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
-      --shadow: 0 8px 28px rgba(0,0,0,0.09);
-      --shadow-lg: 0 20px 60px rgba(0,0,0,0.13);
-      --radius: 16px;
-      --radius-sm: 10px;
-      --max: 1180px;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body, body * {
-      -webkit-user-select: none; -moz-user-select: none;
-      -ms-user-select: none; user-select: none;
-    }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--light); color: var(--text); line-height: 1.65;
-      overflow-x: hidden; -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-    .container { width: min(var(--max), 92%); margin: 0 auto; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Srivardhan Gadepalli | Payments Business Analyst</title>
+<meta name="description" content="Senior Business Analyst in cross-border payments, payment exceptions and investigations, SWIFT MT, ISO 20022 / CBPR+ and Pega Smart Investigate. Goldman Sachs, NatWest, JPMC.">
+<meta property="og:title" content="Srivardhan Gadepalli | Payments Business Analyst">
+<meta property="og:description" content="Senior Business Analyst in cross-border payments, payment exceptions and investigations, SWIFT MT and ISO 20022.">
+<meta property="og:image" content="./assets/profile.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F4F5F2;
+    --surface: #FFFFFF;
+    --ink: #18212B;
+    --ink-2: #4A5562;
+    --ink-3: #75808C;
+    --rule: #D9DDD8;
+    --ledger: #0E5A4A;
+    --ledger-dark: #0A4639;
+    --ledger-soft: #E2EDE9;
+    --panel: #18212B;
+    --panel-text: #E6EAE8;
+    --brass: #D4B46A;
+    --measure: 68ch;
+    --wrap: 1160px;
+    --sans: "Public Sans", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--sans); font-size: 1.0625rem; line-height: 1.6;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: var(--ledger); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover { color: var(--ledger-dark); }
+  :focus-visible { outline: 2px solid var(--ledger); outline-offset: 3px; border-radius: 2px; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 28px; }
+  section[id] { scroll-margin-top: 80px; }
 
-    /* ── NAV ── */
-    .navbar {
-      position: sticky; top: 0; z-index: 900;
-      background: rgba(6,9,26,0.85); backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border-dark);
-    }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 1rem; }
-    .brand { font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; color: #fff; }
-    .brand span { color: var(--accent-3); }
-    .nav-links { display: flex; list-style: none; gap: 0.25rem; }
-    .nav-link {
-      font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.5);
-      padding: 0.4rem 0.75rem; border-radius: 8px; transition: all 0.2s;
-    }
-    .nav-link:hover, .nav-link.active { color: #fff; background: rgba(99,102,241,0.18); }
-    .menu-toggle {
-      display: none; background: rgba(255,255,255,0.08); border: 1px solid var(--border-dark);
-      color: #fff; border-radius: 8px; width: 38px; height: 38px; font-size: 1.1rem; cursor: pointer;
-    }
-    @media (max-width: 860px) {
-      .menu-toggle { display: flex; align-items: center; justify-content: center; }
-      .nav-links {
-        display: none; position: absolute; top: 68px; left: 4%; right: 4%;
-        background: rgba(13,18,48,0.97); border: 1px solid var(--border-dark);
-        border-radius: 14px; padding: 0.6rem; flex-direction: column; gap: 0.2rem;
-        backdrop-filter: blur(20px);
-      }
-      .nav-links.open { display: flex; }
-      .nav-link { display: block; width: 100%; padding: 0.65rem 0.9rem; }
-    }
+  /* Header */
+  .site-head {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(244,245,242,0.92); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent; transition: border-color .2s;
+  }
+  .site-head.scrolled { border-bottom-color: var(--rule); }
+  .head-row { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 24px; }
+  .brand { font-weight: 700; font-size: 1rem; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+  .nav { display: flex; align-items: center; gap: 4px; }
+  .nav a {
+    color: var(--ink-2); text-decoration: none; font-size: 0.9375rem; font-weight: 500;
+    padding: 8px 12px; border-radius: 6px;
+  }
+  .nav a:hover, .nav a[aria-current="true"] { color: var(--ink); background: rgba(24,33,43,0.06); }
+  .nav .nav-cta { margin-left: 8px; background: var(--ink); color: #fff; }
+  .nav .nav-cta:hover { background: var(--ledger); color: #fff; }
+  .menu-btn {
+    display: none; background: none; border: 1px solid var(--rule); border-radius: 6px;
+    font: inherit; font-size: 0.9375rem; font-weight: 600; color: var(--ink); padding: 7px 14px; cursor: pointer;
+  }
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh; display: flex; align-items: center;
-      background: var(--dark);
-      position: relative; overflow: hidden;
-    }
-    .hero-mesh {
-      position: absolute; inset: 0; pointer-events: none;
-      background:
-        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(99,102,241,0.22) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 50% at 15% 70%, rgba(139,92,246,0.15) 0%, transparent 50%),
-        radial-gradient(ellipse 40% 40% at 85% 10%, rgba(99,102,241,0.1) 0%, transparent 45%);
-      animation: meshShift 12s ease-in-out infinite alternate;
-    }
-    @keyframes meshShift {
-      0%  { opacity: 0.7; transform: scale(1); }
-      100%{ opacity: 1;   transform: scale(1.04); }
-    }
-    .hero-grid {
-      display: grid; grid-template-columns: 1fr 380px;
-      gap: 4rem; align-items: center; padding: 5rem 0;
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--accent-3); margin-bottom: 1.4rem;
-    }
-    .eyebrow-line { width: 28px; height: 2px; background: var(--accent-3); border-radius: 2px; }
-    .hero h1 {
-      font-size: clamp(2.6rem, 5.5vw, 4.4rem); font-weight: 900;
-      line-height: 1.02; letter-spacing: -0.04em; color: #fff; margin-bottom: 0.5rem;
-    }
-    .hero h1 em { font-style: normal; color: var(--accent-3); }
-    .hero-role {
-      font-size: clamp(1.05rem, 2.5vw, 1.35rem); font-weight: 600;
-      color: var(--accent-3); margin-bottom: 0.3rem; min-height: 2rem;
-    }
-    .tw-cursor { animation: blink 0.85s step-end infinite; }
-    @keyframes blink { 0%,100%{ opacity:1 } 50%{ opacity:0 } }
-    .hero-sub {
-      font-size: 0.92rem; color: rgba(255,255,255,0.4); margin-bottom: 1.6rem;
-      letter-spacing: 0.02em; font-weight: 500;
-    }
-    .hero-desc {
-      font-size: 1rem; color: rgba(255,255,255,0.58); line-height: 1.75;
-      max-width: 560px; margin-bottom: 2.2rem;
-    }
-    .hero-stats {
-      display: flex; gap: 2rem; margin-bottom: 2.4rem; flex-wrap: wrap;
-    }
-    .hstat { }
-    .hstat-num {
-      font-size: 2rem; font-weight: 800; color: #fff; line-height: 1;
-      letter-spacing: -0.03em;
-    }
-    .hstat-num span { color: var(--accent-3); }
-    .hstat-label { font-size: 0.72rem; color: rgba(255,255,255,0.38); font-weight: 500; margin-top: 0.2rem; letter-spacing: 0.03em; text-transform: uppercase; }
-    .hero-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.1); align-self: center; }
-    .btn-row { display: flex; gap: 0.9rem; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 0.45rem;
-      font-family: inherit; font-size: 0.9rem; font-weight: 600;
-      padding: 0.78rem 1.45rem; border-radius: 999px; border: none;
-      cursor: pointer; transition: all 0.22s ease;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #6366f1, #4f46e5);
-      color: #fff; box-shadow: 0 8px 24px rgba(99,102,241,0.38);
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(99,102,241,0.44); }
-    .btn-ghost {
-      background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.82);
-      border: 1px solid rgba(255,255,255,0.14);
-    }
-    .btn-ghost:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+  /* Hero */
+  .hero { padding: 72px 0 88px; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 64px; align-items: center; }
+  .hero h1 {
+    font-size: clamp(2.75rem, 6.2vw, 5rem); line-height: 0.98; letter-spacing: -0.035em;
+    font-weight: 800; margin: 0 0 28px;
+  }
+  .hero-lede {
+    font-size: clamp(1.25rem, 2vw, 1.5rem); line-height: 1.4; letter-spacing: -0.01em;
+    color: var(--ink); max-width: 30ch; margin: 0 0 20px; font-weight: 500;
+  }
+  .hero-sub { color: var(--ink-2); max-width: 52ch; margin: 0 0 36px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+    font-weight: 600; font-size: 0.9875rem; padding: 13px 22px; border-radius: 8px;
+    border: 1.5px solid var(--ink); transition: background .15s, color .15s, border-color .15s;
+  }
+  .btn-solid { background: var(--ledger); border-color: var(--ledger); color: #fff; }
+  .btn-solid:hover { background: var(--ledger-dark); border-color: var(--ledger-dark); color: #fff; }
+  .btn-line { color: var(--ink); background: transparent; }
+  .btn-line:hover { background: var(--ink); color: #fff; }
 
-    /* Hero right — photo */
-    .hero-photo-col { display: flex; justify-content: center; align-items: center; }
-    .photo-frame {
-      position: relative; width: 300px; height: 380px;
-    }
-    .photo-glow {
-      position: absolute; inset: -24px; border-radius: 28px;
-      background: radial-gradient(ellipse at center, rgba(99,102,241,0.3) 0%, transparent 70%);
-      filter: blur(20px); z-index: 0;
-    }
-    .photo-card {
-      position: relative; z-index: 1; width: 100%; height: 100%;
-      border-radius: 24px; overflow: hidden;
-      border: 1.5px solid rgba(165,180,252,0.22);
-      box-shadow: 0 24px 64px rgba(0,0,0,0.55);
-    }
-    .photo-card img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-    .photo-badge {
-      position: absolute; z-index: 2;
-      background: rgba(6,9,26,0.88); backdrop-filter: blur(14px);
-      border: 1px solid rgba(165,180,252,0.25); border-radius: 10px;
-      padding: 0.55rem 0.85rem; font-size: 0.72rem; font-weight: 700;
-      color: var(--accent-3); white-space: nowrap;
-      animation: badgeFloat 4s ease-in-out infinite;
-    }
-    .photo-badge:nth-child(3) { bottom: 14%; left: -100px; animation-delay: 0s; }
-    .photo-badge:nth-child(4) { top: 18%;  right: -95px; animation-delay: 1.4s; }
-    .photo-badge:nth-child(5) { top: 50%;  left: -90px; animation-delay: 2.6s; }
-    @keyframes badgeFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-    @media (max-width: 1000px) { .photo-badge { display: none; } }
+  .hero-visual { position: relative; padding-bottom: 72px; }
+  .portrait {
+    width: 78%; margin-left: auto; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 4px;
+    background: #222;
+  }
+  .avatar { display: none; }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
 
-    /* ── TICKER ── */
-    .ticker-wrap {
-      background: var(--dark-2); border-top: 1px solid var(--border-dark);
-      border-bottom: 1px solid var(--border-dark); padding: 0.9rem 0; overflow: hidden;
-    }
-    .ticker-track {
-      display: flex; gap: 2.5rem; width: max-content;
-      animation: ticker 40s linear infinite;
-    }
-    .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
-    @keyframes ticker { 0%{ transform:translateX(0) } 100%{ transform:translateX(-50%) } }
-    .ticker-item {
-      display: flex; align-items: center; gap: 0.55rem; white-space: nowrap;
-      font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.38);
-      letter-spacing: 0.03em; text-transform: uppercase;
-    }
-    .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .msg {
+    position: absolute; left: 0; bottom: 0; width: min(380px, 82%);
+    background: var(--panel); color: var(--panel-text); border-radius: 6px;
+    font-family: var(--mono); font-size: 0.8125rem; line-height: 1.75;
+    box-shadow: 0 24px 48px -16px rgba(24,33,43,0.45);
+  }
+  .msg-bar {
+    display: flex; justify-content: space-between; gap: 12px; padding: 10px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1); color: rgba(230,234,232,0.6); font-size: 0.75rem;
+  }
+  .msg-body { padding: 14px 16px 16px; margin: 0; white-space: pre-wrap; min-height: calc(10 * 1.75em + 30px); font: inherit; }
+  .msg-body .t { color: var(--brass); }
+  .msg-body .c { display: inline-block; width: 0.55em; height: 1.05em; background: var(--brass); vertical-align: -0.15em; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
 
-    /* ── SHARED SECTION STYLES ── */
-    section { padding: 5.5rem 0; }
-    .sec-label {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 0.9rem;
-    }
-    .sec-label::before { content:''; width:20px; height:2px; background:var(--accent); border-radius:2px; }
-    .sec-title {
-      font-size: clamp(1.85rem, 3.5vw, 2.6rem); font-weight: 800;
-      letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.8rem;
-    }
-    .sec-sub { font-size: 1rem; color: var(--muted); max-width: 680px; line-height: 1.7; margin-bottom: 2.4rem; }
+  /* Facts */
+  .facts { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--surface); }
+  .facts-row { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .fact { padding: 28px 24px; border-left: 1px solid var(--rule); }
+  .fact:first-child { border-left: 0; padding-left: 0; }
+  .fact strong { display: block; font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 4px; }
+  .fact span { color: var(--ink-2); font-size: 0.9375rem; line-height: 1.4; display: block; }
 
-    /* ── ABOUT ── */
-    #about { background: var(--surface); }
-    .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-    .about-left { }
-    .about-summary {
-      font-size: 1.05rem; color: #374151; line-height: 1.85; margin-bottom: 2rem;
-    }
-    .about-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 2rem; }
-    .kpi-card {
-      background: var(--light); border-radius: var(--radius-sm);
-      border: 1px solid var(--border); padding: 1.2rem 1.4rem;
-    }
-    .kpi-num {
-      font-size: 2.1rem; font-weight: 800; letter-spacing: -0.04em;
-      background: linear-gradient(135deg, var(--accent), #8b5cf6);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      line-height: 1; margin-bottom: 0.3rem;
-    }
-    .kpi-label { font-size: 0.78rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
-    .about-right { }
-    .career-timeline { position: relative; padding-left: 1.8rem; }
-    .career-timeline::before {
-      content:''; position:absolute; left:0; top:6px; bottom:6px; width:2px;
-      background: linear-gradient(180deg, var(--accent), rgba(99,102,241,0.15));
-      border-radius: 2px;
-    }
-    .ct-item { position: relative; margin-bottom: 2rem; }
-    .ct-item:last-child { margin-bottom: 0; }
-    .ct-dot {
-      position: absolute; left: -1.8rem; top: 5px;
-      width: 10px; height: 10px; border-radius: 50%; background: var(--accent);
-      box-shadow: 0 0 0 3px rgba(99,102,241,0.18); margin-left: -4px;
-    }
-    .ct-period {
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 0.25rem;
-    }
-    .ct-role { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
-    .ct-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
-    .ct-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.65rem; }
-    .ct-tag {
-      font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.55rem; border-radius: 999px;
-      background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.18); color: var(--accent);
-    }
+  /* Sections */
+  .section { padding: 104px 0; }
+  .section + .section { border-top: 1px solid var(--rule); }
+  .sec-head { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 48px; }
+  .sec-head h2 { font-size: 2rem; line-height: 1.15; letter-spacing: -0.025em; font-weight: 700; margin: 0; }
+  .sec-head .note { color: var(--ink-3); font-size: 0.9375rem; margin: 10px 0 0; max-width: 24ch; }
+  .prose p { margin: 0 0 1.1em; max-width: var(--measure); }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose .big { font-size: 1.3125rem; line-height: 1.5; letter-spacing: -0.01em; color: var(--ink); }
+  .prose p:not(.big):not(.partners-title) { color: var(--ink-2); }
 
-    /* ── PROCESS ── */
-    .process-section { background: var(--dark); padding: 3.5rem 0; }
-    .process-label { color: rgba(255,255,255,0.35); }
-    .process-label::before { background: rgba(255,255,255,0.2); }
-    .process-title { color: #fff; font-size: 1rem; font-weight: 600; margin-bottom: 2rem; text-align: center; }
-    .process-flow {
-      display: flex; align-items: center; justify-content: center;
-      gap: 0; overflow-x: auto; padding: 0.5rem 1rem;
-    }
-    .p-node { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; flex-shrink: 0; }
-    .p-icon {
-      width: 56px; height: 56px; border-radius: 16px; font-size: 1.4rem;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3);
-      transition: all 0.25s; color: var(--accent-3);
-    }
-    .p-icon:hover { background: rgba(99,102,241,0.28); transform: translateY(-4px); box-shadow: 0 8px 20px rgba(99,102,241,0.2); }
-    .p-label { font-size: 0.68rem; font-weight: 600; color: rgba(255,255,255,0.4); letter-spacing: 0.05em; text-transform: uppercase; }
-    .p-connector {
-      flex-shrink: 0; width: 40px; height: 1px; margin: 0 0.2rem; margin-bottom: 1.5rem;
-      background: repeating-linear-gradient(90deg, rgba(99,102,241,0.5) 0, rgba(99,102,241,0.5) 4px, transparent 4px, transparent 9px);
-    }
+  .partners-title { font-weight: 600; margin: 48px 0 0 !important; font-size: 1rem; }
+  .partners { margin: 12px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; max-width: 720px; padding: 0; list-style: none; }
+  .partners li { padding: 12px 0; border-top: 1px solid var(--rule); font-size: 0.9875rem; }
 
-    /* ── SKILLS ── */
-    #skills { background: var(--light); }
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 1rem; }
-    .skill-card {
-      background: var(--surface); border-radius: var(--radius); padding: 1.5rem;
-      border: 1px solid var(--border); transition: all 0.25s;
-      position: relative; overflow: hidden;
-    }
-    .skill-card::before {
-      content:''; position:absolute; top:0; left:0; right:0; height:3px;
-      background: linear-gradient(90deg, var(--accent), #8b5cf6);
-    }
-    .skill-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: rgba(99,102,241,0.2); }
-    .skill-card h3 { font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 0.9rem; text-transform: uppercase; letter-spacing: 0.06em; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .s-tag {
-      font-size: 0.76rem; font-weight: 500; padding: 0.32rem 0.65rem; border-radius: 999px;
-      background: rgba(99,102,241,0.07); border: 1px solid rgba(99,102,241,0.14);
-      color: #3730a3; transition: all 0.18s;
-    }
-    .s-tag:hover { background: rgba(99,102,241,0.15); transform: translateY(-1px); }
+  /* Experience */
+  .jobs { list-style: none; margin: 0; padding: 0; }
+  .job { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 48px; padding: 44px 0; border-top: 1px solid var(--rule); }
+  .job:first-child { border-top: 0; padding-top: 8px; }
+  .job-when { font-size: 0.9375rem; color: var(--ink-2); }
+  .job-when time { display: block; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .job-when .now {
+    display: inline-block; margin-top: 10px; font-size: 0.8125rem; font-weight: 600;
+    color: var(--ledger); background: var(--ledger-soft); padding: 3px 10px; border-radius: 999px;
+  }
+  .job h3 { font-size: 1.5rem; letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 4px; font-weight: 700; }
+  .job .role { color: var(--ink-2); margin: 0 0 18px; font-size: 1rem; }
+  .job .summary { margin: 0 0 18px; max-width: var(--measure); }
+  .job ul.key { margin: 0 0 20px; padding: 0 0 0 1.1em; max-width: var(--measure); color: var(--ink-2); }
+  .job ul.key li { margin-bottom: 6px; padding-left: 4px; }
+  .job ul.key li::marker { color: var(--ledger); }
+  .outcome { border-left: 3px solid var(--ledger); padding: 4px 0 4px 16px; margin: 0 0 22px; max-width: var(--measure); font-weight: 500; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 20px; padding: 0; list-style: none; }
+  .tags li {
+    font-size: 0.8125rem; font-weight: 500; color: var(--ink-2);
+    border: 1px solid var(--rule); background: var(--surface); padding: 4px 10px; border-radius: 4px;
+  }
+  details.more { max-width: var(--measure); }
+  details.more summary {
+    cursor: pointer; font-weight: 600; color: var(--ledger); font-size: 0.9375rem; list-style: none;
+    display: inline-flex; align-items: center; gap: 8px; padding: 4px 0;
+  }
+  details.more summary::-webkit-details-marker { display: none; }
+  details.more summary::before { content: "+"; font-size: 1.15rem; line-height: 1; width: 1ch; }
+  details.more[open] summary::before { content: "\2212"; }
+  details.more .more-body { padding: 16px 0 4px; color: var(--ink-2); }
+  details.more h4 { font-size: 0.9375rem; color: var(--ink); margin: 18px 0 6px; font-weight: 600; }
+  details.more h4:first-child { margin-top: 0; }
+  details.more ul { margin: 0; padding-left: 1.1em; }
+  details.more li { margin-bottom: 6px; }
 
-    /* ── PROJECTS ── */
-    #projects { background: var(--surface); }
-    .projects-layout { display: grid; gap: 1.2rem; }
-    /* Featured (full width) */
-    .proj-featured {
-      border-radius: var(--radius); overflow: hidden;
-      background: linear-gradient(135deg, #0A0C1E 0%, #1a1508 100%);
-      border: 1px solid rgba(245,158,11,0.2);
-      padding: 2.4rem 2.6rem; position: relative; cursor: pointer;
-      transition: all 0.3s;
-    }
-    .proj-featured:hover { border-color: rgba(245,158,11,0.45); box-shadow: 0 16px 48px rgba(245,158,11,0.1); transform: translateY(-2px); }
-    .proj-featured .proj-glow {
-      position: absolute; top: -40px; right: -40px; width: 300px; height: 300px;
-      border-radius: 50%; background: radial-gradient(circle, rgba(245,158,11,0.15) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .proj-featured .proj-status {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--gold-2); background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.25);
-      border-radius: 999px; padding: 0.25rem 0.65rem; margin-bottom: 1rem;
-    }
-    .active-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse-gold 2s infinite; }
-    @keyframes pulse-gold { 0%,100%{box-shadow:0 0 0 0 rgba(245,158,11,0.5)} 50%{box-shadow:0 0 0 5px rgba(245,158,11,0)} }
-    .proj-featured .proj-client { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: #fff; letter-spacing: -0.03em; margin-bottom: 0.3rem; }
-    .proj-featured .proj-role { font-size: 0.88rem; color: rgba(255,255,255,0.45); margin-bottom: 1rem; font-weight: 500; }
-    .proj-featured .proj-desc { font-size: 0.97rem; color: rgba(255,255,255,0.62); line-height: 1.75; max-width: 760px; margin-bottom: 1.4rem; }
-    .proj-featured .proj-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .proj-chip {
-      font-size: 0.74rem; font-weight: 600; padding: 0.3rem 0.7rem; border-radius: 999px;
-      background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.22); color: var(--gold-2);
-    }
-    .proj-featured .proj-arrow {
-      position: absolute; right: 2rem; bottom: 2rem;
-      font-size: 0.82rem; font-weight: 600; color: var(--gold-2);
-      display: flex; align-items: center; gap: 0.35rem;
-    }
+  /* Lifecycle */
+  .lifecycle { background: var(--ink); color: var(--panel-text); padding: 88px 0 96px; }
+  .lifecycle h2 { font-size: 2rem; letter-spacing: -0.025em; margin: 0 0 12px; color: #fff; font-weight: 700; }
+  .lifecycle .intro { color: rgba(230,234,232,0.7); max-width: 60ch; margin: 0 0 56px; }
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, 1fr); counter-reset: s; }
+  .steps li { counter-increment: s; padding: 22px 16px 0 0; border-top: 2px solid rgba(255,255,255,0.18); position: relative; }
+  .steps li::before {
+    content: counter(s); position: absolute; top: -13px; left: 0; width: 24px; height: 24px; border-radius: 50%;
+    background: var(--ink); border: 2px solid var(--brass); color: var(--brass);
+    font-size: 0.75rem; font-weight: 700; display: grid; place-items: center; font-variant-numeric: tabular-nums;
+  }
+  .steps strong { display: block; color: #fff; font-size: 1rem; margin: 6px 0 4px; }
+  .steps span { font-size: 0.875rem; color: rgba(230,234,232,0.65); line-height: 1.45; display: block; }
 
-    /* Regular project cards — 2-col grid */
-    .projects-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-    .proj-card {
-      background: var(--light); border-radius: var(--radius); padding: 1.75rem;
-      border: 1px solid var(--border); cursor: pointer; transition: all 0.25s;
-      position: relative; overflow: hidden;
-    }
-    .proj-card::after {
-      content:''; position:absolute; top:0; left:0; right:0; height:3px;
-      background: linear-gradient(90deg, var(--accent), #8b5cf6); opacity: 0; transition: opacity 0.25s;
-    }
-    .proj-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); background: var(--surface); }
-    .proj-card:hover::after { opacity: 1; }
-    .proj-delivered {
-      display: inline-flex; align-items: center; gap: 0.3rem;
-      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--green); background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.22);
-      border-radius: 999px; padding: 0.2rem 0.55rem; margin-bottom: 0.75rem;
-    }
-    .proj-num { font-size: 0.68rem; font-weight: 700; color: rgba(99,102,241,0.35); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; }
-    .proj-client { font-size: 1.3rem; font-weight: 800; color: var(--text); letter-spacing: -0.02em; margin-bottom: 0.2rem; }
-    .proj-role-label { font-size: 0.8rem; color: var(--muted); font-weight: 500; margin-bottom: 0.85rem; }
-    .proj-desc-text { font-size: 0.88rem; color: #4B5563; line-height: 1.7; margin-bottom: 1rem; }
-    .proj-kpis { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.9rem; }
-    .proj-kpi {
-      font-size: 0.72rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 999px;
-      background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.18); color: var(--accent);
-    }
-    .proj-link { font-size: 0.82rem; font-weight: 700; color: var(--accent); display: inline-flex; align-items: center; gap: 0.3rem; }
+  /* Skills */
+  .skill-rows { margin: 0; }
+  .skill-row { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 32px; padding: 22px 0; border-top: 1px solid var(--rule); }
+  .skill-row:first-child { border-top: 0; padding-top: 0; }
+  .skill-row dt { font-weight: 600; }
+  .skill-row dd { margin: 0; color: var(--ink-2); }
 
-    /* ── CERTIFICATIONS ── */
-    #certifications { background: var(--dark); }
-    #certifications .sec-label { color: rgba(255,255,255,0.35); }
-    #certifications .sec-label::before { background: rgba(255,255,255,0.2); }
-    #certifications .sec-title { color: #fff; }
-    #certifications .sec-sub { color: rgba(255,255,255,0.45); }
-    .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.2rem; }
-    .cert-card {
-      border-radius: var(--radius); padding: 2rem; position: relative; overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.08); transition: all 0.28s; cursor: default;
-    }
-    .cert-card:nth-child(1) { background: linear-gradient(135deg, #1a1040, #0e0b1f); }
-    .cert-card:nth-child(2) { background: linear-gradient(135deg, #0f1a0a, #0a150f); }
-    .cert-card:nth-child(3) { background: linear-gradient(135deg, #1a100a, #0f0a05); }
-    .cert-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.15); }
-    .cert-glow {
-      position: absolute; top: -30px; right: -30px; width: 150px; height: 150px;
-      border-radius: 50%; opacity: 0.35; pointer-events: none;
-    }
-    .cert-card:nth-child(1) .cert-glow { background: radial-gradient(circle, #6366f1, transparent 70%); }
-    .cert-card:nth-child(2) .cert-glow { background: radial-gradient(circle, #10b981, transparent 70%); }
-    .cert-card:nth-child(3) .cert-glow { background: radial-gradient(circle, #f59e0b, transparent 70%); }
-    .cert-icon { font-size: 2rem; margin-bottom: 1.1rem; }
-    .cert-name { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; }
-    .cert-issuer { font-size: 0.82rem; color: rgba(255,255,255,0.4); font-weight: 500; }
+  /* Credentials */
+  .creds { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .creds li { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 24px; }
+  .creds strong { display: block; font-size: 1.0625rem; line-height: 1.35; margin-bottom: 6px; }
+  .creds span { color: var(--ink-3); font-size: 0.9375rem; }
 
-    /* ── TESTIMONIALS ── */
-    #testimonials { background: var(--light); }
-    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.2rem; }
-    .t-card {
-      background: var(--surface); border-radius: var(--radius); padding: 2rem;
-      border: 1px solid var(--border); transition: all 0.25s; position: relative; overflow: hidden;
-    }
-    .t-card::before {
-      content:''; position:absolute; top:0; left:0; right:0; height:3px; border-radius: var(--radius) var(--radius) 0 0;
-    }
-    .t-card:nth-child(1)::before { background: linear-gradient(90deg, #6366f1, #8b5cf6); }
-    .t-card:nth-child(2)::before { background: linear-gradient(90deg, #8b5cf6, #06b6d4); }
-    .t-card:nth-child(3)::before { background: linear-gradient(90deg, #06b6d4, #10b981); }
-    .t-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: rgba(99,102,241,0.15); }
-    .t-quote { font-size: 2.5rem; line-height: 0.6; color: rgba(99,102,241,0.15); font-family: Georgia, serif; margin-bottom: 0.9rem; display: block; }
-    .t-text { font-size: 0.91rem; color: #374151; line-height: 1.8; margin-bottom: 1.4rem; font-style: italic; }
-    .t-author { display: flex; align-items: center; gap: 0.75rem; padding-top: 1rem; border-top: 1px solid var(--border); }
-    .t-avatar {
-      width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.74rem; font-weight: 700; color: #fff;
-    }
-    .t-card:nth-child(1) .t-avatar { background: linear-gradient(135deg, #6366f1, #4f46e5); }
-    .t-card:nth-child(2) .t-avatar { background: linear-gradient(135deg, #8b5cf6, #06b6d4); }
-    .t-card:nth-child(3) .t-avatar { background: linear-gradient(135deg, #06b6d4, #10b981); }
-    .t-name { font-size: 0.88rem; font-weight: 700; color: var(--text); }
-    .t-role { font-size: 0.76rem; color: var(--muted); margin-top: 0.1rem; }
+  /* Testimonials */
+  .quotes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
+  .quotes figure { margin: 0; display: flex; flex-direction: column; }
+  .quotes blockquote { margin: 0 0 18px; font-size: 1.0625rem; line-height: 1.6; color: var(--ink); flex: 1; }
+  .quotes blockquote::before { content: "\201C"; display: block; font-size: 3rem; line-height: 0.8; color: var(--ledger); font-weight: 700; margin-bottom: 8px; }
+  .quotes figcaption { font-size: 0.9375rem; color: var(--ink-3); border-top: 1px solid var(--rule); padding-top: 12px; }
+  .quotes figcaption b { color: var(--ink); font-weight: 600; display: block; }
 
-    /* ── WHY ── */
-    #why-po { background: var(--surface); }
-    .why-block {
-      background: linear-gradient(135deg, var(--dark) 0%, var(--dark-3) 100%);
-      border-radius: 24px; padding: 3.5rem; position: relative; overflow: hidden;
-    }
-    .why-block::before {
-      content:''; position:absolute; top:-60px; right:-60px; width:300px; height:300px; border-radius:50%;
-      background: radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%);
-    }
-    .why-quote {
-      font-size: clamp(1rem, 1.8vw, 1.15rem); color: rgba(255,255,255,0.72);
-      line-height: 1.85; font-style: italic; position: relative; z-index: 1;
-    }
-    .why-quote::before { content:'\201C'; font-size:4rem; color:rgba(99,102,241,0.25); line-height:0.5; display:block; margin-bottom:1rem; font-family: Georgia, serif; font-style:normal; }
+  /* Contact */
+  .contact { background: var(--surface); border-top: 1px solid var(--rule); padding: 104px 0 96px; }
+  .contact h2 { font-size: clamp(2rem, 4.4vw, 3.25rem); line-height: 1.05; letter-spacing: -0.03em; margin: 0 0 18px; max-width: 18ch; font-weight: 800; }
+  .contact .intro { color: var(--ink-2); max-width: 56ch; margin: 0 0 40px; }
+  .channels { list-style: none; margin: 0 0 44px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 900px; }
+  .channels li { padding: 16px 24px 16px 0; border-top: 1px solid var(--rule); }
+  .channels small { display: block; color: var(--ink-3); font-size: 0.875rem; margin-bottom: 2px; }
+  .channels a { font-weight: 600; color: var(--ink); text-decoration: none; word-break: break-word; }
+  .channels a:hover { color: var(--ledger); text-decoration: underline; }
+  footer { padding: 0 0 28px; font-size: 0.875rem; color: var(--ink-3); background: var(--surface); }
+  footer .wrap > div { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--rule); padding-top: 24px; }
 
-    /* ── CONTACT ── */
-    #contact { background: var(--dark); }
-    #contact .sec-label { color: rgba(255,255,255,0.35); }
-    #contact .sec-label::before { background: rgba(255,255,255,0.2); }
-    #contact .sec-title { color: #fff; }
-    #contact .sec-sub { color: rgba(255,255,255,0.45); }
-    .contact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1rem; }
-    .contact-item-card {
-      background: rgba(255,255,255,0.05); border: 1px solid var(--border-dark);
-      border-radius: var(--radius-sm); padding: 1.25rem 1.4rem; transition: all 0.22s;
+  /* Responsive */
+  @media (max-width: 980px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    .hero-visual { max-width: 520px; }
+    .sec-head, .job { grid-template-columns: 1fr; gap: 20px; }
+    .steps { grid-template-columns: 1fr; gap: 0; }
+    .steps li { border-top: 0; border-left: 2px solid rgba(255,255,255,0.18); padding: 0 0 24px 28px; }
+    .steps li:last-child { padding-bottom: 0; border-left-color: transparent; }
+    .steps li::before { top: 0; left: -13px; }
+    .steps strong { margin-top: 0; }
+    .quotes, .creds { grid-template-columns: 1fr; gap: 24px; }
+    .quotes { gap: 40px; }
+  }
+  @media (max-width: 760px) {
+    .wrap { padding: 0 20px; }
+    .menu-btn { display: inline-block; }
+    .nav {
+      display: none; position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; align-items: stretch;
+      background: var(--paper); border-bottom: 1px solid var(--rule); padding: 8px 20px 16px;
     }
-    .contact-item-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(165,180,252,0.2); transform: translateY(-2px); }
-    .ci-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.45rem; }
-    .ci-value { font-size: 0.9rem; font-weight: 600; color: rgba(255,255,255,0.75); }
-    .ci-value a { color: var(--accent-3); }
-    .ci-value a:hover { text-decoration: underline; }
-
-    /* ── FOOTER ── */
-    .footer {
-      background: rgba(3,4,12,1); border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 1.5rem 0; text-align: center;
-      font-size: 0.82rem; color: rgba(255,255,255,0.2); font-weight: 500;
-    }
-
-    /* ── MODALS ── */
-    .modal {
-      position: fixed; inset: 0; background: rgba(6,9,26,0.7); backdrop-filter: blur(8px);
-      display: none; align-items: center; justify-content: center; z-index: 2000; padding: 1rem;
-    }
-    .modal.open { display: flex; }
-    .modal-box {
-      width: min(860px,100%); max-height: 88vh; overflow-y: auto;
-      background: var(--surface); border-radius: 20px; padding: 2rem;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.25); position: relative;
-    }
-    .modal-close {
-      position: absolute; right: 1rem; top: 1rem;
-      width: 34px; height: 34px; border-radius: 50%; border: none;
-      background: var(--light); color: var(--text); font-size: 1.1rem; cursor: pointer;
-      display: flex; align-items: center; justify-content: center; transition: background 0.2s;
-    }
-    .modal-close:hover { background: #e5e7eb; }
-    .modal-badge {
-      display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em;
-      text-transform: uppercase; padding: 0.22rem 0.65rem; border-radius: 999px; margin-bottom: 0.9rem;
-    }
-    .modal-badge.active { background: rgba(245,158,11,0.1); color: var(--gold); border: 1px solid rgba(245,158,11,0.25); }
-    .modal-badge.delivered { background: rgba(16,185,129,0.1); color: var(--green); border: 1px solid rgba(16,185,129,0.25); }
-    .modal-box h3 { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.3rem; }
-    .modal-meta { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.2rem; }
-    .modal-box p { font-size: 0.92rem; color: #4B5563; line-height: 1.75; margin-bottom: 0.85rem; }
-    .modal-box h4 { font-size: 0.88rem; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 0.06em; margin: 1.2rem 0 0.55rem; }
-    .modal-box ul { margin-left: 1.2rem; }
-    .modal-box li { font-size: 0.9rem; color: #4B5563; margin-bottom: 0.45rem; line-height: 1.65; }
-
-    /* ── REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 2rem; padding: 3.5rem 0 2.5rem; text-align: center; }
-      .hero-photo-col {
-        display: flex; order: -1;
-        justify-content: center; align-items: center;
-      }
-      .photo-frame {
-        width: 150px; height: 150px;
-      }
-      .photo-card {
-        border-radius: 50%;
-      }
-      .photo-glow {
-        inset: -16px; border-radius: 50%;
-      }
-      .photo-badge { display: none; }
-      .hero-eyebrow { justify-content: center; }
-      .hero-desc { margin-left: auto; margin-right: auto; }
-      .hero-stats { justify-content: center; }
-      .btn-row { justify-content: center; }
-      .about-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-      .projects-row { grid-template-columns: 1fr; }
-      .certs-grid { grid-template-columns: 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .skills-grid { grid-template-columns: 1fr 1fr; }
-      .contact-cards { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 640px) {
-      section { padding: 3rem 0; }
-      .hero { min-height: auto; padding: 4rem 0 2rem; }
-      .hero h1 { font-size: clamp(2.2rem, 10vw, 3rem); }
-      .hero-role { font-size: 1rem; }
-      .hero-sub { font-size: 0.8rem; }
-      .hero-desc { font-size: 0.9rem; margin-bottom: 1.6rem; }
-      .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.8rem; }
-      .hero-divider { display: none; }
-      .hstat-num { font-size: 1.6rem; }
-      .btn-row { flex-direction: column; gap: 0.65rem; }
-      .btn { justify-content: center; padding: 0.85rem 1.2rem; }
-      .about-kpis { grid-template-columns: 1fr 1fr; gap: 0.9rem; }
-      .kpi-num { font-size: 1.7rem; }
-      .skills-grid { grid-template-columns: 1fr; }
-      .proj-featured { padding: 1.4rem 1.4rem 3.5rem; }
-      .proj-featured .proj-client { font-size: 1.5rem; }
-      .proj-featured .proj-arrow { font-size: 0.76rem; right: 1.2rem; bottom: 1.2rem; }
-      .proj-card { padding: 1.4rem; }
-      .why-block { padding: 1.8rem 1.4rem; }
-      .why-quote { font-size: 0.95rem; }
-      .contact-cards { grid-template-columns: 1fr; }
-      .certs-grid { grid-template-columns: 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr; }
-      .modal-box { padding: 1.4rem; border-radius: 16px; }
-      .modal-box h3 { font-size: 1.2rem; }
-      .modal-box li { font-size: 0.85rem; }
-      .process-flow { gap: 0; padding: 0.5rem 0.5rem; }
-      .p-icon { width: 44px; height: 44px; font-size: 1.1rem; border-radius: 12px; }
-      .p-label { font-size: 0.6rem; }
-      .p-connector { width: 20px; }
-      .sec-title { font-size: clamp(1.6rem, 6vw, 2rem); }
-      .sec-sub { font-size: 0.9rem; }
-    }
-    @media (max-width: 400px) {
-      .hero h1 { font-size: 2rem; }
-      .photo-frame { width: 120px; height: 120px; }
-      .hstat-num { font-size: 1.4rem; }
-      .about-kpis { grid-template-columns: 1fr; }
-      .process-flow { justify-content: flex-start; }
-      .p-connector { width: 14px; }
-      .p-node { gap: 0.4rem; }
-      .proj-featured .proj-desc { font-size: 0.88rem; }
-    }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #6366f1, #8b5cf6); border-radius: 3px; }
-  </style>
+    .nav.open { display: flex; }
+    .nav a { padding: 12px 8px; }
+    .nav .nav-cta { margin: 8px 0 0; text-align: center; }
+    .hero { padding: 40px 0 64px; }
+    .avatar { display: block; width: 96px; height: 96px; border-radius: 50%; object-fit: cover; object-position: center 22%; margin: 0 0 24px; }
+    .hero-grid { gap: 40px; }
+    .hero-visual { padding-bottom: 0; }
+    .portrait { display: none; }
+    .msg { position: static; width: 100%; font-size: 0.75rem; box-shadow: none; }
+    .facts-row { grid-template-columns: 1fr 1fr; }
+    .fact { padding: 20px 16px 20px 0; border-left: 0; border-top: 1px solid var(--rule); }
+    .fact:nth-child(-n+2) { border-top: 0; }
+    .fact:nth-child(even) { padding-left: 16px; border-left: 1px solid var(--rule); }
+    .fact strong { font-size: 1.375rem; }
+    .section { padding: 72px 0; }
+    .skill-row { grid-template-columns: 1fr; gap: 6px; }
+    .partners, .channels { grid-template-columns: 1fr; }
+    .contact { padding: 72px 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .msg-body .c { animation: none; }
+  }
+  @media print {
+    .site-head, .menu-btn, .actions, .msg { display: none; }
+  }
+</style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
-<header class="navbar">
-  <div class="container nav-inner">
-    <a class="brand" href="#home">Srivardhan <span>Gadepalli</span></a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
-    <ul class="nav-links" id="navLinks">
-      <li><a class="nav-link" href="#home">Home</a></li>
-      <li><a class="nav-link" href="#about">About</a></li>
-      <li><a class="nav-link" href="#skills">Skills</a></li>
-      <li><a class="nav-link" href="#projects">Projects</a></li>
-      <li><a class="nav-link" href="#certifications">Certifications</a></li>
-      <li><a class="nav-link" href="#testimonials">Testimonials</a></li>
-      <li><a class="nav-link" href="#contact">Contact</a></li>
-    </ul>
+<header class="site-head" id="top">
+  <div class="wrap head-row">
+    <a class="brand" href="#top">Srivardhan Gadepalli</a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#credentials">Credentials</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-cta" href="./assets/resume.pdf" download>Download resume</a>
+    </nav>
   </div>
 </header>
 
 <main>
-<!-- ── HERO ── -->
-<section class="hero" id="home">
-  <div class="hero-mesh"></div>
-  <div class="container hero-grid">
-    <div class="reveal">
-      <div class="hero-eyebrow"><span class="eyebrow-line"></span> Senior Business Analyst — Payments</div>
-      <h1>Srivardhan<br><em>Gadepalli</em></h1>
-      <p class="hero-role"><span id="hero-tw">Payments Business Analyst</span><span class="tw-cursor">|</span></p>
-      <p class="hero-sub">CPBA &nbsp;·&nbsp; PSPO I &nbsp;·&nbsp; 5+ Years · EvonSys · Hyderabad</p>
-      <p class="hero-desc">Payments Business Analyst specialising in cross-border and correspondent payments, payment exceptions &amp; investigations, SWIFT MT, ISO 20022 / CBPR+ and Pega-based case management for Tier-1 banks.</p>
-      <div class="hero-stats">
-        <div class="hstat">
-          <div class="hstat-num"><span class="counter" data-target="5" data-suffix="+">0+</span></div>
-          <div class="hstat-label">Years Experience</div>
-        </div>
-        <div class="hero-divider"></div>
-        <div class="hstat">
-          <div class="hstat-num">3</div>
-          <div class="hstat-label">Tier-1 Banks</div>
-        </div>
-        <div class="hero-divider"></div>
-        <div class="hstat">
-          <div class="hstat-num">6</div>
-          <div class="hstat-label">Payment Rails</div>
-        </div>
-        <div class="hero-divider"></div>
-        <div class="hstat">
-          <div class="hstat-num">13<span>/13</span></div>
-          <div class="hstat-label">Fedwire UAT Sign-off</div>
-        </div>
-      </div>
-      <div class="btn-row">
-        <a class="btn btn-primary" href="#projects">View Projects</a>
-        <a class="btn btn-ghost resume-download" href="./assets/resume.pdf">⬇ Download Resume</a>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <img class="avatar" src="./assets/profile.jpg" alt="" width="96" height="96">
+      <h1>Srivardhan Gadepalli</h1>
+      <p class="hero-lede">Senior Business Analyst for payment exceptions and investigations in cross-border banking.</p>
+      <p class="hero-sub">Over five years I've defined how Goldman Sachs, NatWest and JPMC create, route and resolve payment investigations across SWIFT MT, ISO&nbsp;20022 / CBPR+ and domestic rails, on Pega Smart Investigate.</p>
+      <div class="actions">
+        <a class="btn btn-solid" href="./assets/resume.pdf" download>Download resume</a>
+        <a class="btn btn-line" href="mailto:gadepallivardhan@gmail.com">Email me</a>
       </div>
     </div>
-    <div class="hero-photo-col reveal">
-      <div class="photo-frame">
-        <div class="photo-glow"></div>
-        <div class="photo-card">
-          <img src="./assets/profile.jpg" alt="Srivardhan Gadepalli">
-        </div>
-        <div class="photo-badge">🏦 SWIFT MT / MX</div>
-        <div class="photo-badge">📋 ISO 20022 / CBPR+</div>
-        <div class="photo-badge">🔄 Pega Smart Investigate</div>
+    <div class="hero-visual">
+      <div class="portrait">
+        <img src="./assets/profile.jpg" alt="Portrait of Srivardhan Gadepalli" width="900" height="900">
+      </div>
+      <div class="msg" role="img" aria-label="Profile summary written as a SWIFT MT199 message: Senior Business Analyst, 5+ years at EvonSys, clients Goldman Sachs, NatWest and JPMC, SWIFT MT, ISO 20022 and CBPR+, Pega Smart Investigate, certified CPBA and PSPO I.">
+        <div class="msg-bar"><span>MT199 Free format</span><span>Hyderabad, IN</span></div>
+        <pre class="msg-body" id="msgBody"></pre>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── TICKER ── -->
-<div class="ticker-wrap">
-  <div class="ticker-track" id="tickerTrack"></div>
-</div>
-
-<!-- ── ABOUT ── -->
-<section id="about">
-  <div class="container">
-    <div class="sec-label">About</div>
-    <div class="about-layout">
-      <div class="about-left reveal">
-        <h2 class="sec-title">5+ Years in<br>Payments &amp; Banking Technology</h2>
-        <p class="about-summary">Payments Business Analyst at EvonSys with 5+ years in banking technology, specialising in cross-border and correspondent payments, payment exceptions and investigations, SWIFT MT, ISO 20022 / CBPR+ and Pega-based case management — for Goldman Sachs, NatWest and JPMC. Hands-on with Pega Smart Investigate, Pega PRPC and Pega Constellation, and experienced coordinating payment operations, client service, treasury, compliance/risk, product, technology and globally distributed delivery teams.</p>
-        <div class="about-kpis">
-          <div class="kpi-card reveal">
-            <div class="kpi-num">13/13</div>
-            <div class="kpi-label">Fedwire Phase 2A Stories UAT Signed Off</div>
-          </div>
-          <div class="kpi-card reveal">
-            <div class="kpi-num">8</div>
-            <div class="kpi-label">Investigation Categories Defined</div>
-          </div>
-          <div class="kpi-card reveal">
-            <div class="kpi-num">6</div>
-            <div class="kpi-label">Payment Rails Covered</div>
-          </div>
-          <div class="kpi-card reveal">
-            <div class="kpi-num">3</div>
-            <div class="kpi-label">Tier-1 Banking Clients</div>
-          </div>
-        </div>
-      </div>
-      <div class="about-right reveal">
-        <h3 style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;">Career Journey</h3>
-        <div class="career-timeline">
-          <div class="ct-item">
-            <div class="ct-dot"></div>
-            <div class="ct-period">Jan 2026 — Present · EvonSys</div>
-            <div class="ct-role">Senior Business Analyst — Goldman Sachs TxB</div>
-            <div class="ct-desc">Leading requirements for an enterprise Pega Payment Exceptions &amp; Investigations programme consolidating fragmented processing into one case-management model across SWIFT, Fedwire, CHAPS, SEPA CT/DD, StoneX and T2.</div>
-            <div class="ct-tags"><span class="ct-tag">Goldman Sachs</span><span class="ct-tag">Payment E&amp;I</span><span class="ct-tag">SWIFT MT / CBPR+</span><span class="ct-tag">Multi-Rail</span></div>
-          </div>
-          <div class="ct-item">
-            <div class="ct-dot"></div>
-            <div class="ct-period">Dec 2024 — Dec 2025 · EvonSys</div>
-            <div class="ct-role">Senior Business Analyst — NatWest</div>
-            <div class="ct-desc">Cross-border payment-investigation implementation on Pega Smart Investigate (Pega Infinity '24) — multi-channel intake, intent-to-resolution workflows, 4-eye / 6-eye verification, Stop-and-Recall and nostro/vostro reconciliation.</div>
-            <div class="ct-tags"><span class="ct-tag">NatWest</span><span class="ct-tag">Pega Infinity '24</span><span class="ct-tag">ISO 20022</span><span class="ct-tag">Stop &amp; Recall</span></div>
-          </div>
-          <div class="ct-item">
-            <div class="ct-dot"></div>
-            <div class="ct-period">Sep 2022 — Nov 2024 · EvonSys</div>
-            <div class="ct-role">Business Analyst — JPMC</div>
-            <div class="ct-desc">Cross-border FX payment-investigation implementation on Pega Smart Investigate 8.6 — SWIFT, SSR and eServe intake, message parsing and validation, multi-currency FX scenarios and outbound SWIFT MT correspondence.</div>
-            <div class="ct-tags"><span class="ct-tag">JPMC</span><span class="ct-tag">SWIFT MT</span><span class="ct-tag">FX / Multi-Currency</span><span class="ct-tag">Pega SI 8.6</span></div>
-          </div>
-          <div class="ct-item">
-            <div class="ct-dot" style="background:#10b981;box-shadow:0 0 0 3px rgba(16,185,129,0.18)"></div>
-            <div class="ct-period">Dec 2021 — Aug 2022 · EvonSys</div>
-            <div class="ct-role">Business Analyst — PeopleHCM</div>
-            <div class="ct-desc">Enterprise HCM workflow platform on Pega — HR approval automation, REST API integrations, backlog ownership in Jira and Power BI KPI reporting.</div>
-            <div class="ct-tags"><span class="ct-tag">PeopleHCM</span><span class="ct-tag">Pega</span><span class="ct-tag">REST APIs</span><span class="ct-tag">Backlog Ownership</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── PROCESS ── -->
-<div class="process-section">
-  <div class="container">
-    <p class="process-title" style="color:rgba(255,255,255,0.35);font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-align:center;margin-bottom:1.6rem;">Payment Investigation Lifecycle I Define End-to-End</p>
-    <div class="process-flow">
-      <div class="p-node"><div class="p-icon">📥</div><span class="p-label">Intake</span></div>
-      <div class="p-connector"></div>
-      <div class="p-node"><div class="p-icon">🔍</div><span class="p-label">Route</span></div>
-      <div class="p-connector"></div>
-      <div class="p-node"><div class="p-icon">📝</div><span class="p-label">Investigate</span></div>
-      <div class="p-connector"></div>
-      <div class="p-node"><div class="p-icon">✅</div><span class="p-label">Verify</span></div>
-      <div class="p-connector"></div>
-      <div class="p-node"><div class="p-icon">✉️</div><span class="p-label">Correspond</span></div>
-      <div class="p-connector"></div>
-      <div class="p-node"><div class="p-icon">🔄</div><span class="p-label">Resolve</span></div>
-      <div class="p-connector"></div>
-      <div class="p-node"><div class="p-icon">📊</div><span class="p-label">Monitor SLA</span></div>
-    </div>
+<div class="facts">
+  <div class="wrap facts-row">
+    <div class="fact"><strong>5+ years</strong><span>in banking technology at EvonSys</span></div>
+    <div class="fact"><strong>3 Tier-1 banks</strong><span>Goldman Sachs, NatWest, JPMC</span></div>
+    <div class="fact"><strong>6 payment rails</strong><span>SWIFT, Fedwire, CHAPS, SEPA, StoneX, T2</span></div>
+    <div class="fact"><strong>13 of 13</strong><span>Fedwire stories signed off in UAT</span></div>
   </div>
 </div>
 
-<!-- ── SKILLS ── -->
-<section id="skills">
-  <div class="container">
-    <div class="sec-label">Expertise</div>
-    <h2 class="sec-title reveal">Core Competencies</h2>
-    <p class="sec-sub reveal">Payments domain depth, message-standard fluency and business-analysis discipline built across Tier-1 banking engagements.</p>
-    <div class="skills-grid">
-      <div class="skill-card reveal">
-        <h3>Payments &amp; Transaction Banking</h3>
-        <div class="skill-tags">
-          <span class="s-tag">Cross-Border Payments</span><span class="s-tag">Correspondent Banking</span><span class="s-tag">Payment Exceptions &amp; Investigations</span><span class="s-tag">Payment Recalls &amp; Cancellations</span><span class="s-tag">Returns</span><span class="s-tag">Non-Receipt Claims</span><span class="s-tag">Nostro / Vostro Reconciliation</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <h3>SWIFT, ISO 20022 &amp; Payment Rails</h3>
-        <div class="skill-tags">
-          <span class="s-tag">SWIFT MT</span><span class="s-tag">ISO 20022</span><span class="s-tag">CBPR+</span><span class="s-tag">Fedwire ISO</span><span class="s-tag">CHAPS</span><span class="s-tag">SEPA</span><span class="s-tag">BACS</span><span class="s-tag">VISA</span><span class="s-tag">MT103 / 192 / 199</span><span class="s-tag">MT n9x</span><span class="s-tag">pacs.008</span><span class="s-tag">pacs.004</span><span class="s-tag">camt.056</span><span class="s-tag">camt.029</span><span class="s-tag">camt.110</span><span class="s-tag">camt.111</span>
-        </div>
-      </div>
-      <div class="skill-card reveal" style="--grad-start:#8b5cf6;--grad-end:#06b6d4;">
-        <h3>Payment Investigation &amp; Processing</h3>
-        <div class="skill-tags">
-          <span class="s-tag">Case Intake &amp; Creation</span><span class="s-tag">Investigation Routing</span><span class="s-tag">Orchestration</span><span class="s-tag">Resolution Workflows</span><span class="s-tag">Outbound Correspondence</span><span class="s-tag">Stop &amp; Recall</span><span class="s-tag">Duplicate Payment Detection</span><span class="s-tag">Verification &amp; Approval Controls</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <h3>Business Analysis &amp; Delivery</h3>
-        <div class="skill-tags">
-          <span class="s-tag">Requirements Elicitation</span><span class="s-tag">BRD / FRD / PRD</span><span class="s-tag">Epics &amp; User Stories</span><span class="s-tag">Acceptance Criteria</span><span class="s-tag">Use Cases</span><span class="s-tag">Business Rules</span><span class="s-tag">RTM</span><span class="s-tag">AS-IS / TO-BE</span><span class="s-tag">Gap Analysis</span><span class="s-tag">UAT</span><span class="s-tag">Defect Triage</span><span class="s-tag">Business Sign-off</span><span class="s-tag">Agile / Scrum</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <h3>Pega Platform</h3>
-        <div class="skill-tags">
-          <span class="s-tag">Pega Smart Investigate</span><span class="s-tag">Pega PRPC</span><span class="s-tag">Pega Constellation</span><span class="s-tag">Pega Infinity '24</span><span class="s-tag">Case Management</span><span class="s-tag">CPBA Certified</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <h3>Technical &amp; Tools</h3>
-        <div class="skill-tags">
-          <span class="s-tag">REST APIs</span><span class="s-tag">Message Mapping</span><span class="s-tag">Field Validation</span><span class="s-tag">Jira</span><span class="s-tag">Confluence</span><span class="s-tag">Figma</span><span class="s-tag">Power BI</span><span class="s-tag">BPMN</span><span class="s-tag">UML</span><span class="s-tag">DFD</span>
-        </div>
-      </div>
+<section class="section" id="about">
+  <div class="wrap sec-head">
+    <div><h2>About</h2></div>
+    <div class="prose">
+      <p class="big">When a cross-border payment goes wrong, operations teams need a case that already knows which payment it is, which message to send and who has to approve it. I write the requirements that make that happen.</p>
+      <p>I specialise in cross-border and correspondent payments, payment exceptions and investigations, SWIFT MT, ISO&nbsp;20022 / CBPR+ and Pega-based case management. My work covers intake and case creation, routing and orchestration, verification and approval controls, and outbound correspondence, from epics and user stories through UAT and business sign-off.</p>
+      <p>I'm a Certified Pega Business Architect and a Professional Scrum Product Owner, and I studied Electrical and Electronics Engineering at JNTU Kakinada.</p>
+      <p class="partners-title">Teams I work alongside</p>
+      <ul class="partners">
+        <li>Payment clearing operations</li>
+        <li>Client service</li>
+        <li>Corporate treasury</li>
+        <li>Compliance and risk</li>
+        <li>Product owners</li>
+        <li>Engineering, QA and offshore delivery</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ── PROJECTS ── -->
-<section id="projects">
-  <div class="container">
-    <div class="sec-label">Projects</div>
-    <h2 class="sec-title reveal">Select Engagements</h2>
-    <p class="sec-sub reveal">Four engagements at EvonSys — three Tier-1 banking payment-investigation programmes and an enterprise HCM workflow platform.</p>
-    <div class="projects-layout reveal">
-      <!-- Goldman Sachs — full width featured -->
-      <div class="proj-featured" data-modal-target="modal-goldmansachs">
-        <div class="proj-glow"></div>
-        <div class="proj-status"><span class="active-dot"></span> Current — Jan 2026 to Present</div>
-        <div class="proj-client">Goldman Sachs</div>
-        <div class="proj-role">Senior Business Analyst &nbsp;·&nbsp; Transaction Banking (TxB), USA &nbsp;·&nbsp; Payment Exceptions &amp; Investigations</div>
-        <div class="proj-desc">Enterprise Pega Payment Exceptions &amp; Investigations initiative consolidating fragmented, Excel-based processing into a single case-management model across SWIFT, Fedwire, CHAPS, SEPA CT/DD, StoneX and T2 — with Phase 1 automation and Phase 2 STP, financial-adjustment and payment-engine capabilities.</div>
-        <div class="proj-chips">
-          <span class="proj-chip">13/13 Fedwire Stories UAT Signed Off</span>
-          <span class="proj-chip">SWIFT MT / CBPR+</span>
-          <span class="proj-chip">camt.056 / 029 / 110 / 111</span>
-          <span class="proj-chip">Multi-Rail Investigations</span>
-          <span class="proj-chip">Epics / User Stories</span>
-        </div>
-        <div class="proj-arrow">View Case Details →</div>
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:40px;">
+      <div>
+        <h2>Experience</h2>
+        <p class="note">EvonSys India, Senior Business Analyst since November 2021</p>
       </div>
-      <!-- 2-col: NatWest + JPMC -->
-      <div class="projects-row">
-        <div class="proj-card reveal" data-modal-target="modal-natwest">
-          <div class="proj-delivered">✓ Completed</div>
-          <div class="proj-num">02 · Pega Smart Investigate · Infinity '24 · UK</div>
-          <div class="proj-client">NatWest</div>
-          <div class="proj-role-label">Senior Business Analyst &nbsp;·&nbsp; Dec 2024 – Dec 2025</div>
-          <div class="proj-desc-text">Cross-border payment-investigation implementation covering multi-channel intake through resolution and outbound SWIFT MT / ISO 20022 correspondence.</div>
-          <div class="proj-kpis">
-            <span class="proj-kpi">4-Eye / 6-Eye Verification</span>
-            <span class="proj-kpi">Stop &amp; Recall</span>
-            <span class="proj-kpi">Duplicate Detection</span>
-            <span class="proj-kpi">Nostro / Vostro Recon</span>
-          </div>
-          <span class="proj-link">View Details →</span>
-        </div>
-        <div class="proj-card reveal" data-modal-target="modal-jpmc">
-          <div class="proj-delivered">✓ Completed</div>
-          <div class="proj-num">03 · Pega Smart Investigate 8.6 · USA</div>
-          <div class="proj-client">JPMC</div>
-          <div class="proj-role-label">Business Analyst &nbsp;·&nbsp; Sep 2022 – Nov 2024</div>
-          <div class="proj-desc-text">Cross-border FX payment-investigation implementation — SWIFT, SSR &amp; eServe intake, message parsing and validation, FX scenarios and outbound SWIFT MT correspondence.</div>
-          <div class="proj-kpis">
-            <span class="proj-kpi">Multi-Currency &amp; FX</span>
-            <span class="proj-kpi">SWIFT Parsing &amp; Mapping</span>
-            <span class="proj-kpi">AS-IS / TO-BE</span>
-            <span class="proj-kpi">RTM &amp; UAT</span>
-          </div>
-          <span class="proj-link">View Details →</span>
-        </div>
-      </div>
-      <!-- PeopleHCM — full width -->
-      <div class="projects-row" style="grid-template-columns:1fr;">
-        <div class="proj-card reveal" data-modal-target="modal-peoplehcm">
-          <div class="proj-delivered">✓ Completed</div>
-          <div class="proj-num">04 · Pega · HR Tech / HCM</div>
-          <div class="proj-client">PeopleHCM</div>
-          <div class="proj-role-label">Business Analyst &nbsp;·&nbsp; Dec 2021 – Aug 2022</div>
-          <div class="proj-desc-text">Enterprise HCM workflow platform on Pega — automating manual HR approval workflows through Pega process orchestration and REST API integrations, with backlog ownership and Power BI KPI reporting.</div>
-          <div class="proj-kpis">
-            <span class="proj-kpi">HR Approval Automation</span>
-            <span class="proj-kpi">REST API Integration</span>
-            <span class="proj-kpi">Backlog Ownership</span>
-            <span class="proj-kpi">Power BI KPIs</span>
-          </div>
-          <span class="proj-link">View Details →</span>
-        </div>
-      </div>
+      <div></div>
     </div>
+    <ol class="jobs">
+      <li class="job">
+        <div class="job-when">
+          <time>Jan 2026 – present</time>
+          Transaction Banking, USA
+          <br><span class="now">Current engagement</span>
+        </div>
+        <div>
+          <h3>Goldman Sachs</h3>
+          <p class="role">Senior Business Analyst, Payment Exceptions &amp; Investigations</p>
+          <p class="summary">An enterprise Pega programme that brings fragmented, Excel-based exception handling into one case-management model across multiple payment rails.</p>
+          <ul class="key">
+            <li>Lead requirements for investigations across SWIFT MT and MX / CBPR+, and their expansion to Fedwire, CHAPS, SEPA CT/DD, StoneX and T2.</li>
+            <li>Define eight investigation categories: cancellation, recall, amendment, tracer, RFI / unable to apply, fraud, regulatory and sanctions.</li>
+            <li>Specify Phase 1 automation (keyword parsing, intent assignment, transaction lookup, enrichment, SLA monitoring) and Phase 2 STP, financial adjustments and payment-engine integration.</li>
+          </ul>
+          <p class="outcome">Phase 2A Fedwire: 13 of 13 user stories signed off in UAT.</p>
+          <ul class="tags"><li>MT n9x</li><li>camt.056</li><li>camt.029</li><li>camt.110</li><li>camt.111</li><li>Pega</li></ul>
+          <details class="more">
+            <summary>Full responsibilities</summary>
+            <div class="more-body">
+              <h4>Requirements</h4>
+              <ul>
+                <li>Author and refine epics, user stories, acceptance criteria, functional requirements, business rules, use cases and process flows.</li>
+                <li>Define manual and automated case creation, routing, orchestration, resolution activities, verification and approval controls, and outbound correspondence.</li>
+                <li>Define SWIFT MT and ISO 20022 / CBPR+ message processing, with field mapping, validation and enrichment.</li>
+              </ul>
+              <h4>Integration</h4>
+              <ul>
+                <li>Define integration between Pega, payment orchestration, CRM, compliance / risk and customer and counterparty reference data, so each case arrives with what it needs to be resolved.</li>
+              </ul>
+              <h4>Delivery</h4>
+              <ul>
+                <li>Run AS-IS / TO-BE and gap analysis and turn findings into stories and configuration requirements.</li>
+                <li>Facilitate backlog refinement and story walkthroughs; support UAT, defect triage, traceability and sign-off.</li>
+                <li>Coordinate Payment Clearing Operations, TxB Client Service, Corporate Treasury, Product and Operations with technology teams.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </li>
+
+      <li class="job">
+        <div class="job-when">
+          <time>Dec 2024 – Dec 2025</time>
+          United Kingdom
+        </div>
+        <div>
+          <h3>NatWest</h3>
+          <p class="role">Senior Business Analyst, Pega Smart Investigate (Infinity '24)</p>
+          <p class="summary">A cross-border payment-investigation implementation covering intake through resolution and outbound correspondence.</p>
+          <ul class="key">
+            <li>Defined intake across front office, back-office operations, inbound SWIFT MT / ISO 20022 messages and NLP-driven email.</li>
+            <li>Defined intent-to-resolution workflows for non-receipt claims, recalls and cancellations, return to sender, re-issue and RFIs.</li>
+            <li>Defined 4-eye and 6-eye verification, with Supervisor and Manager approval by payment action and amount threshold.</li>
+          </ul>
+          <p class="outcome">Found payment-processing gaps before go-live, so the fixes were built into the target solution.</p>
+          <ul class="tags"><li>MT103</li><li>MT192</li><li>MT199</li><li>pacs.008</li><li>pacs.004</li><li>camt.056</li><li>camt.029</li><li>camt.110</li></ul>
+          <details class="more">
+            <summary>Full responsibilities</summary>
+            <div class="more-body">
+              <h4>Workflow and correspondence</h4>
+              <ul>
+                <li>Defined routing, orchestration, resolution activities, outbound correspondence and exception handling from initiation to closure.</li>
+                <li>Defined SWIFT Case Management and Stop-and-Recall, including cancellation reasons for duplicate payment, fraud, incorrect amount and incorrect agent.</li>
+              </ul>
+              <h4>Controls and reconciliation</h4>
+              <ul>
+                <li>Designed a duplicate-payment detection model on amount, date, transaction references and account data, deciding automated linking versus manual review.</li>
+                <li>Documented nostro / vostro reconciliation across five break types and REST API integration between the reconciliation engine and the investigation platform.</li>
+                <li>Defined role-based access for Agent, Payment Specialist, Supervisor and Manager.</li>
+              </ul>
+              <h4>Delivery</h4>
+              <ul>
+                <li>Led and supported UAT, defect triage and business sign-off.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </li>
+
+      <li class="job">
+        <div class="job-when">
+          <time>Sep 2022 – Nov 2024</time>
+          United States
+        </div>
+        <div>
+          <h3>JPMC</h3>
+          <p class="role">Business Analyst, Pega Smart Investigate 8.6</p>
+          <p class="summary">A cross-border FX payment-investigation implementation, moving spreadsheet-and-email investigations onto automated Pega workflows.</p>
+          <ul class="key">
+            <li>Defined intake for inbound SWIFT, SSR and eServe messages and the outbound SWIFT MT correspondence for each investigation scenario.</li>
+            <li>Documented message parsing, field mapping, validation and error-queue handling for messages that failed automated processing.</li>
+            <li>Analysed multi-currency and FX-conversion scenarios with international business and technology teams.</li>
+          </ul>
+          <ul class="tags"><li>SWIFT MT</li><li>FX</li><li>BRD / FRD</li><li>RTM</li><li>UAT</li></ul>
+          <details class="more">
+            <summary>Full responsibilities</summary>
+            <div class="more-body">
+              <ul>
+                <li>Authored BRDs, FRDs, user stories, acceptance criteria, use cases and functional specifications.</li>
+                <li>Ran AS-IS and gap analysis and designed automated TO-BE investigation workflows.</li>
+                <li>Maintained the Requirements Traceability Matrix through implementation and testing.</li>
+                <li>Prepared UAT scenarios and test cases and coordinated defect triage across onshore and offshore teams.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </li>
+
+      <li class="job">
+        <div class="job-when">
+          <time>Dec 2021 – Aug 2022</time>
+          HR technology
+        </div>
+        <div>
+          <h3>PeopleHCM</h3>
+          <p class="role">Business Analyst, Pega HCM workflow platform</p>
+          <p class="summary">An enterprise HCM platform on Pega, automating HR approvals with REST API integrations.</p>
+          <ul class="key">
+            <li>Mapped AS-IS / TO-BE HR approval processes in BPMN, UML and DFD and moved manual steps into Pega workflows.</li>
+            <li>Owned and prioritised the backlog in Jira using MoSCoW and value-versus-effort, and led UAT and release readiness.</li>
+            <li>Built Power BI reporting on SLA compliance, feature adoption and release quality.</li>
+          </ul>
+          <ul class="tags"><li>PRD / BRD / FRD</li><li>REST APIs</li><li>Jira</li><li>Power BI</li></ul>
+        </div>
+      </li>
+    </ol>
   </div>
 </section>
 
-<!-- ── CERTIFICATIONS ── -->
-<section id="certifications">
-  <div class="container">
-    <div class="sec-label">Credentials</div>
-    <h2 class="sec-title reveal">Certifications &amp; Education</h2>
-    <p class="sec-sub reveal">Platform expertise and delivery discipline validated by leading industry bodies.</p>
-    <div class="certs-grid">
-      <div class="cert-card reveal">
-        <div class="cert-glow"></div>
-        <div class="cert-icon">🏅</div>
-        <div class="cert-name">Certified Pega Business Architect (CPBA)</div>
-        <div class="cert-issuer">Pegasystems</div>
-      </div>
-      <div class="cert-card reveal">
-        <div class="cert-glow"></div>
-        <div class="cert-icon">🏅</div>
-        <div class="cert-name">Professional Scrum Product Owner I (PSPO I)</div>
-        <div class="cert-issuer">Scrum.org</div>
-      </div>
-      <div class="cert-card reveal">
-        <div class="cert-glow"></div>
-        <div class="cert-icon">🎓</div>
-        <div class="cert-name">B.Tech, Electrical &amp; Electronics Engineering</div>
-        <div class="cert-issuer">JNTU Kakinada · 2015 – 2019</div>
-      </div>
-    </div>
+<section class="lifecycle" aria-labelledby="lc-title">
+  <div class="wrap">
+    <h2 id="lc-title">The investigation lifecycle I define</h2>
+    <p class="intro">Every engagement comes down to the same path. My requirements decide what happens at each step, and what the case needs before it can move to the next one.</p>
+    <ol class="steps">
+      <li><strong>Intake</strong><span>SWIFT, MX, email and manual channels create the case</span></li>
+      <li><strong>Enrich</strong><span>Transaction lookup, client and counterparty data</span></li>
+      <li><strong>Route</strong><span>Intent assignment sends it to the right queue</span></li>
+      <li><strong>Investigate</strong><span>Recall, tracer, RFI, non-receipt, fraud</span></li>
+      <li><strong>Approve</strong><span>4-eye and 6-eye checks by action and amount</span></li>
+      <li><strong>Correspond</strong><span>MT192, MT199, camt.056, camt.029</span></li>
+      <li><strong>Resolve</strong><span>Funds movement, closure and SLA reporting</span></li>
+    </ol>
   </div>
 </section>
 
-<!-- ── TESTIMONIALS ── -->
-<section id="testimonials">
-  <div class="container">
-    <div class="sec-label">Testimonials</div>
-    <h2 class="sec-title reveal">What Colleagues Say</h2>
-    <p class="sec-sub reveal">Feedback from stakeholders and teammates across banking and payments delivery.</p>
-    <div class="testimonials-grid">
-      <div class="t-card reveal">
-        <span class="t-quote">&#8220;</span>
-        <p class="t-text">Srivardhan is one of the sharpest BAs I've worked with in the payments space. He doesn't just gather requirements — he challenges assumptions, spots SWIFT message-handling gaps before they become defects, and writes specs that developers actually implement correctly. The NatWest investigation platform would not have shipped as cleanly without him.</p>
-        <div class="t-author">
-          <div class="t-avatar">DM</div>
-          <div>
-            <div class="t-name">Delivery Manager</div>
-            <div class="t-role">EvonSys · Payments Practice</div>
-          </div>
-        </div>
-      </div>
-      <div class="t-card reveal">
-        <span class="t-quote">&#8220;</span>
-        <p class="t-text">Working with Srivardhan on the payment correspondence module was seamless. He understood ISO 20022 message structures as well as any integration developer, which meant field-level requirements for pacs.008 and camt.056 were precise from day one. Rare to find a BA with that depth in CBPR+ message handling.</p>
-        <div class="t-author">
-          <div class="t-avatar">PD</div>
-          <div>
-            <div class="t-name">Senior Pega Developer</div>
-            <div class="t-role">EvonSys · Banking Delivery</div>
-          </div>
-        </div>
-      </div>
-      <div class="t-card reveal">
-        <span class="t-quote">&#8220;</span>
-        <p class="t-text">The Stop-and-Recall requirements Srivardhan authored covered every edge case our operations team could think of — and several we hadn't considered. His ability to map the camt.056 / camt.029 recall flow end-to-end, including cancellation reason codes and manual review routing, saved us weeks of rework during UAT.</p>
-        <div class="t-author">
-          <div class="t-avatar">PO</div>
-          <div>
-            <div class="t-name">Payment Operations Lead</div>
-            <div class="t-role">Banking Client · Cross-Border Payments</div>
-          </div>
-        </div>
-      </div>
-    </div>
+<section class="section" id="skills">
+  <div class="wrap sec-head">
+    <div><h2>Skills</h2></div>
+    <dl class="skill-rows">
+      <div class="skill-row"><dt>Payments</dt><dd>Cross-border payments, correspondent banking, payment exceptions and investigations, recalls and cancellations, returns, non-receipt claims, nostro / vostro reconciliation</dd></div>
+      <div class="skill-row"><dt>Standards and rails</dt><dd>SWIFT MT, ISO 20022, CBPR+, Fedwire ISO, CHAPS, SEPA, BACS, VISA; MT103, MT192, MT199, MT n9x, pacs.008, pacs.004, camt.056, camt.029, camt.110, camt.111</dd></div>
+      <div class="skill-row"><dt>Investigation processing</dt><dd>Case intake and creation, routing, orchestration, resolution workflows, outbound correspondence, stop and recall, duplicate payment detection, verification and approval controls</dd></div>
+      <div class="skill-row"><dt>Business analysis</dt><dd>Elicitation, BRD, FRD, PRD, epics, user stories, acceptance criteria, use cases, business rules, RTM, AS-IS / TO-BE, gap analysis, UAT, defect triage, sign-off, Agile / Scrum</dd></div>
+      <div class="skill-row"><dt>Platforms and tools</dt><dd>Pega Smart Investigate, Pega PRPC, Pega Constellation, REST APIs, message mapping, field validation, Jira, Confluence, Figma, Power BI, BPMN, UML, DFD</dd></div>
+    </dl>
   </div>
 </section>
 
-<!-- ── WHY ── -->
-<section id="why-po">
-  <div class="container">
-    <div class="sec-label reveal">Philosophy</div>
-    <h2 class="sec-title reveal" style="max-width:600px;">Why Payments BA?</h2>
-    <div class="why-block reveal">
-      <p class="why-quote">Payment exceptions and investigations sit where money, regulation and client trust meet — every recall, cancellation, non-receipt claim and approval threshold carries financial and compliance consequences. Over 5+ years at EvonSys I've moved from enterprise workflow platforms into Tier-1 payments, working on investigation programmes at JPMC, NatWest and now Goldman Sachs. I define how cases are created, routed and resolved across SWIFT MT, ISO 20022 / CBPR+ and domestic rails, which verification controls apply before funds move, and what correspondence goes back to counterparties — turning manual, spreadsheet-driven processes into structured, auditable case management.</p>
-    </div>
+<section class="section" id="credentials">
+  <div class="wrap sec-head">
+    <div><h2>Credentials</h2></div>
+    <ul class="creds">
+      <li><strong>Certified Pega Business Architect (CPBA)</strong><span>Pegasystems</span></li>
+      <li><strong>Professional Scrum Product Owner I (PSPO I)</strong><span>Scrum.org</span></li>
+      <li><strong>B.Tech, Electrical and Electronics Engineering</strong><span>JNTU Kakinada, 2015 to 2019</span></li>
+    </ul>
   </div>
 </section>
 
-<!-- ── CONTACT ── -->
-<section id="contact">
-  <div class="container">
-    <div class="sec-label">Get In Touch</div>
-    <h2 class="sec-title reveal">Contact</h2>
-    <p class="sec-sub reveal">Open to Senior Business Analyst opportunities in payments and banking technology — cross-border payments, SWIFT / ISO 20022 and payment exceptions &amp; investigations.</p>
-    <div class="contact-cards reveal">
-      <div class="contact-item-card">
-        <div class="ci-label">Email</div>
-        <div class="ci-value"><a href="mailto:gadepallivardhan@gmail.com">gadepallivardhan@gmail.com</a></div>
-      </div>
-      <div class="contact-item-card">
-        <div class="ci-label">Phone</div>
-        <div class="ci-value"><a href="tel:+919676832893">+91 96768 32893</a></div>
-      </div>
-      <div class="contact-item-card">
-        <div class="ci-label">LinkedIn</div>
-        <div class="ci-value"><a href="https://www.linkedin.com/in/srivardhangadepalli/" target="_blank" rel="noopener">linkedin.com/in/srivardhangadepalli</a></div>
-      </div>
-      <div class="contact-item-card">
-        <div class="ci-label">Location</div>
-        <div class="ci-value">Hyderabad, India</div>
-      </div>
+<section class="section" id="testimonials">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:48px;"><div><h2>What colleagues say</h2></div><div></div></div>
+    <div class="quotes">
+      <figure>
+        <blockquote>Srivardhan is one of the sharpest BAs I've worked with in the payments space. He doesn't just gather requirements — he challenges assumptions, spots SWIFT message-handling gaps before they become defects, and writes specs that developers actually implement correctly. The NatWest investigation platform would not have shipped as cleanly without him.</blockquote>
+        <figcaption><b>Delivery Manager</b>EvonSys, Payments Practice</figcaption>
+      </figure>
+      <figure>
+        <blockquote>Working with Srivardhan on the payment correspondence module was seamless. He understood ISO 20022 message structures as well as any integration developer, which meant field-level requirements for pacs.008 and camt.056 were precise from day one. Rare to find a BA with that depth in CBPR+ message handling.</blockquote>
+        <figcaption><b>Senior Pega Developer</b>EvonSys, Banking Delivery</figcaption>
+      </figure>
+      <figure>
+        <blockquote>The Stop-and-Recall requirements Srivardhan authored covered every edge case our operations team could think of — and several we hadn't considered. His ability to map the camt.056 / camt.029 recall flow end-to-end, including cancellation reason codes and manual review routing, saved us weeks of rework during UAT.</blockquote>
+        <figcaption><b>Payment Operations Lead</b>Banking client, Cross-Border Payments</figcaption>
+      </figure>
     </div>
   </div>
 </section>
 </main>
 
-<footer class="footer">
-  <div class="container">
-    <p>© <span id="year"></span> Srivardhan Gadepalli &nbsp;·&nbsp; Senior Business Analyst &nbsp;·&nbsp; Payments Exceptions &amp; Investigations &nbsp;·&nbsp; SWIFT MT &amp; ISO 20022</p>
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Looking for a payments business analyst?</h2>
+    <p class="intro">I'm open to senior business analyst roles in payments and banking technology: cross-border payments, SWIFT and ISO&nbsp;20022, and payment exceptions and investigations.</p>
+    <ul class="channels">
+      <li><small>Email</small><a href="mailto:gadepallivardhan@gmail.com">gadepallivardhan@gmail.com</a></li>
+      <li><small>Phone</small><a href="tel:+919676832893">+91 96768 32893</a></li>
+      <li><small>LinkedIn</small><a href="https://www.linkedin.com/in/srivardhangadepalli/" target="_blank" rel="noopener">srivardhangadepalli</a></li>
+    </ul>
+    <div class="actions">
+      <a class="btn btn-solid" href="mailto:gadepallivardhan@gmail.com">Email me</a>
+      <a class="btn btn-line" href="./assets/resume.pdf" download>Download resume</a>
+    </div>
   </div>
+</section>
+<footer>
+  <div class="wrap"><div>
+    <span>© <span id="year"></span> Srivardhan Gadepalli</span>
+    <span>Hyderabad, India</span>
+  </div></div>
 </footer>
 
-<!-- ══ MODALS ══ -->
-<div class="modal" id="modal-goldmansachs" aria-hidden="true">
-  <div class="modal-box">
-    <button class="modal-close" aria-label="Close">✕</button>
-    <span class="modal-badge active">▶ Active Engagement · Jan 2026 – Present</span>
-    <h3>Goldman Sachs — Payment Exceptions &amp; Investigations</h3>
-    <p class="modal-meta">Senior Business Analyst &nbsp;·&nbsp; Transaction Banking (TxB), USA &nbsp;·&nbsp; Pega Case Management</p>
-    <p>Enterprise Pega Payment Exceptions &amp; Investigations (E&amp;I) initiative consolidating fragmented processing into a single case-management model across multiple payment rails.</p>
-    <h4>Requirements &amp; Scope</h4>
-    <ul>
-      <li>Led requirements elicitation and business analysis for the E&amp;I programme, supporting cross-border and correspondent-payment operations across multiple payment rails.</li>
-      <li>Authored and refined epics, user stories, acceptance criteria, functional requirements, business rules, use cases and process flows with operations, product and technology stakeholders.</li>
-      <li>Supported investigation expansion beyond SWIFT across Fedwire, CHAPS, SEPA CT/DD, StoneX and T2, alongside SWIFT MT and SWIFT MX / CBPR+ investigation processing.</li>
-      <li>Defined requirements across investigation categories: Payment Cancellation, Recall, Amendment, Tracer, Request for Information / Unable to Apply, Fraud, Regulatory and Sanctions / Compliance.</li>
-    </ul>
-    <h4>Case Lifecycle &amp; Automation</h4>
-    <ul>
-      <li>Defined functional requirements for manual and automated case creation, investigation routing, orchestration, resolution activities, verification and approval controls, and outbound correspondence.</li>
-      <li>Phase 1 automation: keyword parsing, intent assignment, transaction lookup, client / transaction-data enrichment and case SLA monitoring.</li>
-      <li>Phase 2 capabilities: financial adjustments, payment-engine integration, foundational STP flows, workflow orchestration, real-time payment-status updates and enhanced case routing.</li>
-    </ul>
-    <h4>Messaging &amp; Integration</h4>
-    <ul>
-      <li>SWIFT MT and ISO 20022 / CBPR+ message-processing requirements, including MT n9x and camt.056 / camt.029 / camt.110 / camt.111, with field mapping, validation and enrichment.</li>
-      <li>Integration requirements between Pega, payment orchestration, CRM, compliance / risk and customer / counterparty reference-data services.</li>
-    </ul>
-    <h4>Delivery</h4>
-    <ul>
-      <li>AS-IS / TO-BE and gap analysis translated into functional requirements, user stories and configuration / development requirements.</li>
-      <li>Facilitated backlog refinement and story walkthroughs; supported UAT, defect triage, traceability and business sign-off.</li>
-      <li>Coordinated Payment Clearing Operations (PCO), TxB Client Service, Corporate Treasury, Product and Operations with technology teams.</li>
-    </ul>
-    <h4>Impact</h4>
-    <ul>
-      <li>Contributed to transforming manual, Excel-based, fragmented E&amp;I processes into a unified end-to-end Pega case-management model.</li>
-      <li>Supported Phase 2A Fedwire delivery through requirements clarification, UAT and defect triage — 13/13 user stories achieved UAT sign-off.</li>
-    </ul>
-  </div>
-</div>
-
-<div class="modal" id="modal-natwest" aria-hidden="true">
-  <div class="modal-box">
-    <button class="modal-close" aria-label="Close">✕</button>
-    <span class="modal-badge delivered">✓ Completed · Dec 2024 – Dec 2025</span>
-    <h3>NatWest — Cross-Border Payment Investigations</h3>
-    <p class="modal-meta">Senior Business Analyst &nbsp;·&nbsp; Pega Smart Investigate (Pega Infinity '24) &nbsp;·&nbsp; UK</p>
-    <p>Cross-border payment-investigation implementation on Pega Smart Investigate covering intake through resolution and outbound correspondence.</p>
-    <h4>Intake &amp; Workflows</h4>
-    <ul>
-      <li>Defined end-to-end intake and case-creation requirements across front-office, back-office payment operations, automated inbound SWIFT MT / ISO 20022 messages and NLP-driven email channels.</li>
-      <li>Defined intent-to-resolution workflows for non-receipt claims, recalls / cancellations, return-to-sender, payment re-issue and requests for information.</li>
-      <li>Defined case routing, orchestration, resolution activities, outbound correspondence and exception handling from initiation through closure.</li>
-    </ul>
-    <h4>SWIFT MT &amp; ISO 20022 Correspondence</h4>
-    <ul>
-      <li>Outbound correspondence requirements across SWIFT MT103, MT192 and MT199, plus ISO 20022 / CBPR+ pacs.008, pacs.004, camt.056, camt.110 and camt.029.</li>
-      <li>SWIFT Case Management and Stop-and-Recall requirements, including cancellation-reason handling for duplicate payment, fraud, incorrect amount and incorrect agent.</li>
-    </ul>
-    <h4>Controls, Detection &amp; Reconciliation</h4>
-    <ul>
-      <li>4-eye and 6-eye verification with Supervisor and Manager approval based on payment action and amount thresholds before funds movement or correspondence.</li>
-      <li>Duplicate-payment detection model using amount, date, transaction references and account information to drive automated linking vs. manual review.</li>
-      <li>Nostro / vostro reconciliation requirements across five break types, plus REST API integration between the reconciliation engine and the investigation platform.</li>
-      <li>Role-based access and persona functionality for Agent, Payment Specialist, Supervisor and Manager users.</li>
-    </ul>
-    <h4>Impact</h4>
-    <ul>
-      <li>Supported moving manual investigation activity into structured Pega Smart Investigate workflows covering intake, investigation, verification, resolution and correspondence.</li>
-      <li>Identified payment-processing limitations through AS-IS / TO-BE and gap analysis ahead of go-live, so required development and configuration changes were built into the target solution.</li>
-      <li>Led / supported UAT, defect triage and business sign-off.</li>
-    </ul>
-  </div>
-</div>
-
-<div class="modal" id="modal-jpmc" aria-hidden="true">
-  <div class="modal-box">
-    <button class="modal-close" aria-label="Close">✕</button>
-    <span class="modal-badge delivered">✓ Completed · Sep 2022 – Nov 2024</span>
-    <h3>JPMC — Cross-Border FX Payment Investigations</h3>
-    <p class="modal-meta">Business Analyst &nbsp;·&nbsp; Pega Smart Investigate 8.6 &nbsp;·&nbsp; USA</p>
-    <p>Cross-border FX payment-investigation implementation on Pega Smart Investigate 8.6 covering inbound-message intake through resolution.</p>
-    <h4>Requirements Deliverables</h4>
-    <ul>
-      <li>Defined intake requirements for inbound SWIFT, SSR and eServe messages to create and process investigation cases.</li>
-      <li>Authored BRDs, FRDs, user stories, acceptance criteria, use cases and functional specifications.</li>
-      <li>Defined investigation scenarios and the outbound SWIFT MT correspondence exchanged with counterparties.</li>
-      <li>Analysed multi-currency requirements — transaction / investigation currencies and FX-conversion scenarios — with international business and technology teams.</li>
-    </ul>
-    <h4>SWIFT Message Processing</h4>
-    <ul>
-      <li>Documented message-parsing, field-mapping, data-validation and exception-handling requirements for inbound messages, including error-queue handling for messages that failed automated parsing or validation.</li>
-    </ul>
-    <h4>Analysis &amp; Delivery</h4>
-    <ul>
-      <li>AS-IS and gap analysis of spreadsheet-and-email-driven investigations, designing automated TO-BE workflows.</li>
-      <li>Maintained the Requirements Traceability Matrix; prepared UAT scenarios and test cases and supported business testing.</li>
-      <li>Coordinated defect triage and requirement clarification across onshore and offshore business, development and QA teams.</li>
-    </ul>
-  </div>
-</div>
-
-<div class="modal" id="modal-peoplehcm" aria-hidden="true">
-  <div class="modal-box">
-    <button class="modal-close" aria-label="Close">✕</button>
-    <span class="modal-badge delivered">✓ Completed · Dec 2021 – Aug 2022</span>
-    <h3>PeopleHCM — Enterprise HCM Workflow Platform</h3>
-    <p class="modal-meta">Business Analyst &nbsp;·&nbsp; Pega &nbsp;·&nbsp; HR Tech / HCM</p>
-    <p>Enterprise HCM workflow platform on Pega with HR approval automation and REST API integrations.</p>
-    <h4>Key Contributions</h4>
-    <ul>
-      <li>Authored PRDs, BRDs, FRDs, user stories, acceptance criteria, use cases and functional specifications.</li>
-      <li>Analysed HR approval processes and identified manual activities to move into automated Pega workflows.</li>
-      <li>Produced AS-IS / TO-BE process maps using BPMN, UML and DFD, and performed gap analysis against target capabilities.</li>
-      <li>Defined functional requirements and integration touchpoints for REST API-based integrations.</li>
-      <li>Owned and prioritised the product backlog in Jira / Confluence using MoSCoW and value-vs-effort analysis.</li>
-      <li>Facilitated Agile / Scrum ceremonies, walkthroughs and backlog refinement with offshore delivery teams.</li>
-      <li>Led UAT, defect management and release-readiness activities.</li>
-    </ul>
-    <h4>Impact</h4>
-    <ul>
-      <li>Supported automation of manual HR approval workflows through Pega process orchestration and REST API integration.</li>
-      <li>Improved delivery visibility with structured backlog management and Power BI KPI reporting on SLA compliance, feature adoption and release quality.</li>
-    </ul>
-  </div>
-</div>
-
 <script>
-  // ── COPY & RIGHT-CLICK PROTECTION ──
-  document.addEventListener('contextmenu', e => e.preventDefault());
-  document.addEventListener('copy', e => e.preventDefault());
-  document.addEventListener('cut', e => e.preventDefault());
-  document.addEventListener('dragstart', e => e.preventDefault());
-  document.addEventListener('keydown', e => {
-    const k = e.key.toLowerCase(), c = e.ctrlKey || e.metaKey;
-    if (c && ['c','u','s','a','p'].includes(k)) { e.preventDefault(); return; }
-    if (e.key === 'F12' || (c && e.shiftKey && ['i','j','c'].includes(k))) { e.preventDefault(); }
-  });
-
-  // ── REVEAL ON SCROLL ──
-  const revEls = document.querySelectorAll('.reveal');
-  const revObs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  revEls.forEach(el => revObs.observe(el));
-
-  // ── ACTIVE NAV ──
-  const sections = document.querySelectorAll('section[id], .ticker-wrap');
-  const navLinks = document.querySelectorAll('.nav-link');
-  const navObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      const id = e.target.getAttribute('id');
-      navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
-    });
-  }, { threshold: 0.4 });
-  document.querySelectorAll('section[id]').forEach(s => navObs.observe(s));
-
-  // ── MOBILE MENU ──
-  const toggle = document.getElementById('menuToggle');
-  const navList = document.getElementById('navLinks');
-  if (toggle) {
-    toggle.addEventListener('click', () => {
-      const open = navList.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open);
-    });
-    navLinks.forEach(l => l.addEventListener('click', () => { navList.classList.remove('open'); toggle.setAttribute('aria-expanded', false); }));
-    window.addEventListener('resize', () => { if (window.innerWidth > 860) navList.classList.remove('open'); });
-  }
-
-  // ── MODALS ──
-  document.querySelectorAll('[data-modal-target]').forEach(el => {
-    el.addEventListener('click', () => {
-      const m = document.getElementById(el.dataset.modalTarget);
-      if (!m) return;
-      m.classList.add('open'); m.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    });
-  });
-  function closeModal(m) { m.classList.remove('open'); m.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
-  document.querySelectorAll('.modal-close').forEach(b => b.addEventListener('click', () => closeModal(b.closest('.modal'))));
-  document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m) closeModal(m); }));
-  window.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.modal.open').forEach(closeModal); });
-
-  // ── YEAR ──
+(function () {
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // ── RESUME DOWNLOAD ──
-  document.querySelectorAll('.resume-download').forEach(b => {
-    b.addEventListener('click', e => {
-      e.preventDefault();
-      const a = document.createElement('a');
-      a.href = './assets/resume.pdf'; a.download = 'Srivardhan Payments Resume.pdf';
-      a.target = '_blank'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    });
-  });
+  var head = document.querySelector('.site-head');
+  var onScroll = function () { head.classList.toggle('scrolled', window.scrollY > 8); };
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
-  // ── TYPEWRITER ──
-  const roles = ['Payments Business Analyst', 'SWIFT MT & ISO 20022 / CBPR+', 'Payment Exceptions & Investigations', 'Cross-Border & Correspondent Payments', 'Pega Smart Investigate BA'];
-  let rIdx = 0, cIdx = roles[0].length, del = false;
-  const twEl = document.getElementById('hero-tw');
-  function tw() {
-    const cur = roles[rIdx];
-    twEl.textContent = cur.slice(0, cIdx);
-    if (!del) {
-      if (cIdx === cur.length) { del = true; setTimeout(tw, 2200); return; }
-      cIdx++; setTimeout(tw, 68);
-    } else {
-      if (cIdx === 0) { del = false; rIdx = (rIdx + 1) % roles.length; setTimeout(tw, 380); return; }
-      cIdx--; setTimeout(tw, 32);
-    }
+  var btn = document.getElementById('menuBtn'), nav = document.getElementById('nav');
+  function closeMenu() { nav.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); btn.textContent = 'Menu'; }
+  btn.addEventListener('click', function () {
+    var open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open)); btn.textContent = open ? 'Close' : 'Menu';
+  });
+  nav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });
+
+  var links = {};
+  nav.querySelectorAll('a[href^="#"]').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && links[e.target.id]) {
+          Object.keys(links).forEach(function (k) { links[k].removeAttribute('aria-current'); });
+          links[e.target.id].setAttribute('aria-current', 'true');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('section[id]').forEach(function (s) { io.observe(s); });
   }
-  setTimeout(tw, 1400);
 
-  // ── COUNTER ──
-  const counterObs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const target = parseFloat(el.dataset.target), suffix = el.dataset.suffix || '';
-      const inc = target / (1600 / 16); let cur = 0;
-      const t = setInterval(() => {
-        cur += inc; if (cur >= target) { cur = target; clearInterval(t); }
-        el.textContent = (Number.isInteger(target) ? Math.floor(cur) : cur.toFixed(1)) + suffix;
-      }, 16);
-      counterObs.unobserve(el);
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.counter').forEach(c => counterObs.observe(c));
-
-  // ── TICKER ──
-  const tickerItems = [
-    'Cross-Border Payments','Correspondent Banking','SWIFT MT','ISO 20022 / CBPR+','Pega Smart Investigate',
-    'Payment Exceptions & Investigations','Fedwire','CHAPS','SEPA','T2','camt.056 / camt.029','pacs.008 / pacs.004',
-    'Stop & Recall','4-Eye / 6-Eye Verification','Duplicate Detection','Nostro / Vostro Reconciliation',
-    'Epics & User Stories','AS-IS / TO-BE','Gap Analysis','UAT & Sign-off','BPMN','Power BI',
-    'Goldman Sachs','NatWest','JPMC','Agile / Scrum','PSPO I','CPBA'
+  // Profile written as an MT199 message, typed once on load
+  var lines = [
+    ['{1:F01EVONINBBXXXX}', ''],
+    [':20:', 'SRIVARDHAN-G'],
+    [':21:', 'PAYMENTS-BA'],
+    [':79:', '/ROLE/Senior Business Analyst'],
+    ['', '//EXP/5+ yrs, EvonSys'],
+    ['', '//CLNT/Goldman Sachs, NatWest, JPMC'],
+    ['', '//STDS/SWIFT MT, ISO 20022, CBPR+'],
+    ['', '//PLAT/Pega Smart Investigate'],
+    ['', '//CERT/CPBA, PSPO I'],
+    ['-}', '']
   ];
-  const track = document.getElementById('tickerTrack');
-  const doubled = [...tickerItems, ...tickerItems];
-  doubled.forEach(item => {
-    const div = document.createElement('div');
-    div.className = 'ticker-item';
-    div.innerHTML = `<span class="ticker-dot"></span>${item}`;
-    track.appendChild(div);
-  });
+  var el = document.getElementById('msgBody');
+  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  function render(li, ci) {
+    var html = '';
+    for (var i = 0; i < lines.length && i <= li; i++) {
+      var full = lines[i][0] + lines[i][1];
+      var shown = i < li ? full : full.slice(0, ci);
+      var tagLen = lines[i][0].length;
+      html += '<span class="t">' + esc(shown.slice(0, tagLen)) + '</span>' + esc(shown.slice(tagLen));
+      if (i < li) html += '\n';
+    }
+    el.innerHTML = html + '<span class="c"></span>';
+  }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { render(lines.length, 0); return; }
+  var li = 0, ci = 0;
+  (function tick() {
+    if (li >= lines.length) { render(lines.length, 0); return; }
+    var full = lines[li][0] + lines[li][1];
+    render(li, ci);
+    if (ci < full.length) { ci++; setTimeout(tick, 10); }
+    else { li++; ci = 0; setTimeout(tick, 80); }
+  })();
+})();
 </script>
 </body>
 </html>
