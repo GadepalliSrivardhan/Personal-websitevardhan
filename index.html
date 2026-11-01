@@ -37,7 +37,8 @@
     font-family: var(--sans); font-size: 1.0625rem; line-height: 1.6;
     -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
   }
-  img { max-width: 100%; display: block; }
+  img { max-width: 100%; display: block; -webkit-user-drag: none; user-drag: none; pointer-events: none; }
+  body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-touch-callout: none; }
   a { color: var(--ledger); text-underline-offset: 3px; text-decoration-thickness: 1px; }
   a:hover { color: var(--ledger-dark); }
   :focus-visible { outline: 2px solid var(--ledger); outline-offset: 3px; border-radius: 2px; }
@@ -267,7 +268,7 @@
     .msg-body .c { animation: none; }
   }
   @media print {
-    .site-head, .menu-btn, .actions, .msg { display: none; }
+    body { display: none; }
   }
 </style>
 </head>
@@ -570,6 +571,20 @@
 <script>
 (function () {
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Copy protection: block selection, copy, right-click, dragging and common shortcuts
+  ['copy', 'cut', 'contextmenu', 'selectstart', 'dragstart'].forEach(function (ev) {
+    document.addEventListener(ev, function (e) { e.preventDefault(); });
+  });
+  document.addEventListener('keydown', function (e) {
+    var k = (e.key || '').toLowerCase(), c = e.ctrlKey || e.metaKey;
+    if (e.key === 'F12' ||
+        (c && ['c', 'x', 'a', 'u', 's', 'p'].indexOf(k) > -1) ||
+        (c && e.shiftKey && ['i', 'j', 'c'].indexOf(k) > -1) ||
+        (e.metaKey && e.altKey && ['i', 'j', 'c', 'u'].indexOf(k) > -1)) {
+      e.preventDefault();
+    }
+  });
 
   var head = document.querySelector('.site-head');
   var onScroll = function () { head.classList.toggle('scrolled', window.scrollY > 8); };
