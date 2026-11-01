@@ -172,19 +172,67 @@
   details.more ul { margin: 0; padding-left: 1.1em; }
   details.more li { margin-bottom: 6px; }
 
-  /* Lifecycle */
-  .lifecycle { background: var(--ink); color: var(--panel-text); padding: 72px 0 80px; }
-  .lifecycle h2 { font-size: 2rem; letter-spacing: -0.025em; margin: 0 0 12px; color: #fff; font-weight: 700; }
-  .lifecycle .intro { color: rgba(230,234,232,0.7); max-width: 60ch; margin: 0 0 56px; }
-  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, 1fr); counter-reset: s; }
-  .steps li { counter-increment: s; padding: 22px 16px 0 0; border-top: 2px solid rgba(255,255,255,0.18); position: relative; }
-  .steps li::before {
-    content: counter(s); position: absolute; top: -13px; left: 0; width: 24px; height: 24px; border-radius: 50%;
-    background: var(--ink); border: 2px solid var(--brass); color: var(--brass);
-    font-size: 0.75rem; font-weight: 700; display: grid; place-items: center; font-variant-numeric: tabular-nums;
+  /* Case simulator */
+  .sim { background: var(--ink); color: var(--panel-text); padding: 72px 0 80px; }
+  .sim h2 { font-size: 2rem; letter-spacing: -0.025em; margin: 0 0 12px; color: #fff; font-weight: 700; }
+  .sim .intro { color: rgba(230,234,232,0.72); max-width: 62ch; margin: 0 0 32px; }
+  .scen { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; background: rgba(255,255,255,0.06); border-radius: 10px; margin: 0 0 28px; }
+  .scen button {
+    font: inherit; font-size: 0.9375rem; font-weight: 600; color: rgba(230,234,232,0.75); background: transparent;
+    border: 0; border-radius: 7px; padding: 9px 16px; cursor: pointer;
   }
-  .steps strong { display: block; color: #fff; font-size: 1rem; margin: 6px 0 4px; }
-  .steps span { font-size: 0.875rem; color: rgba(230,234,232,0.65); line-height: 1.45; display: block; }
+  .scen button:hover { color: #fff; }
+  .scen button[aria-selected="true"] { background: #fff; color: var(--ink); }
+  .sim-grid { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 32px; align-items: start; }
+  .stages { list-style: none; margin: 0; padding: 0; position: relative; }
+  .stages li { position: relative; }
+  .stages li + li::before { content: ""; position: absolute; left: 13px; top: -14px; height: 14px; width: 2px; background: rgba(255,255,255,0.14); }
+  .stages li.done + li::before, .stages li.done + li.cur::before { background: var(--brass); }
+  .stage-btn {
+    display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; margin-bottom: 14px;
+    font: inherit; font-size: 0.9875rem; color: rgba(230,234,232,0.6); background: none; border: 0; padding: 0; cursor: pointer;
+  }
+  .stage-btn .n {
+    flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+    border: 2px solid rgba(255,255,255,0.2); font-size: 0.8125rem; font-weight: 700; font-variant-numeric: tabular-nums;
+    transition: background .2s, border-color .2s, color .2s;
+  }
+  .stage-btn:hover { color: #fff; }
+  li.done .stage-btn { color: rgba(230,234,232,0.85); }
+  li.done .n { border-color: var(--brass); color: var(--brass); }
+  li.cur .stage-btn { color: #fff; font-weight: 600; }
+  li.cur .n { background: var(--brass); border-color: var(--brass); color: var(--ink); }
+  li.skip .stage-btn { text-decoration: line-through; text-decoration-color: rgba(230,234,232,0.35); }
+
+  .case { background: #222D39; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 28px; min-height: 480px; display: flex; flex-direction: column; }
+  .case-top { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
+  .chip { font-size: 0.8125rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,0.07); color: rgba(230,234,232,0.85); }
+  .chip.status { background: rgba(212,180,106,0.16); color: var(--brass); }
+  .chip.status.closed { background: rgba(110,200,160,0.16); color: #8FD8B4; }
+  .case h3 { font-size: 1.5rem; letter-spacing: -0.02em; margin: 0 0 8px; color: #fff; font-weight: 700; }
+  .case .what { margin: 0 0 22px; color: rgba(230,234,232,0.85); max-width: 62ch; }
+  .wire { background: var(--ink); border-radius: 6px; font-family: var(--mono); font-size: 0.8125rem; line-height: 1.75; margin: 0 0 22px; overflow: hidden; }
+  .wire-bar { padding: 8px 14px; border-bottom: 1px solid rgba(255,255,255,0.08); color: rgba(230,234,232,0.6); font-size: 0.75rem; }
+  .wire-body { padding: 12px 14px; overflow-x: auto; }
+  .wire-body div { white-space: nowrap; }
+  .wire-body b { color: var(--brass); font-weight: 400; }
+  .defines { border-left: 3px solid var(--brass); padding: 2px 0 2px 16px; margin: 0 0 24px; max-width: 62ch; }
+  .defines strong { display: block; color: #fff; font-size: 0.9375rem; margin-bottom: 2px; }
+  .defines p { margin: 0; color: rgba(230,234,232,0.78); font-size: 0.9875rem; }
+  .case-nav { margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-top: 8px; }
+  .case-nav .count { font-size: 0.875rem; color: rgba(230,234,232,0.55); font-variant-numeric: tabular-nums; }
+  .case-nav .btns { display: flex; gap: 8px; }
+  .sbtn {
+    font: inherit; font-size: 0.9375rem; font-weight: 600; border-radius: 8px; padding: 10px 18px; cursor: pointer;
+    border: 1.5px solid rgba(255,255,255,0.25); background: transparent; color: #fff;
+  }
+  .sbtn:hover:not(:disabled) { border-color: #fff; }
+  .sbtn:disabled { opacity: 0.35; cursor: default; }
+  .sbtn.primary { background: var(--brass); border-color: var(--brass); color: var(--ink); }
+  .sbtn.primary:hover { background: #E2C57F; border-color: #E2C57F; }
+  .case-body { transition: opacity .18s ease; }
+  .case-body.fade { opacity: 0; }
+  .sim :focus-visible { outline-color: var(--brass); }
 
   /* Skills */
   .skill-rows { margin: 0; }
@@ -233,11 +281,12 @@
     .avatar { display: block; width: 104px; height: 104px; border-radius: 50%; object-fit: cover; object-position: center 22%; margin: 0 0 24px; }
     .facts-band { grid-template-columns: 1fr; gap: 36px; }
     .sec-head, .job { grid-template-columns: 1fr; gap: 20px; }
-    .steps { grid-template-columns: 1fr; gap: 0; }
-    .steps li { border-top: 0; border-left: 2px solid rgba(255,255,255,0.18); padding: 0 0 24px 28px; }
-    .steps li:last-child { padding-bottom: 0; border-left-color: transparent; }
-    .steps li::before { top: 0; left: -13px; }
-    .steps strong { margin-top: 0; }
+    .sim-grid { grid-template-columns: 1fr; gap: 20px; }
+    .stages { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+    .stages li + li::before { display: none; }
+    .stage-btn { margin: 0; gap: 0; width: auto; }
+    .stage-btn .t { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .stage-btn .n { width: 36px; height: 36px; }
     .quotes, .creds { grid-template-columns: 1fr; gap: 24px; }
     .quotes { gap: 40px; }
   }
@@ -258,7 +307,12 @@
     .fact { grid-template-columns: 1fr; gap: 2px; padding: 18px 0; }
     .fact strong { font-size: 1.375rem; }
     .section { padding: 60px 0; }
-    .lifecycle { padding: 60px 0; }
+    .sim { padding: 60px 0; }
+    .case { padding: 20px; min-height: 0; }
+    .case h3 { font-size: 1.25rem; }
+    .wire { font-size: 0.75rem; }
+    .scen { display: flex; }
+    .scen button { flex: 1; padding: 9px 8px; font-size: 0.875rem; }
     .skill-row { grid-template-columns: 1fr; gap: 6px; }
     .partners, .channels { grid-template-columns: 1fr; }
     .contact { padding: 60px 0; }
@@ -281,6 +335,7 @@
     <nav class="nav" id="nav" aria-label="Main">
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
+      <a href="#case">Case demo</a>
       <a href="#skills">Skills</a>
       <a href="#credentials">Credentials</a>
       <a href="#contact">Contact</a>
@@ -484,19 +539,24 @@
   </div>
 </section>
 
-<section class="lifecycle" aria-labelledby="lc-title">
+<section class="sim" id="case" aria-labelledby="sim-title">
   <div class="wrap">
-    <h2 id="lc-title">The investigation lifecycle I define</h2>
-    <p class="intro">Every engagement comes down to the same path. My requirements decide what happens at each step, and what the case needs before it can move to the next one.</p>
-    <ol class="steps">
-      <li><strong>Intake</strong><span>SWIFT, MX, email and manual channels create the case</span></li>
-      <li><strong>Enrich</strong><span>Transaction lookup, client and counterparty data</span></li>
-      <li><strong>Route</strong><span>Intent assignment sends it to the right queue</span></li>
-      <li><strong>Investigate</strong><span>Recall, tracer, RFI, non-receipt, fraud</span></li>
-      <li><strong>Approve</strong><span>4-eye and 6-eye checks by action and amount</span></li>
-      <li><strong>Correspond</strong><span>MT192, MT199, camt.056, camt.029</span></li>
-      <li><strong>Resolve</strong><span>Funds movement, closure and SLA reporting</span></li>
-    </ol>
+    <h2 id="sim-title">Walk through a case</h2>
+    <p class="intro">Pick a scenario and step through it the way a case moves through an investigation platform. Each step shows what happens, the message involved, and what my requirements define there.</p>
+    <div class="scen" role="tablist" aria-label="Scenario" id="scen"></div>
+    <div class="sim-grid">
+      <ol class="stages" id="stages" aria-label="Case stages"></ol>
+      <div class="case" id="casePanel" aria-live="polite">
+        <div class="case-body" id="caseBody"></div>
+        <div class="case-nav">
+          <span class="count" id="caseCount"></span>
+          <div class="btns">
+            <button class="sbtn" id="prevBtn" type="button">Back</button>
+            <button class="sbtn primary" id="nextBtn" type="button">Next step</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -612,6 +672,119 @@
     document.querySelectorAll('section[id]').forEach(function (s) { io.observe(s); });
   }
 
+  // Case simulator
+  var STAGES = ['Intake', 'Enrich', 'Route', 'Investigate', 'Approve', 'Correspond', 'Resolve'];
+  var SCEN = [
+    { name: 'Payment recall', id: 'RCL-24817', steps: [
+      { st: 'New', what: 'Client Service logs a request to recall a USD payment the client sent twice. The case is created with intent Recall and reason Duplicate.',
+        wt: 'Case record', w: [['Intent', 'Recall'], ['Reason', 'DUPL  (duplicate payment)'], ['Channel', 'Front office']],
+        d: 'Which channels can raise a recall, the mandatory fields at intake, and how the intent and reason are assigned.' },
+      { st: 'Enriched', what: 'Transaction lookup finds the original payment by its UETR. Duplicate detection links it to the second payment with the same amount, date and references.',
+        wt: 'pacs.008 found', w: [['UETR', '8a4f…c21e'], ['Amount', 'USD 248,500.00'], ['Match', 'Amount, value date, refs, account']],
+        d: 'The duplicate-detection model: which attributes match, and when the link is automatic versus sent for manual review.' },
+      { st: 'Assigned', what: 'Intent assignment routes the case to the Payment Specialist recall queue and starts the SLA clock.',
+        wt: 'Routing', w: [['Queue', 'Recalls / USD'], ['Persona', 'Payment Specialist'], ['SLA', 'Started']],
+        d: 'Routing rules by intent, currency and line of business, plus SLA targets per transaction type.' },
+      { st: 'In progress', what: 'The specialist confirms both payments settled and the second one is a genuine duplicate, so funds should come back.',
+        wt: 'Investigation', w: [['Finding', 'Duplicate confirmed'], ['Action', 'Request cancellation'], ['Funds', 'To be returned']],
+        d: 'The resolution activities available for a recall and the evidence each one needs before it can proceed.' },
+      { st: 'Pending approval', what: 'The amount is above the threshold, so a Supervisor must approve before anything goes to the counterparty.',
+        wt: 'Verification', w: [['Control', '4-eye'], ['Approver', 'Supervisor'], ['Above 6-eye limit', 'No']],
+        d: '4-eye and 6-eye rules: which actions need approval, the amount thresholds, and Approve, Reject or Send for repair.' },
+      { st: 'Awaiting reply', what: 'A cancellation request goes to the beneficiary bank with reason code DUPL.',
+        wt: 'camt.056 FI to FI payment cancellation request', w: [['Original UETR', '8a4f…c21e'], ['Reason code', 'DUPL'], ['Legacy equivalent', 'MT192']],
+        d: 'Outbound message mapping: which fields come from the case, which are editable, and the reason-code set.' },
+      { st: 'Closed', what: 'The beneficiary bank accepts and returns the funds. The case closes inside SLA.',
+        wt: 'camt.029 and pacs.004 received', w: [['camt.029', 'Cancellation accepted'], ['pacs.004', 'USD 248,500.00 returned'], ['SLA', 'Met']],
+        d: 'How replies are matched back to the case, the financial adjustment on return, and closure criteria.' }
+    ]},
+    { name: 'Non-receipt claim', id: 'NRC-31094', steps: [
+      { st: 'New', what: 'A client emails that their supplier has not received a EUR payment. The email channel reads it and creates a case with intent Non-receipt.',
+        wt: 'Case record', w: [['Intent', 'Non-receipt'], ['Channel', 'Email (NLP)'], ['Keywords', 'not received, payment ref']],
+        d: 'Email intake: keyword parsing, intent assignment, and when a human has to confirm the intent.' },
+      { st: 'Enriched', what: 'The payment is found and its status shows it left the bank and was credited to the intermediary.',
+        wt: 'pacs.008 found', w: [['Amount', 'EUR 62,300.00'], ['Status', 'Sent to intermediary'], ['Beneficiary bank', 'Not yet confirmed']],
+        d: 'Transaction lookup and the client and counterparty data a case needs before anyone works it.' },
+      { st: 'Assigned', what: 'The case lands in the tracer queue for the EUR desk.',
+        wt: 'Routing', w: [['Queue', 'Tracers / EUR'], ['Persona', 'Agent'], ['SLA', 'Started']],
+        d: 'Routing by intent and currency, and how work is balanced across queues.' },
+      { st: 'In progress', what: 'The agent sends an investigation request to the intermediary bank asking where the funds are.',
+        wt: 'camt.110 Investigation request', w: [['Type', 'Non-receipt / tracer'], ['Original UETR', 'c93b…07aa'], ['Legacy equivalent', 'MT199']],
+        d: 'Which investigation message to send for each case type, and the automated chaser schedule if no reply arrives.' },
+      { st: 'In progress', skip: true, what: 'No funds move and nothing is cancelled, so no approval is needed. The case skips this step.',
+        wt: 'Verification', w: [['Control', 'Not required'], ['Why', 'Information request only']],
+        d: 'Approval rules are tied to the action, not the case type, so information-only steps never wait for sign-off.' },
+      { st: 'Awaiting client', what: 'The intermediary replies that it credited the beneficiary bank two days ago. The client is updated.',
+        wt: 'camt.111 Investigation response', w: [['Result', 'Funds credited'], ['Credited to', 'Beneficiary bank'], ['Client notified', 'Yes']],
+        d: 'How responses update the case, and the client correspondence templates for each outcome.' },
+      { st: 'Closed', what: 'The supplier confirms receipt. The case closes as resolved with no financial impact.',
+        wt: 'Case closure', w: [['Outcome', 'Funds located'], ['Financial impact', 'None'], ['SLA', 'Met']],
+        d: 'Closure codes, SLA reporting, and what gets captured for management information.' }
+    ]},
+    { name: 'Unable to apply', id: 'UTA-17362', steps: [
+      { st: 'New', what: 'An incoming GBP payment cannot be applied because the account name does not match. A case is created automatically from the payment exception.',
+        wt: 'Case record', w: [['Intent', 'Unable to apply'], ['Channel', 'Payment exception'], ['Issue', 'Name / account mismatch']],
+        d: 'Automated case creation from payment-processing exceptions, and how the exception reason becomes the intent.' },
+      { st: 'Enriched', what: 'Client reference data shows the account exists but under a different legal name.',
+        wt: 'Reference data', w: [['Amount', 'GBP 18,750.00'], ['Account', 'Found'], ['Name check', 'Failed']],
+        d: 'Integration with customer reference data so the case already shows what is wrong.' },
+      { st: 'Assigned', what: 'The case goes to the RFI and Unable to apply queue.',
+        wt: 'Routing', w: [['Queue', 'RFI / UTA'], ['Persona', 'Payment Specialist'], ['SLA', 'Started']],
+        d: 'Routing for inbound exceptions, kept separate from outbound recalls and tracers.' },
+      { st: 'Awaiting reply', what: 'The specialist asks the ordering bank to confirm the correct beneficiary details.',
+        wt: 'MT199 Free format', w: [[':20:', 'UTA-17362'], [':79:', '/RFI/PLS CONFIRM BENEFICIARY NAME'], ['', '//AND ACCOUNT FOR GBP 18,750.00']],
+        d: 'Free-format request templates, mandatory and editable fields, and the chaser schedule.' },
+      { st: 'Awaiting reply', skip: true, what: 'Asking for information moves no money, so no approval is needed yet.',
+        wt: 'Verification', w: [['Control', 'Not required'], ['Why', 'Information request only']],
+        d: 'Approval is triggered later only if the outcome is a return of funds.' },
+      { st: 'Ready to apply', what: 'The ordering bank confirms the beneficiary trades under a different name. The details now match.',
+        wt: 'MT199 reply received', w: [['Response', 'Details confirmed'], ['Linked to case', 'UTA-17362'], ['Next action', 'Apply funds']],
+        d: 'Matching inbound replies to the open case, and what happens if no reply arrives (return via pacs.004).' },
+      { st: 'Closed', what: 'The funds are applied to the client account and the case closes.',
+        wt: 'Case closure', w: [['Outcome', 'Applied'], ['Amount', 'GBP 18,750.00'], ['SLA', 'Met']],
+        d: 'Closure criteria and the audit trail kept for every action on the case.' }
+    ]}
+  ];
+  var sc = 0, step = 0;
+  var scenEl = document.getElementById('scen'), stEl = document.getElementById('stages'),
+      body = document.getElementById('caseBody'), countEl = document.getElementById('caseCount'),
+      prevB = document.getElementById('prevBtn'), nextB = document.getElementById('nextBtn');
+  function e(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  SCEN.forEach(function (x, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.setAttribute('role', 'tab'); b.textContent = x.name;
+    b.addEventListener('click', function () { sc = i; step = 0; draw(true); });
+    scenEl.appendChild(b);
+  });
+  STAGES.forEach(function (name, i) {
+    var li = document.createElement('li');
+    li.innerHTML = '<button type="button" class="stage-btn"><span class="n">' + (i + 1) + '</span><span class="t">' + name + '</span></button>';
+    li.firstChild.addEventListener('click', function () { step = i; draw(true); });
+    stEl.appendChild(li);
+  });
+  function draw(animate) {
+    var S = SCEN[sc], x = S.steps[step];
+    [].forEach.call(scenEl.children, function (b, i) { b.setAttribute('aria-selected', i === sc ? 'true' : 'false'); });
+    [].forEach.call(stEl.children, function (li, i) {
+      li.className = (i < step ? 'done' : '') + (i === step ? ' cur' : '') + (S.steps[i].skip ? ' skip' : '');
+      li.firstChild.setAttribute('aria-current', i === step ? 'step' : 'false');
+      li.firstChild.setAttribute('aria-label', 'Step ' + (i + 1) + ': ' + STAGES[i]);
+    });
+    var html = '<div class="case-top"><span class="chip">' + S.id + '</span><span class="chip">' + e(S.name) + '</span>' +
+      '<span class="chip status' + (x.st === 'Closed' ? ' closed' : '') + '">' + e(x.st) + '</span></div>' +
+      '<h3>' + STAGES[step] + (x.skip ? ' (skipped)' : '') + '</h3><p class="what">' + e(x.what) + '</p>' +
+      '<div class="wire"><div class="wire-bar">' + e(x.wt) + '</div><div class="wire-body">' +
+      x.w.map(function (r) { return '<div><b>' + e(r[0]) + (r[0] && r[0].slice(-1) !== ':' ? ':' : '') + '</b> ' + e(r[1]) + '</div>'; }).join('') +
+      '</div></div><div class="defines"><strong>What my requirements define here</strong><p>' + e(x.d) + '</p></div>';
+    var apply = function () { body.innerHTML = html; body.classList.remove('fade'); };
+    if (animate && !reduce) { body.classList.add('fade'); setTimeout(apply, 160); } else apply();
+    countEl.textContent = 'Step ' + (step + 1) + ' of ' + STAGES.length;
+    prevB.disabled = step === 0;
+    nextB.textContent = step === STAGES.length - 1 ? 'Start over' : 'Next step';
+  }
+  prevB.addEventListener('click', function () { if (step > 0) { step--; draw(true); } });
+  nextB.addEventListener('click', function () { step = step === STAGES.length - 1 ? 0 : step + 1; draw(true); });
+
   // Email: copy the address and show it, then open the mail app if there is one
   var EMAIL = 'gadepallivardhan@gmail.com', toast = document.getElementById('toast'), tt;
   function showToast(msg) {
@@ -654,6 +827,7 @@
     el.innerHTML = html + (li >= lines.length ? '' : '<span class="c"></span>');
   }
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  draw(false);
   var li = 0, ci = 0;
   function tick() {
     if (li >= lines.length) { render(lines.length, 0); return; }
