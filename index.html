@@ -67,7 +67,7 @@
   }
 
   /* Hero */
-  .hero { padding: 72px 0 88px; }
+  .hero { padding: 56px 0 64px; }
   .hero-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 64px; align-items: center; }
   .hero h1 {
     font-size: clamp(2.75rem, 6.2vw, 5rem); line-height: 0.98; letter-spacing: -0.035em;
@@ -89,39 +89,40 @@
   .btn-line { color: var(--ink); background: transparent; }
   .btn-line:hover { background: var(--ink); color: #fff; }
 
-  .hero-visual { position: relative; padding-bottom: 72px; }
+  .hero-visual { position: relative; }
   .portrait {
-    width: 78%; margin-left: auto; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 4px;
+    width: min(100%, 440px); margin-left: auto; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 4px;
     background: #222;
   }
   .avatar { display: none; }
   .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
 
   .msg {
-    position: absolute; left: 0; bottom: 0; width: min(380px, 82%);
     background: var(--panel); color: var(--panel-text); border-radius: 6px;
     font-family: var(--mono); font-size: 0.8125rem; line-height: 1.75;
-    box-shadow: 0 24px 48px -16px rgba(24,33,43,0.45);
   }
   .msg-bar {
     display: flex; justify-content: space-between; gap: 12px; padding: 10px 16px;
     border-bottom: 1px solid rgba(255,255,255,0.1); color: rgba(230,234,232,0.6); font-size: 0.75rem;
   }
-  .msg-body { padding: 14px 16px 16px; margin: 0; white-space: pre-wrap; min-height: calc(10 * 1.75em + 30px); font: inherit; }
+  .msg-body { padding: 14px 16px 16px; margin: 0; white-space: pre-wrap; min-height: calc(10 * 1.75em + 30px); font: inherit; overflow-x: auto; }
   .msg-body .t { color: var(--brass); }
   .msg-body .c { display: inline-block; width: 0.55em; height: 1.05em; background: var(--brass); vertical-align: -0.15em; animation: blink 1s steps(1) infinite; }
   @keyframes blink { 50% { opacity: 0; } }
 
   /* Facts */
-  .facts { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--surface); }
-  .facts-row { display: grid; grid-template-columns: repeat(4, 1fr); }
-  .fact { padding: 28px 24px; border-left: 1px solid var(--rule); }
-  .fact:first-child { border-left: 0; padding-left: 0; }
+  .facts { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--surface); padding: 48px 0; }
+  .facts-band { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+  .facts-row { display: grid; grid-template-columns: 1fr 1fr; }
+  .fact { padding: 24px 24px 24px 0; border-top: 1px solid var(--rule); }
+  .fact:nth-child(-n+2) { border-top: 0; padding-top: 0; }
+  .fact:nth-child(n+3) { padding-bottom: 0; }
+  .fact:nth-child(even) { padding-left: 24px; border-left: 1px solid var(--rule); }
   .fact strong { display: block; font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 4px; }
   .fact span { color: var(--ink-2); font-size: 0.9375rem; line-height: 1.4; display: block; }
 
   /* Sections */
-  .section { padding: 104px 0; }
+  .section { padding: 80px 0; }
   .section + .section { border-top: 1px solid var(--rule); }
   .sec-head { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 48px; }
   .sec-head h2 { font-size: 2rem; line-height: 1.15; letter-spacing: -0.025em; font-weight: 700; margin: 0; }
@@ -172,7 +173,7 @@
   details.more li { margin-bottom: 6px; }
 
   /* Lifecycle */
-  .lifecycle { background: var(--ink); color: var(--panel-text); padding: 88px 0 96px; }
+  .lifecycle { background: var(--ink); color: var(--panel-text); padding: 72px 0 80px; }
   .lifecycle h2 { font-size: 2rem; letter-spacing: -0.025em; margin: 0 0 12px; color: #fff; font-weight: 700; }
   .lifecycle .intro { color: rgba(230,234,232,0.7); max-width: 60ch; margin: 0 0 56px; }
   .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, 1fr); counter-reset: s; }
@@ -207,7 +208,7 @@
   .quotes figcaption b { color: var(--ink); font-weight: 600; display: block; }
 
   /* Contact */
-  .contact { background: var(--surface); border-top: 1px solid var(--rule); padding: 104px 0 96px; }
+  .contact { background: var(--surface); border-top: 1px solid var(--rule); padding: 80px 0 72px; }
   .contact h2 { font-size: clamp(2rem, 4.4vw, 3.25rem); line-height: 1.05; letter-spacing: -0.03em; margin: 0 0 18px; max-width: 18ch; font-weight: 800; }
   .contact .intro { color: var(--ink-2); max-width: 56ch; margin: 0 0 40px; }
   .channels { list-style: none; margin: 0 0 44px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 900px; }
@@ -218,10 +219,19 @@
   footer { padding: 0 0 28px; font-size: 0.875rem; color: var(--ink-3); background: var(--surface); }
   footer .wrap > div { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid var(--rule); padding-top: 24px; }
 
+  .toast {
+    position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 16px); opacity: 0; pointer-events: none;
+    background: var(--ink); color: #fff; padding: 12px 18px; border-radius: 8px; font-size: 0.9375rem;
+    box-shadow: 0 12px 32px rgba(24,33,43,0.3); transition: opacity .2s, transform .2s; max-width: calc(100% - 32px); z-index: 100;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
   /* Responsive */
   @media (max-width: 980px) {
     .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-    .hero-visual { max-width: 520px; }
+    .hero-visual { display: none; }
+    .avatar { display: block; width: 104px; height: 104px; border-radius: 50%; object-fit: cover; object-position: center 22%; margin: 0 0 24px; }
+    .facts-band { grid-template-columns: 1fr; gap: 36px; }
     .sec-head, .job { grid-template-columns: 1fr; gap: 20px; }
     .steps { grid-template-columns: 1fr; gap: 0; }
     .steps li { border-top: 0; border-left: 2px solid rgba(255,255,255,0.18); padding: 0 0 24px 28px; }
@@ -242,20 +252,17 @@
     .nav a { padding: 12px 8px; }
     .nav .nav-cta { margin: 8px 0 0; text-align: center; }
     .hero { padding: 40px 0 64px; }
-    .avatar { display: block; width: 96px; height: 96px; border-radius: 50%; object-fit: cover; object-position: center 22%; margin: 0 0 24px; }
-    .hero-grid { gap: 40px; }
-    .hero-visual { padding-bottom: 0; }
-    .portrait { display: none; }
-    .msg { position: static; width: 100%; font-size: 0.75rem; box-shadow: none; }
-    .facts-row { grid-template-columns: 1fr 1fr; }
-    .fact { padding: 20px 16px 20px 0; border-left: 0; border-top: 1px solid var(--rule); }
-    .fact:nth-child(-n+2) { border-top: 0; }
-    .fact:nth-child(even) { padding-left: 16px; border-left: 1px solid var(--rule); }
+    .avatar { width: 88px; height: 88px; }
+    .msg { font-size: 0.75rem; }
+    .facts { padding: 36px 0; }
+    .fact { padding-right: 16px; }
+    .fact:nth-child(even) { padding-left: 16px; }
     .fact strong { font-size: 1.375rem; }
-    .section { padding: 72px 0; }
+    .section { padding: 60px 0; }
+    .lifecycle { padding: 60px 0; }
     .skill-row { grid-template-columns: 1fr; gap: 6px; }
     .partners, .channels { grid-template-columns: 1fr; }
-    .contact { padding: 72px 0; }
+    .contact { padding: 60px 0; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -293,27 +300,29 @@
       <p class="hero-sub">Over five years I've defined how Goldman Sachs, NatWest and JPMC create, route and resolve payment investigations across SWIFT MT, ISO&nbsp;20022 / CBPR+ and domestic rails, on Pega Smart Investigate.</p>
       <div class="actions">
         <a class="btn btn-solid" href="./assets/resume.pdf" download>Download resume</a>
-        <a class="btn btn-line" href="mailto:gadepallivardhan@gmail.com">Email me</a>
+        <a class="btn btn-line" href="mailto:gadepallivardhan@gmail.com" data-email>Email me</a>
       </div>
     </div>
     <div class="hero-visual">
       <div class="portrait">
         <img src="./assets/profile.jpg" alt="Portrait of Srivardhan Gadepalli" width="900" height="900">
       </div>
-      <div class="msg" role="img" aria-label="Profile summary written as a SWIFT MT199 message: Senior Business Analyst, 5+ years at EvonSys, clients Goldman Sachs, NatWest and JPMC, SWIFT MT, ISO 20022 and CBPR+, Pega Smart Investigate, certified CPBA and PSPO I.">
-        <div class="msg-bar"><span>MT199 Free format</span><span>Hyderabad, IN</span></div>
-        <pre class="msg-body" id="msgBody"></pre>
-      </div>
     </div>
   </div>
 </section>
 
 <div class="facts">
-  <div class="wrap facts-row">
+  <div class="wrap facts-band">
+  <div class="msg" role="img" aria-label="Profile summary written as a SWIFT MT199 message: Senior Business Analyst, 5+ years at EvonSys, clients Goldman Sachs, NatWest and JPMC, SWIFT MT, ISO 20022 and CBPR+, Pega Smart Investigate, certified CPBA and PSPO I.">
+    <div class="msg-bar"><span>MT199 Free format</span><span>Hyderabad, IN</span></div>
+    <pre class="msg-body" id="msgBody"></pre>
+  </div>
+  <div class="facts-row">
     <div class="fact"><strong>5+ years</strong><span>in banking technology at EvonSys</span></div>
     <div class="fact"><strong>3 Tier-1 banks</strong><span>Goldman Sachs, NatWest, JPMC</span></div>
     <div class="fact"><strong>6 payment rails</strong><span>SWIFT, Fedwire, CHAPS, SEPA, StoneX, T2</span></div>
     <div class="fact"><strong>13 of 13</strong><span>Fedwire stories signed off in UAT</span></div>
+  </div>
   </div>
 </div>
 
@@ -543,12 +552,12 @@
     <h2>Looking for a payments business analyst?</h2>
     <p class="intro">I'm open to senior business analyst roles in payments and banking technology: cross-border payments, SWIFT and ISO&nbsp;20022, and payment exceptions and investigations.</p>
     <ul class="channels">
-      <li><small>Email</small><a href="mailto:gadepallivardhan@gmail.com">gadepallivardhan@gmail.com</a></li>
+      <li><small>Email</small><a href="mailto:gadepallivardhan@gmail.com" data-email>gadepallivardhan@gmail.com</a></li>
       <li><small>Phone</small><a href="tel:+919676832893">+91 96768 32893</a></li>
       <li><small>LinkedIn</small><a href="https://www.linkedin.com/in/srivardhangadepalli/" target="_blank" rel="noopener">srivardhangadepalli</a></li>
     </ul>
     <div class="actions">
-      <a class="btn btn-solid" href="mailto:gadepallivardhan@gmail.com">Email me</a>
+      <a class="btn btn-solid" href="mailto:gadepallivardhan@gmail.com" data-email>Email me</a>
       <a class="btn btn-line" href="./assets/resume.pdf" download>Download resume</a>
     </div>
   </div>
@@ -559,6 +568,7 @@
     <span>Hyderabad, India</span>
   </div></div>
 </footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 (function () {
@@ -590,6 +600,21 @@
     document.querySelectorAll('section[id]').forEach(function (s) { io.observe(s); });
   }
 
+  // Email: copy the address and show it, then open the mail app if there is one
+  var EMAIL = 'gadepallivardhan@gmail.com', toast = document.getElementById('toast'), tt;
+  function showToast(msg) {
+    toast.textContent = msg; toast.classList.add('show');
+    clearTimeout(tt); tt = setTimeout(function () { toast.classList.remove('show'); }, 4500);
+  }
+  document.querySelectorAll('[data-email]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var done = function () { showToast('Email address copied: ' + EMAIL); };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(EMAIL).then(done, function () { showToast('Email: ' + EMAIL); });
+      } else { showToast('Email: ' + EMAIL); }
+    });
+  });
+
   // Profile written as an MT199 message, typed once on load
   var lines = [
     ['{1:F01EVONINBBXXXX}', ''],
@@ -612,20 +637,27 @@
       var shown = i < li ? full : full.slice(0, ci);
       var tagLen = lines[i][0].length;
       html += '<span class="t">' + esc(shown.slice(0, tagLen)) + '</span>' + esc(shown.slice(tagLen));
-      if (i < li) html += '\n';
+      if (i < li && i < lines.length - 1) html += '\n';
     }
-    el.innerHTML = html + '<span class="c"></span>';
+    el.innerHTML = html + (li >= lines.length ? '' : '<span class="c"></span>');
   }
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) { render(lines.length, 0); return; }
   var li = 0, ci = 0;
-  (function tick() {
+  function tick() {
     if (li >= lines.length) { render(lines.length, 0); return; }
     var full = lines[li][0] + lines[li][1];
     render(li, ci);
     if (ci < full.length) { ci++; setTimeout(tick, 10); }
     else { li++; ci = 0; setTimeout(tick, 80); }
-  })();
+  }
+  if (reduce || !('IntersectionObserver' in window)) { render(lines.length, 0); }
+  else {
+    render(0, 0);
+    var mo = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { mo.disconnect(); tick(); }
+    }, { threshold: 0.4 });
+    mo.observe(el);
+  }
 })();
 </script>
 </body>
